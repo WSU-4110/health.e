@@ -35,9 +35,6 @@ List<Question> getQuestions() {
     Answer("11 to 15", true),
     Answer("16 to 20", true),
     Answer("20 to 30", true),
-    Answer("31 to 40", true),
-    Answer("41 to 50", true),
-    Answer("50 plus", true),
   ]));
 
   list.add(Question(
