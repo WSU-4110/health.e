@@ -9,6 +9,7 @@ This project is motivated on the premise of bettering the health crisis in Ameri
   - Calendar
   - Personal Profiles
   - Level based workouts (beginner, intermediate, expert)
+  - Notifications
 With these implementations we hope to slightly improve the health of overweight people that can not get into currently established fitness programs. 
 
 ----------------------
