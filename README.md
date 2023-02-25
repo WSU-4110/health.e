@@ -1,31 +1,16 @@
-# **Health.E Project**
+# healthe
 
-## Motivation and Features
+A new Flutter project.
 
+## Getting Started
 
-This project is motivated on the premise of bettering the health crisis in America. Over the last few decades the United States has increased dramaticaly in weight on average and with this application we hope to provide a helpful tool to decrease obesity. We hope to differentiate our app from other fitness apps by providing a more overweight friedly option that has a larger range of exercieses so people do not get overwhelmed. Some features we are implementing to improve our applications quality include: 
+This project is a starting point for a Flutter application.
 
-  - Assessments to better understand user capabilities
-  - Dieting tips that link users to reliable information
-  - Daily notifications 
-  - Calendar
-  - Personal Profiles
-  - Level based workouts (beginner, intermediate, expert)
+A few resources to get you started if this is your first Flutter project:
 
-With these implemntations we hope to slightly improve the health of overweight people that can not get into currently established fitness programs. 
-----------------------
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-## Installation of our Project (Update in future sprints)
-
-
-----------------------
-
-## Credits
-
-John Cavanaugh Sullivan | https://github.com/JohnSullivanIV
-| Jason Jose | https://github.com/josejasona
-| Mingran Tan | https://github.com/MingranTan
-| Mazin Shulaiba | https://github.com/mshul97
-| Saifullah Siraji | https://github.com/hjmamun
-
-----------------------
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
