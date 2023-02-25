@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/question_model.dart';
+import 'question_model.dart';
 
 class QuizScreen extends StatefulWidget {
   @override

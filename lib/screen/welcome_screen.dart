@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/login_screen/login_screen.dart';
 
+import '../Assessment_Screen.dart';
 import '../value/color.dart';
-import 'assisment_screen/assisment_screen.dart';
 
 class WelComeScreen extends StatefulWidget {
   const WelComeScreen({Key? key}) : super(key: key);
