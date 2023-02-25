@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        Get.to(()=>const SignUpScreen());
+                        Get.to(()=> QuizScreen());
                       },
                       child: Text(
                         "I don't have an account?",
