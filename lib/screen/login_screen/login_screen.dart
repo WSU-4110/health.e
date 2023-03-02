@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/value/color.dart';
 
+import '../../Assessment_Screen.dart';
 import '../../value/constant.dart';
 import '../common_widget/button_widget.dart';
 import '../sign_up/sign_up_screen.dart';
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        Get.to(()=>const SignUpScreen());
+                        Get.to(()=> QuizScreen());
                       },
                       child: Text(
                         "I don't have an account?",
