@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/screen/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/value/color.dart';
 
@@ -153,7 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(()=>EmailVerify());
+                    },
                     child: Container(
                         alignment: Alignment.centerRight,
                         child: Text(
