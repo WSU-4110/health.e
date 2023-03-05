@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/screen/forgetPassword/pin_verify.dart';
 
 import '../../value/color.dart';
 import '../common_widget/button_widget.dart';
@@ -99,7 +100,7 @@ class _EmailVerifyState extends State<EmailVerify> {
                 mHeight: Get.height,
                 borderColor: gradientColors_1,
                 press: () async {
-                  //Get.to(()=>PinVerify());
+                  Get.to(()=>PinVerify());
                 }
             ),
           ],
