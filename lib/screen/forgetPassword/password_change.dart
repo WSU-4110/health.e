@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../value/color.dart';
 import '../common_widget/button_widget.dart';
+import '../login_screen/login_screen.dart';
 import '../widget/error_message_widget.dart';
 import 'controller/newpass_controller.dart';
 
@@ -263,6 +264,7 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                                 if (controller.passwordController.text.isNotEmpty &&
                                     logic.passwords == logic.confirmPasswords) {
 
+                                  Get.off(()=>const LoginScreen ());
                                   logic.setLoadingFalse();
                                 } else {
                                   logic.setLoadingFalse();
