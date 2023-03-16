@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/screen/forgetPassword/password_change.dart';
 import 'package:pinput/pinput.dart';
 import '../../value/color.dart';
 import '../common_widget/button_widget.dart';
@@ -101,7 +102,7 @@ class _PinVerifyState extends State<PinVerify> {
                 mHeight: Get.height,
                 borderColor: gradientColors_1,
                 press: () async {
-
+                  Get.to(()=>const ChangePassScreen());
                 }
             ),
           ],
