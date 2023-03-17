@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\mazin\Documents\GitHub\health.e\build\windows\CMakeFiles\9b309fcf0a34c699584815e5d39e7112\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{EB37E433-1357-3D65-AF21-6ABE9DE5BA19}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
