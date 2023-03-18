@@ -43,7 +43,7 @@ dependencies:
   get_storage: any
   shared_preferences: any
   flutter_svg: ^1.1.6
-  pinput:
+  pinput: ^2.2.31
 
 dev_dependencies:
   flutter_test:
