@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _title() {
-    return const Text('Firebase Auth');
+    return const Text('HealthE');
   }
 
   Widget _entryField(
