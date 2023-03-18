@@ -219,9 +219,9 @@
     },
     {
       "name": "pinput",
-      "rootUri": "file:///C:/Users/mazin/AppData/Local/Pub/Cache/hosted/pub.dev/pinput-2.2.21",
+      "rootUri": "file:///C:/Users/mazin/AppData/Local/Pub/Cache/hosted/pub.dev/pinput-2.2.31",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "platform",
@@ -338,6 +338,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "universal_platform",
+      "rootUri": "file:///C:/Users/mazin/AppData/Local/Pub/Cache/hosted/pub.dev/universal_platform-1.0.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///C:/Users/mazin/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -368,7 +374,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-03-18T00:12:48.730332Z",
+  "generated": "2023-03-18T01:07:10.000484Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }
