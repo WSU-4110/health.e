@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\mazin\\Documents\\GitHub\\testgit\\health.e\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hi\\values-hi.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\f9d00c0ad06f3737f5584e3a1be6cac9\\transformed\\browser-1.4.0\\res\\values-hi\\values-hi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,161,263,375",
+                        "endColumns": "105,101,111,102",
+                        "endOffsets": "156,258,370,473"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2286,2392,2494,2606",
+                        "endColumns": "105,101,111,102",
+                        "endOffsets": "2387,2489,2601,2704"
+                    }
+                },
+                {
                     "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\dabcda68851483edc65f4d3af38ff3f1\\transformed\\core-1.6.0\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2",
@@ -13,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "24",
                         "startColumns": "4",
-                        "startOffsets": "2286",
+                        "startOffsets": "2709",
                         "endColumns": "100",
-                        "endOffsets": "2382"
+                        "endOffsets": "2805"
                     }
                 },
                 {

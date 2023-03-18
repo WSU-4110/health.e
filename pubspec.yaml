@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: any
   flutter_svg: ^1.1.6
   pinput: ^2.2.31
+  firebase_auth: ^4.3.0
 
 dev_dependencies:
   flutter_test:

@@ -38,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\f9d00c0ad06f3737f5584e3a1be6cac9\\transformed\\browser-1.4.0\\res\\values-pt-rBR\\values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,170,269,381",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "165,264,376,482"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2317,2432,2531,2643",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "2427,2526,2638,2744"
+                    }
+                },
+                {
                     "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\dabcda68851483edc65f4d3af38ff3f1\\transformed\\core-1.6.0\\res\\values-pt-rBR\\values-pt-rBR.xml",
                     "from": {
                         "startLines": "2",
@@ -47,11 +64,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "24",
                         "startColumns": "4",
-                        "startOffsets": "2317",
+                        "startOffsets": "2749",
                         "endColumns": "100",
-                        "endOffsets": "2413"
+                        "endOffsets": "2845"
                     }
                 }
             ]
