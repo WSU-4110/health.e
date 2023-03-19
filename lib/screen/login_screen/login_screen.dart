@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/value/color.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:healthe/auth.dart';
 import '../../Assessment_Screen.dart';
 import '../../value/constant.dart';
 import '../common_widget/button_widget.dart';
@@ -48,10 +49,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Welcome Back",
-                    style: GoogleFonts.poppins(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700, fontSize: 23),
+                    style: GoogleFonts.poppins(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 23),
                   ),
                   SizedBox(
-                    height: Get.height/11,
+                    height: Get.height / 11,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
@@ -85,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: Get.height/24,
+                    height: Get.height / 24,
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
@@ -126,11 +130,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                 });
                               },
-                              icon: Icon(passShow == true ? Icons.lock : Icons.lock_open))),
+                              icon: Icon(passShow == true
+                                  ? Icons.lock
+                                  : Icons.lock_open))),
                     ),
                   ),
                   SizedBox(
-                    height: Get.height/24,
+                    height: Get.height / 24,
                   ),
                   ButtonWidget(
                     text: "LOGIN",
@@ -144,9 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           email!.isEmpty ||
                           password!.isEmpty ||
                           password!.length <= 6) {
-                        Fluttertoast.showToast(msg: "Please Enter Your valid Info");
+                        Fluttertoast.showToast(
+                            msg: "Please Enter Your valid Info");
                       } else {
-                        Get.off(()=> HomeScreen());
+                        Get.off(() => HomeScreen());
                       }
                     },
                   ),
@@ -155,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(()=>EmailVerify());
+                      Get.to(() => EmailVerify());
                     },
                     child: Container(
                         alignment: Alignment.centerRight,
@@ -177,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        Get.to(()=> QuizScreen());
+                        Get.to(() => QuizScreen());
                       },
                       child: Text(
                         "I don't have an account?",
@@ -198,33 +205,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Expanded(
                           child: Container(
-                            height: 1,
-                            margin: const EdgeInsets.only(right: 15),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.white.withOpacity(0.1), Colors.white],
-                                begin: const FractionalOffset(0.0, 0.0),
-                                end: const FractionalOffset(0.5, 0.0),
-                              ),
-                            ),
-                          )),
+                        height: 1,
+                        margin: const EdgeInsets.only(right: 15),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.1),
+                              Colors.white
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(0.5, 0.0),
+                          ),
+                        ),
+                      )),
                       const Text("Or"),
                       Expanded(
                           child: Container(
-                            height: 1,
-                            margin: const EdgeInsets.only(left: 15),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.white, Colors.white.withOpacity(0.2)],
-                                begin: const FractionalOffset(0.0, 0.0),
-                                end: const FractionalOffset(0.9, 0.0),
-                              ),
-                            ),
-                          )),
+                        height: 1,
+                        margin: const EdgeInsets.only(left: 15),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white,
+                              Colors.white.withOpacity(0.2)
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(0.9, 0.0),
+                          ),
+                        ),
+                      )),
                     ],
                   ),
                   SizedBox(
-                    height: Get.height/27,
+                    height: Get.height / 27,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -234,7 +247,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 54,
                         width: 54,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.white, width: 2)),
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.white, width: 2)),
                         child: const Image(
                           image: NetworkImage(
                             "https://images.unsplash.com/photo-1662070479020-73f77887c87c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1454&q=80",
@@ -246,7 +260,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 54,
                         width: 54,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.white, width: 2)),
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.white, width: 2)),
                         child: const Image(
                           image: NetworkImage(
                             "https://images.unsplash.com/photo-1612994370726-5d4d609fca1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
@@ -258,7 +273,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 54,
                         width: 54,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5), border: Border.all(color: Colors.white, width: 2)),
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.white, width: 2)),
                         child: const Image(
                           image: NetworkImage(
                             "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1527&q=80",
