@@ -7,8 +7,8 @@ import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/value/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
-import '../../Assessment_Screen.dart';
 import '../../value/constant.dart';
+import '../assessment_screen/assessment_screen.dart';
 import '../common_widget/button_widget.dart';
 import '../sign_up/sign_up_screen.dart';
 
