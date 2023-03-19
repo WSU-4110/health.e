@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +6,6 @@ import 'package:healthe/screen/login_screen/login_screen.dart';
 import 'package:healthe/screen/sign_up/sign_up_screen.dart';
 
 import '../../value/color.dart';
-
 
 
 class QuizScreen extends StatefulWidget {
@@ -45,18 +42,18 @@ class _QuizScreenState extends State<QuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
-            const Text(
-              "Assessment Demo",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-            const SizedBox(height: 20,),
-            _questionWidget(),
-            _answerList(),
-            _nextButton(),
-          ]),
+                const Text(
+                  "Assessment Demo",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(height: 20,),
+                _questionWidget(),
+                _answerList(),
+                _nextButton(),
+              ]),
         ));
   }
 
@@ -125,7 +122,7 @@ class _QuizScreenState extends State<QuizScreen> {
       onTap: () {
 
         if(isLastQuestion==true){
-          Get.to(()=>const SignUpScreen());
+          Get.off(()=>const SignUpScreen());
         }else{
           _questionWidget();
 
@@ -174,12 +171,12 @@ class _QuizScreenState extends State<QuizScreen> {
         height: 48,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: isSelected ?Colors.white :  gradientColors_1,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: Colors.white,
-            width: 2
-          )
+            color: isSelected ?Colors.white :  gradientColors_1,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+                color: Colors.white,
+                width: 2
+            )
         ),
         child:Text(answer.answerText),
       ),
