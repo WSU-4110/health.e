@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/value/color.dart';
 
 import '../common_widget/app_large_text.dart';
 
@@ -21,10 +23,10 @@ class _MainPageState extends State<MainPage> {
 
             // Person Icon
             Container(
-                padding: const EdgeInsets.only(top:70, left:20),
+                padding: const EdgeInsets.only(top:40, left:20),
                 child: Row(
                   children: [
-                    Icon(Icons.person_pin, size:30, color: Colors.black),
+                    const Icon(Icons.person_pin, size:30, color: Colors.black),
                     Expanded(child: Container()),
                     Container(
                         margin: const EdgeInsets.only(right:20),
@@ -34,7 +36,17 @@ class _MainPageState extends State<MainPage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10)
                         )
-                    )
+                    ),
+                    const Icon(Icons.notifications, size:30, color: Colors.black),
+                    Container(
+                        margin: const EdgeInsets.only(right:10),
+                        width:10,
+                        height:50,
+
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10)
+                        )
+                    ),
                   ],
                 )
             ),
@@ -44,69 +56,49 @@ class _MainPageState extends State<MainPage> {
             // "Welcome,
             Container(
                 margin: const EdgeInsets.only(left:20),
-                child: AppLargeText(size: 20, text: "Welcome, User", color: Colors.black)),
-
-            const SizedBox(height: 30),
-
-            Container(
-                margin: const EdgeInsets.only(left:20),
-                child: AppLargeText(size: 20, text: "Daily Workouts", color: Colors.black)),
+                child: Text( "Welcome, User",
+                    style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 35.0,
+                    )),
+            ),
 
             // Workout Scroll View
             Container(
                 height: 200,
                 child: ListView(
-                  scrollDirection: Axis.horizontal,
+
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
+                          width: 100,
+                          height: 150,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
                           child: Center(
-                              child: Text("Cardio Workout",style: TextStyle(color: Colors.black, fontSize: 25),)),
+                              child: Text("Go to your workout" ,
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 30,
+                                  ))
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                          child: Center(
-                              child: Text("Calistenics",style: TextStyle(color: Colors.black, fontSize: 25),)),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                          child: Center(
-                              child: Text("Weight Lifting",style: TextStyle(color: Colors.black, fontSize: 25),)),
-                        ),
-                      ),
-                    ),
-                  ],
+                    ), ],
                 )
             ),
 
             const SizedBox(height: 30),
 
-            // "Daily Workouts"
+            // "Diet Tips"
             Container(
                 margin: const EdgeInsets.only(left:20),
                 child: AppLargeText(size: 20, text: "Diet Tips", color: Colors.black)),
 
             // Workout Scroll View
-            Container(
+            SizedBox(
                 height: 100,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -117,8 +109,8 @@ class _MainPageState extends State<MainPage> {
                         onTap: () {},
                         child: Container(
                           width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                          child: Center(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
+                          child: const Center(
                               child: Text("Diet Tip 1",style: TextStyle(color: Colors.black, fontSize: 25),)),
                         ),
                       ),
@@ -129,8 +121,8 @@ class _MainPageState extends State<MainPage> {
                         onTap: () {},
                         child: Container(
                           width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                          child: Center(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
+                          child: const Center(
                               child: Text("Diet Tip 2",style: TextStyle(color: Colors.black, fontSize: 25),)),
                         ),
                       ),
@@ -141,8 +133,8 @@ class _MainPageState extends State<MainPage> {
                         onTap: () {},
                         child: Container(
                           width: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                          child: Center(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
+                          child: const Center(
                               child: Text("Diet Tip 3",style: TextStyle(color: Colors.black, fontSize: 25),)),
                         ),
                       ),
