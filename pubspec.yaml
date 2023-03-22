@@ -49,7 +49,10 @@ dependencies:
   get_storage: any
   shared_preferences: any
   flutter_svg: ^1.1.6
-  pinput:
+  pinput: ^2.2.31
+  firebase_auth: ^4.3.0
+  cloud_firestore: ^4.4.5
+  firebase_core: ^2.8.0
 
 dev_dependencies:
   flutter_test:
