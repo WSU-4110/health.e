@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
+
 import 'MainPage.dart';
 import 'progress.dart';
 
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _title() {
   return const Text('Firebase Auth');
 }
+
 
   Widget _userid() {
   return Text(user?.email ?? 'User email');
@@ -54,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+
   ];
   int currentIndex = 0;
   void onTap(int index) {
@@ -65,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: _title(),
       ),
@@ -93,7 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
           const BottomNavigationBarItem(
               label: "Profile", icon: Icon(Icons.person)),
         ],
+
       ),
+
+
     );
   }
 }
