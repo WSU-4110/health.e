@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
+import 'package:healthe/widgets/Calendar.dart';
 
 import 'MainPage.dart';
 import 'progress.dart';
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   [
     const MainPage(),
     const Workouts(),
-    const Progress(),
+    const Calendar(),
     const userSettings()
   ];
   int currentIndex = 0;

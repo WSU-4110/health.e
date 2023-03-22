@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/screen/home_screen/home_screen.dart';
+import 'package:healthe/screen/home_screen/notification_screen.dart';
+import 'package:healthe/screen/home_screen/progress.dart';
+import 'package:healthe/screen/home_screen/workouts.dart';
+import 'package:healthe/screen/notification_page.dart';
 import 'package:healthe/value/color.dart';
+import 'notification_screen.dart';
 
 import '../common_widget/app_large_text.dart';
 
@@ -21,7 +27,7 @@ class _MainPageState extends State<MainPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // Person Icon
+            // Person and Notification Icon
             Container(
                 padding: const EdgeInsets.only(top:40, left:20),
                 child: Row(
@@ -37,7 +43,18 @@ class _MainPageState extends State<MainPage> {
                             borderRadius: BorderRadius.circular(10)
                         )
                     ),
-                    const Icon(Icons.notifications, size:30, color: Colors.black),
+                    IconButton(
+                      icon:  const Icon(Icons.notifications),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ENotification()), // PLACEHOLDER for MINGRAN
+                        );
+
+
+                      },
+                      color: Colors.black,
+                      ),
                     Container(
                         margin: const EdgeInsets.only(right:10),
                         width:10,
@@ -56,10 +73,11 @@ class _MainPageState extends State<MainPage> {
             // "Welcome,
             Container(
                 margin: const EdgeInsets.only(left:20),
-                child: Text( "Welcome, User",
+                child: Text( "Welcome, User!",
                     style: GoogleFonts.poppins(
                             color: Colors.black,
-                            fontSize: 35.0,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.w700,
                     )),
             ),
 
@@ -70,7 +88,7 @@ class _MainPageState extends State<MainPage> {
 
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: InkWell(
                         onTap: () {},
                         child: Container(
