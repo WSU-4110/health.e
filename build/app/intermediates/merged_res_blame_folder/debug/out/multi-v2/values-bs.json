@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bs\\values-bs.xml",
+            "outputFile": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bs\\values-bs.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jjose\\.gradle\\caches\\transforms-3\\dabcda68851483edc65f4d3af38ff3f1\\transformed\\core-1.6.0\\res\\values-bs\\values-bs.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "24",
-                        "startColumns": "4",
-                        "startOffsets": "2666",
-                        "endColumns": "100",
-                        "endOffsets": "2762"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jjose\\.gradle\\caches\\transforms-3\\4c5cefc4bced38f73a0cc4404fde07b9\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-bs\\values.xml",
+                    "source": "C:\\Users\\a1pre\\.gradle\\caches\\transforms-3\\4c5cefc4bced38f73a0cc4404fde07b9\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-bs\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jjose\\.gradle\\caches\\transforms-3\\f9d00c0ad06f3737f5584e3a1be6cac9\\transformed\\browser-1.4.0\\res\\values-bs\\values-bs.xml",
+                    "source": "C:\\Users\\a1pre\\.gradle\\caches\\transforms-3\\f9d00c0ad06f3737f5584e3a1be6cac9\\transformed\\browser-1.4.0\\res\\values-bs\\values-bs.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -55,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jjose\\.gradle\\caches\\transforms-3\\27ed75583d8888cfd149af38bb71ea35\\transformed\\jetified-play-services-base-18.0.1\\res\\values-bs\\values.xml",
+                    "source": "C:\\Users\\a1pre\\.gradle\\caches\\transforms-3\\27ed75583d8888cfd149af38bb71ea35\\transformed\\jetified-play-services-base-18.0.1\\res\\values-bs\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -69,6 +52,23 @@
                         "startOffsets": "55,161,321,447,557,707,833,945,1188,1342,1449,1610,1737,1887,2033,2101,2163",
                         "endColumns": "105,159,125,109,149,125,111,101,153,106,160,126,149,145,67,61,84",
                         "endOffsets": "156,316,442,552,702,828,940,1042,1337,1444,1605,1732,1882,2028,2096,2158,2243"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\a1pre\\.gradle\\caches\\transforms-3\\dabcda68851483edc65f4d3af38ff3f1\\transformed\\core-1.6.0\\res\\values-bs\\values-bs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "24",
+                        "startColumns": "4",
+                        "startOffsets": "2666",
+                        "endColumns": "100",
+                        "endOffsets": "2762"
                     }
                 }
             ]

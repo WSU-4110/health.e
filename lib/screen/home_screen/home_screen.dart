@@ -6,6 +6,7 @@ import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
 import 'package:healthe/value/color.dart';
+import 'package:healthe/screen/Workouts/workouts_main.dart';
 
 import 'MainPage.dart';
 import 'notification_page.dart';
@@ -51,7 +52,7 @@ List<IconData> icon = [
 
   late final List pages = [
     const MainPage(),
-    const Workouts(),
+    WorkoutPage(),
     const Progress(),
     const userSettings(),
     Container(
@@ -132,7 +133,7 @@ List<IconData> icon = [
           BottomNavigationBarItem(
               label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(
-              label: "Workouts", icon: Icon(Icons.fitness_center)),
+              label: "Workout", icon: Icon(Icons.fitness_center)),
           BottomNavigationBarItem(
               label: "Progress", icon: Icon(Icons.bar_chart)),
           BottomNavigationBarItem(

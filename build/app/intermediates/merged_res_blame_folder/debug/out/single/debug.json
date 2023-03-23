@@ -1,26 +1,26 @@
 [
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\drawable-v21_launch_background.xml.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
     },
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\drawable-v21_launch_background.xml.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\jjose\\StudioProjects\\health.e (REPO)\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\build\\app\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\a1pre\\StudioProjects\\new_healthe\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]

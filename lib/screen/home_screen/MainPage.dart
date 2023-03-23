@@ -6,6 +6,7 @@ import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
 
 
+import '../Workouts/beginner_page.dart';
 import '../common_widget/app_large_text.dart';
 import 'notification_page.dart';
 
@@ -51,7 +52,12 @@ class _MainPageState extends State<MainPage> {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+
+                          // Navigate to beginner workout plan page
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => BeginnerWorkoutPage()),
+                          );
+                        },
                         child: Container(
                           width: 100,
                           height: 200,
