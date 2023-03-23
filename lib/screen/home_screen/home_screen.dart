@@ -1,10 +1,9 @@
 
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
-import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
+import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
 
 import 'MainPage.dart';
@@ -81,7 +80,7 @@ List<IconData> icon = [
     return Scaffold(
 
       appBar: AppBar(
-       // automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         title: const Text("Health.E"),
         backgroundColor: gradientColors_1,
         shape: const RoundedRectangleBorder(

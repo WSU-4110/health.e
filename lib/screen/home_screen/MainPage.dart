@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/screen/home_screen/progress.dart';
@@ -27,8 +29,6 @@ class _MainPageState extends State<MainPage> {
           children: [
 
             // Person and Notification Icon
-
-
             const SizedBox(height:30),
 
             // "Welcome,
@@ -51,7 +51,15 @@ class _MainPageState extends State<MainPage> {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (
+                                  context) => const Workouts()), // PLACEHOLDER for MINGRAN
+                            );
+                          }
+                        },
                         child: Container(
                           width: 100,
                           height: 200,
@@ -74,11 +82,18 @@ class _MainPageState extends State<MainPage> {
             // "Diet Tips"
             Container(
                 margin: const EdgeInsets.only(left:20),
-                child: AppLargeText(size: 20, text: "Diet Tips", color: Colors.black)),
+                child: Text("Diet Tips",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                  )
+                )
+            ),
 
             // Workout Scroll View
             SizedBox(
-                height: 100,
+                height: 200,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -87,10 +102,16 @@ class _MainPageState extends State<MainPage> {
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                          width: 200,
+                          width: 300,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
-                          child: const Center(
-                              child: Text("Diet Tip 1",style: TextStyle(color: Colors.black, fontSize: 25),)),
+                          child: Container(
+                            margin: const EdgeInsets.only(left:10, right: 10),
+                            child: const Center(
+                                child: Text("Drinking water increases your metabolism by up to 25% for nearly an hour after drinking it.",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20),)),
+                          ),
                         ),
                       ),
                     ),
@@ -99,10 +120,16 @@ class _MainPageState extends State<MainPage> {
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                          width: 200,
+                          width: 300,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
-                          child: const Center(
-                              child: Text("Diet Tip 2",style: TextStyle(color: Colors.black, fontSize: 25),)),
+                          child: Container(
+                            margin: const EdgeInsets.only(left:10, right: 10),
+                            child: const Center(
+                                child: Text("A study published in the American Journal of Nutrition, found that 8hrs of sleep for 6 nights can boost your metabolism by 20%",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18),)),
+                          ),
                         ),
                       ),
                     ),
@@ -111,10 +138,17 @@ class _MainPageState extends State<MainPage> {
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                          width: 200,
+                          width: 300,
+                          height: 500 ,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
-                          child: const Center(
-                              child: Text("Diet Tip 3",style: TextStyle(color: Colors.black, fontSize: 25),)),
+                          child: Container(
+                            margin: const EdgeInsets.only(left:10, right: 10),
+                            child: const Center(
+                                child: Text("Several studies suggest that green tea can boost metabolism and help people burn 3–4% more calories each day.",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20),)),
+                          ),
                         ),
                       ),
                     ),
