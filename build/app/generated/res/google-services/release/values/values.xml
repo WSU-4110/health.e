@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">246901090575-q3s2tetroiuknqrmkjcg76hog1mv8nm9.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">246901090575</string>
+    <string name="google_api_key" translatable="false">AIzaSyCvMrcMRUWDbvw1sGejqlVFylVsU9_ghpw</string>
+    <string name="google_app_id" translatable="false">1:246901090575:android:7bec064c6d9bff8e82f67a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCvMrcMRUWDbvw1sGejqlVFylVsU9_ghpw</string>
+    <string name="google_storage_bucket" translatable="false">healthe-28eab.appspot.com</string>
+    <string name="project_id" translatable="false">healthe-28eab</string>
+</resources>

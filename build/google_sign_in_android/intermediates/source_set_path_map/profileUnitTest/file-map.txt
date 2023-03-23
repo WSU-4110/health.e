@@ -1,0 +1,14 @@
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-play-services-base-18.0.1-0 C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-play-services-basement-18.1.0-1 C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-window-java-1.0.0-beta04-2 C:\Users\mazin\.gradle\caches\transforms-3\7fa89f48a9af132150cdbfe6026d0076\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-annotation-experimental-1.1.0-3 C:\Users\mazin\.gradle\caches\transforms-3\8db3bd35f4a44d3b2352b1952e15b295\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-play-services-auth-20.4.1-4 C:\Users\mazin\.gradle\caches\transforms-3\92f8675f7885ebbfa6433a91791cd1e9\transformed\jetified-play-services-auth-20.4.1\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-jetified-window-1.0.0-beta04-5 C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-core-1.6.0-6 C:\Users\mazin\.gradle\caches\transforms-3\f8765fcac00bee82b1ae4f664a71a3e7\transformed\core-1.6.0\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-test-7 C:\Users\mazin\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.1.8\android\src\test\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-testProfile-8 C:\Users\mazin\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.1.8\android\src\testProfile\res
+io.flutter.plugins.googlesignin.test.google_sign_in_android-test-9 C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android\generated\res\resValues\test\profile
+io.flutter.plugins.googlesignin.test.google_sign_in_android-mergeProfileUnitTestResources-10 C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android\intermediates\incremental\profileUnitTest\mergeProfileUnitTestResources\merged.dir
+io.flutter.plugins.googlesignin.test.google_sign_in_android-mergeProfileUnitTestResources-11 C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android\intermediates\incremental\profileUnitTest\mergeProfileUnitTestResources\stripped.dir
+io.flutter.plugins.googlesignin.test.google_sign_in_android-merged_res-12 C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android\intermediates\merged_res\profileUnitTest
+io.flutter.plugins.googlesignin.test.google_sign_in_android-packaged_res-13 C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android\intermediates\packaged_res\profile

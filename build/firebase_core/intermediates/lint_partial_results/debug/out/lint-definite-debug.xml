@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.3.0" type="incidents">
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of com.android.tools.build:gradle than 3.5.4 is available: 7.4.2">
+        <fix-replace
+            description="Change to 7.4.2"
+            family="Update versions"
+            oldString="3.5.4"
+            replacement="7.4.2"/>
+        <location
+            file="${:firebase_core*projectDir}/build.gradle"
+            line="11"
+            column="9"
+            startOffset="172"
+            endLine="11"
+            endColumn="57"
+            endOffset="220"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.annotation:annotation than 1.1.0 is available: 1.6.0">
+        <fix-replace
+            description="Change to 1.6.0"
+            family="Update versions"
+            oldString="1.1.0"
+            replacement="1.6.0"/>
+        <location
+            file="${:firebase_core*projectDir}/build.gradle"
+            line="41"
+            column="24"
+            startOffset="1116"
+            endLine="41"
+            endColumn="62"
+            endOffset="1154"/>
+    </incident>
+
+</incidents>

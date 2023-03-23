@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/forgetPassword/email_verify.dart';
@@ -8,6 +9,8 @@ import 'package:healthe/value/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
+import 'package:provider/provider.dart';
+import '../../provider/google_sign_in.dart';
 import '../../value/constant.dart';
 import '../assessment_screen/assessment_screen.dart';
 import '../common_widget/button_widget.dart';
@@ -360,12 +363,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(5),
                               border:
                                   Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1527&q=80",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
+                                  
+                          child: OutlinedButton.icon(
+                          label: const Text(
+                          'Sign In With Google',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+
+            icon: const FaIcon(FontAwesomeIcons.google, color: Color.fromARGB(255, 29, 62, 173)),
+            onPressed: () {
+              final provider =
+                  Provider.of<GoogleSignInProvider>(context, listen: false);
+              provider.login();
+            },
+        ),
                         ),
                       ],
                     )

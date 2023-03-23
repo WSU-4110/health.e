@@ -1,0 +1,113 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.flutter.plugins.firebase.storage.test" >
+4
+5    <uses-sdk
+5-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:5:5-74
+6        android:minSdkVersion="16"
+6-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:5:15-41
+7        android:targetSdkVersion="16" />
+7-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:5:42-71
+8
+9    <instrumentation
+9-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:11:5-15:90
+10        android:name="androidx.test.runner.AndroidJUnitRunner"
+10-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:11:22-76
+11        android:functionalTest="false"
+11-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:14:22-52
+12        android:handleProfiling="false"
+12-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:13:22-53
+13        android:label="Tests for io.flutter.plugins.firebase.storage.test"
+13-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:15:22-88
+14        android:targetPackage="io.flutter.plugins.firebase.storage.test" />
+14-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:12:22-86
+15    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+16    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:25:5-79
+17-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:25:22-76
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:26:5-67
+18-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:26:22-64
+19
+20    <application
+20-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:7:5-9:19
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.6.0] C:\Users\mazin\.gradle\caches\transforms-3\f8765fcac00bee82b1ae4f664a71a3e7\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true" >
+23        <uses-library android:name="android.test.runner" />
+23-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:8:9-60
+23-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4480234450718851846.xml:8:23-57
+24
+25        <service
+25-->[:firebase_storage] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+26            android:name="com.google.firebase.components.ComponentDiscoveryService"
+26-->[:firebase_storage] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
+27            android:directBootAware="true"
+27-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:34:13-43
+28            android:exported="false" >
+28-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:31:13-37
+29            <meta-data
+29-->[:firebase_storage] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+30                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+30-->[:firebase_storage] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-126
+31                android:value="com.google.firebase.components.ComponentRegistrar" />
+31-->[:firebase_storage] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+32            <meta-data
+32-->[:firebase_core] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+33                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+33-->[:firebase_core] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+34                android:value="com.google.firebase.components.ComponentRegistrar" />
+34-->[:firebase_core] C:\Users\mazin\Documents\GitHub\testgit\health.e\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+35            <meta-data
+35-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:32:13-34:85
+36                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+36-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:33:17-107
+37                android:value="com.google.firebase.components.ComponentRegistrar" />
+37-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\mazin\.gradle\caches\transforms-3\3694c5618936399673543039cfc34897\transformed\jetified-firebase-storage-20.1.0\AndroidManifest.xml:34:17-82
+38        </service>
+39
+40        <activity
+40-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+41            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+41-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+42            android:exported="false"
+42-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+43            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+43-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+44
+45        <provider
+45-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:25:9-30:39
+46            android:name="com.google.firebase.provider.FirebaseInitProvider"
+46-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:26:13-77
+47            android:authorities="io.flutter.plugins.firebase.storage.test.firebaseinitprovider"
+47-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:27:13-72
+48            android:directBootAware="true"
+48-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:28:13-43
+49            android:exported="false"
+49-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:29:13-37
+50            android:initOrder="100" />
+50-->[com.google.firebase:firebase-common:20.3.0] C:\Users\mazin\.gradle\caches\transforms-3\7859cdf55c88a2bff057a848a770ed98\transformed\jetified-firebase-common-20.3.0\AndroidManifest.xml:30:13-36
+51
+52        <meta-data
+52-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+53            android:name="com.google.android.gms.version"
+53-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+54            android:value="@integer/google_play_services_version" />
+54-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+55
+56        <uses-library
+56-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+57            android:name="androidx.window.extensions"
+57-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+58            android:required="false" />
+58-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+59        <uses-library
+59-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+60            android:name="androidx.window.sidecar"
+60-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+61            android:required="false" />
+61-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+62    </application>
+63
+64</manifest>

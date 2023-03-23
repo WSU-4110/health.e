@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.3.0" type="partial_results">
+    <map id="UnusedResources">
+        <entry
+            name="model"
+            string="drawable[toast_bg(D),corner(U)],id[text(U)],layout[toast_custom(U)];3^1;;;"/>
+        <location id="R.drawable.toast_bg"
+            file="${:fluttertoast*debug*sourceProvider*0*resDir*0}/drawable/toast_bg.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="14"
+            endColumn="9"
+            endOffset="387"/>
+    </map>
+
+</incidents>

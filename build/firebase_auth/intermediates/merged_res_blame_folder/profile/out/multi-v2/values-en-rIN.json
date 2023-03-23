@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "io.flutter.plugins.firebase.auth.firebase_auth-mergeProfileResources-12:/values-en-rIN/values-en-rIN.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\a4ef81be1913a63098e38427be14d8f4\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\f8765fcac00bee82b1ae4f664a71a3e7\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "458",
+                        "endColumns": "100",
+                        "endOffsets": "554"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-14:/values-en-rIN/values-en-rIN.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\a4ef81be1913a63098e38427be14d8f4\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\mazin\\.gradle\\caches\\transforms-3\\f8765fcac00bee82b1ae4f664a71a3e7\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "458",
+                        "endColumns": "100",
+                        "endOffsets": "554"
+                    }
+                }
+            ]
+        }
+    ]
+}

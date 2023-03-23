@@ -1,0 +1,4 @@
+#Thu Mar 23 15:59:33 EDT 2023
+base.0=C\:\\Users\\mazin\\Documents\\GitHub\\testgit\\health.e\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

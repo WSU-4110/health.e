@@ -1,0 +1,32 @@
+<lint-module
+    format="1"
+    dir="C:\Users\mazin\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.1.8\android"
+    name=":google_sign_in_android"
+    type="LIBRARY"
+    maven="io.flutter.plugins.googlesignin:google_sign_in_android:"
+    gradle="7.3.0"
+    buildFolder="C:\Users\mazin\Documents\GitHub\testgit\health.e\build\google_sign_in_android"
+    bootClassPath="C:\Users\mazin\AppData\Local\Android\Sdk\platforms\android-33\android.jar;C:\Users\mazin\AppData\Local\Android\Sdk\build-tools\30.0.3\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-33"
+    neverShrinking="true">
+  <lintOptions
+      disable="AndroidGradlePluginVersion,InvalidPackage,GradleDependency"
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true">
+    <severities>
+      <severity
+        id="AndroidGradlePluginVersion"
+        severity="IGNORE" />
+      <severity
+        id="GradleDependency"
+        severity="IGNORE" />
+      <severity
+        id="InvalidPackage"
+        severity="IGNORE" />
+    </severities>
+  </lintOptions>
+  <variant name="debug"/>
+</lint-module>
