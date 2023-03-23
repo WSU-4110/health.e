@@ -1,0 +1,9 @@
+C:\Users\mazin\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.1.8\android\src\main\java\io\flutter\plugins\googlesignin\GoogleSignInPlugin.java:375: Warning: Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. R.foo.bar) than by name (e.g. getIdentifier("bar", "foo", null)). [DiscouragedApi]
+                  .getIdentifier("default_web_client_id", "string", context.getPackageName());
+                   ~~~~~~~~~~~~~
+
+   Explanation for issues of type "DiscouragedApi":
+   Discouraged APIs are allowed and are not deprecated, but they may be unfit
+   for common use (e.g. due to slow performance or subtle behavior).
+
+0 errors, 1 warnings

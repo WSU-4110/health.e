@@ -1,0 +1,2 @@
+C:\Users\mazin\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.0.16\android\lint-baseline.xml: Information: 7 errors/warnings were listed in the baseline file (lint-baseline.xml) but not found in the project; perhaps they have been fixed? Another possible explanation is that lint recently stopped analyzing (and including results from) dependent projects by default. You can turn this back on with android.lintOptions.checkDependencies=true. Unmatched issue types: CommitPrefEdits (7) [LintBaseline]
+0 errors, 0 warnings

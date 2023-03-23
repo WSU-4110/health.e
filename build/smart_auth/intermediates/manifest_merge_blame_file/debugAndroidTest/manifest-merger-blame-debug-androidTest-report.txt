@@ -1,0 +1,88 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="fman.ge.smart_auth.test" >
+4
+5    <uses-sdk
+5-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:5:5-74
+6        android:minSdkVersion="16"
+6-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:5:15-41
+7        android:targetSdkVersion="16" />
+7-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:5:42-71
+8
+9    <instrumentation
+9-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:11:5-15:73
+10        android:name="android.test.InstrumentationTestRunner"
+10-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:11:22-75
+11        android:functionalTest="false"
+11-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:14:22-52
+12        android:handleProfiling="false"
+12-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:13:22-53
+13        android:label="Tests for fman.ge.smart_auth.test"
+13-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:15:22-71
+14        android:targetPackage="fman.ge.smart_auth.test" />
+14-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:12:22-69
+15
+16    <application
+16-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:7:5-9:19
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.6.0] C:\Users\mazin\.gradle\caches\transforms-3\f8765fcac00bee82b1ae4f664a71a3e7\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+18        android:debuggable="true" >
+19        <uses-library android:name="android.test.runner" />
+19-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:8:9-60
+19-->C:\Users\mazin\Documents\GitHub\testgit\health.e\build\smart_auth\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest4201371261565214601.xml:8:23-57
+20        <uses-library
+20-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+21            android:name="androidx.window.extensions"
+21-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+22            android:required="false" />
+22-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+23        <uses-library
+23-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+24            android:name="androidx.window.sidecar"
+24-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+25            android:required="false" />
+25-->[androidx.window:window:1.0.0-beta04] C:\Users\mazin\.gradle\caches\transforms-3\f8620763fb8ea6c3bcf7c52c306e0e3b\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+26
+27        <activity
+27-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:23:9-27:75
+28            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+28-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:24:13-93
+29            android:excludeFromRecents="true"
+29-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:25:13-46
+30            android:exported="false"
+30-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:26:13-37
+31            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+31-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:27:13-72
+32        <!--
+33            Service handling Google Sign-In user revocation. For apps that do not integrate with
+34            Google Sign-In, this service will never be started.
+35        -->
+36        <service
+36-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:33:9-37:51
+37            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+37-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:34:13-89
+38            android:exported="true"
+38-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:35:13-36
+39            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+39-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:36:13-107
+40            android:visibleToInstantApps="true" />
+40-->[com.google.android.gms:play-services-auth:20.4.0] C:\Users\mazin\.gradle\caches\transforms-3\6c36d9a3bfb97ed611ff83bfab5e71a7\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:37:13-48
+41
+42        <activity
+42-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+43            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+43-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+44            android:exported="false"
+44-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+45            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+45-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\mazin\.gradle\caches\transforms-3\0f691b31dfd4afc453df256d8a4bcd7a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+46
+47        <meta-data
+47-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+48            android:name="com.google.android.gms.version"
+48-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+49            android:value="@integer/google_play_services_version" />
+49-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\mazin\.gradle\caches\transforms-3\7db9098e7dac7e4947c35f558d9f7711\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+50    </application>
+51
+52</manifest>

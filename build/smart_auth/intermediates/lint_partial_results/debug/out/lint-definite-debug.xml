@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.3.0" type="incidents">
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of com.android.tools.build:gradle than 4.1.3 is available: 7.4.2">
+        <fix-replace
+            description="Change to 7.4.2"
+            family="Update versions"
+            oldString="4.1.3"
+            replacement="7.4.2"/>
+        <location
+            file="${:smart_auth*projectDir}/build.gradle"
+            line="12"
+            column="9"
+            startOffset="192"
+            endLine="12"
+            endColumn="57"
+            endOffset="240"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-auth than 20.4.0 is available: 20.4.1">
+        <fix-replace
+            description="Change to 20.4.1"
+            family="Update versions"
+            oldString="20.4.0"
+            replacement="20.4.1"/>
+        <location
+            file="${:smart_auth*projectDir}/build.gradle"
+            line="49"
+            column="20"
+            startOffset="870"
+            endLine="49"
+            endColumn="70"
+            endOffset="920"/>
+    </incident>
+
+</incidents>

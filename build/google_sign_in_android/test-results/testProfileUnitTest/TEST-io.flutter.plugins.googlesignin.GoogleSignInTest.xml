@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.flutter.plugins.googlesignin.GoogleSignInTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2023-03-23T19:59:35" hostname="DESKTOP-K6KPKK7" time="1.769">
+  <properties/>
+  <testcase name="init_PassesForceCodeForRefreshTokenFalseWithServerClientIdFromResources" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="1.693"/>
+  <testcase name="init_IgnoresClientIdIfServerClientIdIsProvided" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.006"/>
+  <testcase name="init_PassesForceCodeForRefreshTokenTrueWithServerClientIdParameter" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.005"/>
+  <testcase name="init_PassesForceCodeForRefreshTokenTrueWithServerClientIdFromResources" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.005"/>
+  <testcase name="requestScopes_mayBeCalledRepeatedly_ifAlreadyGranted" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.006"/>
+  <testcase name="requestScopes_ReturnsTrueIfPermissionGranted" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <testcase name="requestScopes_mayBeCalledRepeatedly_ifNotSignedIn" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.004"/>
+  <testcase name="init_LoadsServerClientIdFromResources" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.004"/>
+  <testcase name="init_ForwardsServerClientId" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <testcase name="requestScopes_ResultErrorIfAccountIsNull" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <testcase name="signInThrowsWithoutActivity" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <testcase name="requestScopes_ResultTrueIfAlreadyGranted" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <testcase name="signInSilentlyThatImmediatelyCompletesWithoutResultFinishesWithError" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.011"/>
+  <testcase name="requestScopes_ReturnsFalseIfPermissionDenied" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.006"/>
+  <testcase name="requestScopes_RequestsPermissionIfNotGranted" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.004"/>
+  <testcase name="init_InterpretsClientIdAsServerClientId" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.005"/>
+  <testcase name="init_PassesForceCodeForRefreshTokenFalseWithServerClientIdParameter" classname="io.flutter.plugins.googlesignin.GoogleSignInTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
