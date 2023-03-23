@@ -1,11 +1,14 @@
 
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
+import 'package:healthe/value/color.dart';
 
 import 'MainPage.dart';
+import 'notification_page.dart';
 import 'progress.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,6 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     child: const Text('Sign Out'),
   );
 } 
+List<IconData> icon = [
+  Icons.home,
+  Icons.fitness_center,
+  Icons.bar_chart,
+  Icons.person
+];
+
 
   late final List pages = [
     const MainPage(),
@@ -71,37 +81,67 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        title: _title(),
+        title: const Text("Health.E"),
+        backgroundColor: gradientColors_1,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(5.0))
+        ),
+        shadowColor: Colors.black,
+        actions: <Widget> [
+          IconButton(
+              icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Notification_e()), // PLACEHOLDER for MINGRAN
+              );
+            },),
+        ],
       ),
       body:
-      
-      
-       
       pages[currentIndex],
-      
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.blue,
-        onTap: onTap,
-        currentIndex: currentIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        elevation: 0,
-        items: [
-          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          const BottomNavigationBarItem(
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.black,
+          highlightColor: Colors.black,
+          canvasColor: gradientColors_1,
+          primaryColor: gradientColors_1, // Set your desired color here
+        ),
+      child : Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+    topLeft: Radius.circular(30.0),
+    topRight: Radius.circular(30.0),
+    ),
+    child: BottomNavigationBar(
+      backgroundColor: Colors.transparent,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
+      currentIndex: currentIndex,
+      onTap: onTap,
+
+    items: const [
+          BottomNavigationBarItem(
+              label: "Home", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(
               label: "Workouts", icon: Icon(Icons.fitness_center)),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
               label: "Progress", icon: Icon(Icons.bar_chart)),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
               label: "Profile", icon: Icon(Icons.person)),
         ],
-
+    )
       ),
-
-
+    )
+      )
     );
+
   }
 }

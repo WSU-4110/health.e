@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
-import 'package:healthe/screen/home_screen/notification_screen.dart';
 import 'package:healthe/screen/home_screen/progress.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
-import 'package:healthe/screen/notification_page.dart';
 import 'package:healthe/value/color.dart';
-import 'notification_screen.dart';
+
 
 import '../common_widget/app_large_text.dart';
+import 'notification_page.dart';
 
 
 
@@ -28,47 +27,9 @@ class _MainPageState extends State<MainPage> {
           children: [
 
             // Person and Notification Icon
-            Container(
-                padding: const EdgeInsets.only(top:40, left:20),
-                child: Row(
-                  children: [
-                    const Icon(Icons.person_pin, size:30, color: Colors.black),
-                    Expanded(child: Container()),
-                    Container(
-                        margin: const EdgeInsets.only(right:20),
-                        width:50,
-                        height:50,
-
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)
-                        )
-                    ),
-                    IconButton(
-                      icon:  const Icon(Icons.notifications),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ENotification()), // PLACEHOLDER for MINGRAN
-                        );
 
 
-                      },
-                      color: Colors.black,
-                      ),
-                    Container(
-                        margin: const EdgeInsets.only(right:10),
-                        width:10,
-                        height:50,
-
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)
-                        )
-                    ),
-                  ],
-                )
-            ),
-
-            const SizedBox(height:10,),
+            const SizedBox(height:30),
 
             // "Welcome,
             Container(
@@ -93,7 +54,7 @@ class _MainPageState extends State<MainPage> {
                         onTap: () {},
                         child: Container(
                           width: 100,
-                          height: 150,
+                          height: 200,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
                           child: Center(
                               child: Text("Go to your workout" ,
