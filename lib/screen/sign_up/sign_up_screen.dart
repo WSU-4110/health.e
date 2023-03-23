@@ -40,6 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;

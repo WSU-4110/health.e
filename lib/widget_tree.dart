@@ -2,6 +2,7 @@ import 'package:healthe/auth.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:healthe/screen/splash_screen.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
@@ -19,7 +20,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if (snapshot.hasData) {
           return HomeScreen();
         } else {
-          return const LoginScreen();
+          return const SplashScreen();
         }
       },
     );

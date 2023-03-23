@@ -36,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -121,13 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    _entryField('email', _controllerEmail),
-                    _entryField('password', _controllerPassword),
-                    _errorMessage(),
-                    _submitButton(),
-                    _loginOrRegisterButton(),
-
                     //SAIF STARTS
+
+                    SizedBox(
+                      height: Get.height / 11,
+                    ),
+
                     Text(
                       "Welcome Back",
                       style: GoogleFonts.poppins(

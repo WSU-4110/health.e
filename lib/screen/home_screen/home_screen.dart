@@ -81,6 +81,7 @@ List<IconData> icon = [
     return Scaffold(
 
       appBar: AppBar(
+       // automaticallyImplyLeading: false,
         title: const Text("Health.E"),
         backgroundColor: gradientColors_1,
         shape: const RoundedRectangleBorder(
