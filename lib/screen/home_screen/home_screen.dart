@@ -110,7 +110,7 @@ List<IconData> icon = [
       child : Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+              topRight: Radius.circular(45), topLeft: Radius.circular(45)),
           boxShadow: [
             BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
           ],

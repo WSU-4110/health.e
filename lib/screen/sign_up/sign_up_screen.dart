@@ -1,10 +1,12 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../auth.dart';
 import '../../value/color.dart';
 import '../../value/constant.dart';
 import '../common_widget/button_widget.dart';
@@ -23,6 +25,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late String? password = "";
   late String? name = "";
   late bool passShow = true;
+  String? errorMessage = '';
+
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Create A Account",
+                      "Create Account",
                       style:
                       GoogleFonts.poppins(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700, fontSize: 23),
                     ),
@@ -103,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //  controller: controller.nameController,
                         keyboardType: TextInputType.emailAddress,
                         onChanged: (value) {
-                          email = value;
+                          _controllerEmail.text = value;
                         },
 
                         style: GoogleFonts.inter(
@@ -138,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.text,
                         obscureText: passShow,
                         onChanged: (value) {
-                          password = value;
+                          _controllerPassword.text = value;
                         },
 
                         style: GoogleFonts.inter(
@@ -176,17 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mWidth: Get.width,
                       mHeight: Get.height,
                       borderColor: gradientColors_1,
-                      press: () async {
-                        if (!emailValidatorRegExp.hasMatch(email!) ||
-                            email!.isEmpty ||
-                            password!.isEmpty ||
-                            password!.length <= 6 ||
-                            name!.isEmpty) {
-                          Fluttertoast.showToast(msg: "Please Enter Your valid Info");
-                        } else {
-                          Get.off(()=> HomeScreen());
-                        }
-                      },
+                      press: createUserWithEmailAndPassword,
                     ),
                     const SizedBox(
                       height: 16,
@@ -198,7 +211,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Get.off(() => const LoginScreen());
                         },
                         child: Text(
-                          "I  have an account?",
+                          "I have an account",
                           style: GoogleFonts.inter(
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w500,

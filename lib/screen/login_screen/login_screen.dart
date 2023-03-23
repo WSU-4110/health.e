@@ -97,10 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    //MAZIN CODE
     return Scaffold(
-      appBar: AppBar(
-        title: _title(),
-      ),
       resizeToAvoidBottomInset: false,
       body: Container(
         height: double.maxFinite,
@@ -127,6 +126,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     _errorMessage(),
                     _submitButton(),
                     _loginOrRegisterButton(),
+
+                    //SAIF STARTS
                     Text(
                       "Welcome Back",
                       style: GoogleFonts.poppins(
@@ -134,9 +135,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w700,
                           fontSize: 23),
                     ),
+
                     SizedBox(
                       height: Get.height / 11,
                     ),
+
+                    // Email Box
                     Container(
                       padding:
                           const EdgeInsets.only(left: 15, bottom: 5, top: 5),
@@ -151,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //  controller: controller.nameController,
                         keyboardType: TextInputType.emailAddress,
                         onChanged: (value) {
-                          email = value;
+                          _controllerEmail.text = value;
                         },
 
                         style: GoogleFonts.inter(
@@ -169,9 +173,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+
                     SizedBox(
                       height: Get.height / 24,
                     ),
+
+                    //Password Box
                     Container(
                       padding:
                           const EdgeInsets.only(left: 15, bottom: 5, top: 5),
@@ -187,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.text,
                         obscureText: passShow,
                         onChanged: (value) {
-                          password = value;
+                          _controllerPassword.text = value;
                         },
 
                         style: GoogleFonts.inter(
@@ -220,6 +227,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: Get.height / 24,
                     ),
+
+                    //Login Button
                     ButtonWidget(
                       text: "LOGIN",
                       textColor: Colors.black,
@@ -227,21 +236,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       mWidth: Get.width,
                       mHeight: Get.height,
                       borderColor: gradientColors_1,
-                      press: () async {
-                        if (!emailValidatorRegExp.hasMatch(email!) ||
-                            email!.isEmpty ||
-                            password!.isEmpty ||
-                            password!.length <= 6) {
-                          Fluttertoast.showToast(
-                              msg: "Please Enter Your valid Info");
-                        } else {
-                          Get.off(() => HomeScreen());
-                        }
-                      },
+                      press: signInWithEmailAndPassword,
                     ),
+
                     const SizedBox(
                       height: 10,
                     ),
+
+
                     InkWell(
                       onTap: () {
                         Get.to(() => EmailVerify());
@@ -269,7 +271,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Get.to(() => QuizScreen());
                         },
                         child: Text(
-                          "I don't have an account?",
+                          "I don't have an account",
                           style: GoogleFonts.inter(
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w500,
