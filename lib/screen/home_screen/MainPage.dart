@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/home_screen/home_screen.dart';
-import 'package:healthe/screen/home_screen/progress.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
-
-
-import '../../common_widget/app_large_text.dart';
-import 'notification_page.dart';
-
-
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -29,7 +19,7 @@ class _MainPageState extends State<MainPage> {
           children: [
 
             // Person and Notification Icon
-            const SizedBox(height:30),
+            const SizedBox(height:20),
 
             // "Welcome,
             Container(
@@ -44,8 +34,9 @@ class _MainPageState extends State<MainPage> {
 
             // Workout Scroll View
             Container(
-                height: 200,
+                height: 250,
                 child: ListView(
+                  physics: const NeverScrollableScrollPhysics(),
 
                   children: [
                     Padding(
@@ -56,14 +47,19 @@ class _MainPageState extends State<MainPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (
-                                  context) => const Workouts()), // PLACEHOLDER for MINGRAN
-                            );
+                                  context) => const Workouts()),);
                           }
                         },
                         child: Container(
                           width: 100,
                           height: 200,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              border: Border.all(color: grayColors),
+
+
+                          ),
                           child: Center(
                               child: Text("Go to your workout" ,
                                   style: GoogleFonts.poppins(
@@ -77,7 +73,7 @@ class _MainPageState extends State<MainPage> {
                 )
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 0),
 
             // "Diet Tips"
             Container(
@@ -103,7 +99,12 @@ class _MainPageState extends State<MainPage> {
                         onTap: () {},
                         child: Container(
                           width: 300,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: grayColors),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              border: Border.all(color: grayColors),
+
+                          ),
                           child: Container(
                             margin: const EdgeInsets.only(left:10, right: 10),
                             child: const Center(
