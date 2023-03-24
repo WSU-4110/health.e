@@ -8,7 +8,7 @@ import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
 
 
-import '../common_widget/app_large_text.dart';
+import '../../common_widget/app_large_text.dart';
 import 'notification_page.dart';
 
 

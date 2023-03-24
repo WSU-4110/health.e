@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../value/color.dart';
-import '../common_widget/button_widget.dart';
+import 'package:healthe/value/color.dart'; //color
+import 'package:healthe/common_widget/button_widget.dart';
 import '../login_screen/login_screen.dart';
-import '../widget/error_message_widget.dart';
+import 'package:healthe/common_widget/error_message_widget.dart';
 import 'controller/newpass_controller.dart';
 
 class ChangePassScreen extends StatefulWidget {

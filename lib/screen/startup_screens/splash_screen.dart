@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/welcome_screen.dart';
+import 'package:healthe/screen/startup_screens/welcome_screen.dart';
 
-import '../value/color.dart';
+import '../../value/color.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

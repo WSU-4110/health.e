@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/assessment_screen/question_model.dart';
-import 'package:healthe/screen/sign_up/sign_up_screen.dart';
+import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
+import '../../common_widget/question_model.dart';
 import '../../value/color.dart';
 
 
@@ -22,7 +22,6 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset : false,
-
 
         body: Container(
 

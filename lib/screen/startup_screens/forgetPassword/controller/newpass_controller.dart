@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../value/constant.dart';
+import 'package:healthe/value/constant.dart';
 
 class NewPassWordController extends GetxController{
 

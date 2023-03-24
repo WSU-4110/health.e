@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:healthe/auth.dart';
+import 'package:healthe/database/auth.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/value/color.dart';
 

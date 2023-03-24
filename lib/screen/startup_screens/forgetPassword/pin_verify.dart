@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/forgetPassword/password_change.dart';
+import 'package:healthe/screen/startup_screens/forgetPassword/password_change.dart';
 import 'package:pinput/pinput.dart';
-import '../../value/color.dart';
-import '../common_widget/button_widget.dart';
+import 'package:healthe/value/color.dart';
+import 'package:healthe/common_widget/button_widget.dart';
 
 class PinVerify extends StatefulWidget {
   const PinVerify({Key? key}) : super(key: key);
