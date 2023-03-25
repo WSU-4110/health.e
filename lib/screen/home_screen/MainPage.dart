@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
                       )),
               ),
 
-              // Workout Scroll View
+              // Go to Workout
               Container(
                   height: 250,
                   child: ListView(
@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
                                 ),
                               ],
                                 borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
+                                color: gradientColors_3,
                                 border: Border.all(color: grayColors),
 
 
@@ -85,6 +85,7 @@ class _MainPageState extends State<MainPage> {
                   )
               ),
 
+              //Spacer
               const SizedBox(height: 0),
 
               // "Diet Tips"
@@ -99,35 +100,14 @@ class _MainPageState extends State<MainPage> {
                   )
               ),
 
-              // Workout Scroll View
+              // Diet Tips List View
               SizedBox(
                   height: 200,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            width: 300,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                border: Border.all(color: grayColors),
+                    children:  [
 
-                            ),
-                            child: Container(
-                              margin: const EdgeInsets.only(left:10, right: 10),
-                              child: const Center(
-                                  child: Text("Drinking water increases your metabolism by up to 25% for nearly an hour after drinking it.",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20),)),
-                            ),
-                          ),
-                        ),
-                      ),
+                      //Diet Tip 1
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -148,24 +128,76 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                               border: Border.all(color: grayColors),
                             ),
-                            child: Container(
-                              margin: const EdgeInsets.only(left:10, right: 10),
-                              child: const Center(
-                                  child: Text("A study published in the American Journal of Nutrition, found that 8hrs of sleep for 6 nights can boost your metabolism by 20%",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18),)),
+                            child: Row(
+                              children: [
+
+                                //Image
+                                Container(
+                                  height:100,
+                                  width: 70,
+                                  margin: const EdgeInsets.only(left:10, right: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                        color: grayColors,
+                                        width: 1.0),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Image.asset('assets/icon/water_drinking.jpg',
+                                      fit: BoxFit.fill,
+
+
+                                    ),
+                                  ),
+
+                                ),
+
+                                // Text
+                                Flexible(
+                                  flex: 1,
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            margin: const EdgeInsets.only(left:10, right: 10,),
+                                            child: Text("Water",
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+
+                                              ),)),
+
+
+                                        Container(
+                                            margin: const EdgeInsets.only(left:10, right: 10,),
+                                            child: Text("Drinking water increases your metabolism by up to 25% for nearly an hour after drinking it.",
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.black,
+                                                  fontSize: 13),))
+                                      ]
+
+                                    //Text
+
+                                  ),
+                                ),
+
+                              ],
                             ),
                           ),
                         ),
                       ),
+
+
+                      //Diet Tip 2
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {},
                           child: Container(
                             width: 300,
-                            height: 500 ,
                             decoration: BoxDecoration(
                               boxShadow:
                               [
@@ -180,13 +212,146 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                               border: Border.all(color: grayColors),
                             ),
-                            child: Container(
-                              margin: const EdgeInsets.only(left:10, right: 10),
-                              child: const Center(
-                                  child: Text("Several studies suggest that green tea can boost metabolism and help people burn 3–4% more calories each day.",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20),)),
+                            child: Row(
+                              children: [
+
+                                //Image
+                                Container(
+                                  height:100,
+                                  width: 70,
+                                  margin: const EdgeInsets.only(left:10, right: 10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                          color: grayColors,
+                                      width: 1.0),
+                                  ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10.0),
+                              child: Image.asset('assets/icon/sleep.jpg',
+                                fit: BoxFit.fill,
+
+
+                              ),
+                                  ),
+
+                          ),
+
+                                // Text
+                                Flexible(
+                                  flex: 1,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          margin: const EdgeInsets.only(left:10, right: 10,),
+                                          child: Text("Sleep",
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+
+                                            ),)),
+
+
+                                      Container(
+                                    margin: const EdgeInsets.only(left:10, right: 10,),
+                                    child: Text("A study published in the American Journal of Nutrition, found that 8hrs of sleep for 6 nights can boost your metabolism by 20%",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 13),))
+                            ]
+
+                                  //Text
+
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      //Diet Tip 3
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 300,
+                            decoration: BoxDecoration(
+                              boxShadow:
+                              [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              border: Border.all(color: grayColors),
+                            ),
+                            child: Row(
+                              children: [
+
+                                //Image
+                                Container(
+                                  height:100,
+                                  width: 70,
+                                  margin: const EdgeInsets.only(left:10, right: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                        color: grayColors,
+                                        width: 1.0),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Image.asset('assets/icon/green_tea.jpg',
+                                      fit: BoxFit.fill,
+
+
+                                    ),
+                                  ),
+
+                                ),
+
+                                // Text
+                                Flexible(
+                                  flex: 1,
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            margin: const EdgeInsets.only(left:10, right: 10,),
+                                            child: Text("Drink Green Tea",
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+
+                                              ),)),
+
+
+                                        Container(
+                                            margin: const EdgeInsets.only(left:10, right: 10,),
+                                            child: Text("Several studies suggest that green tea can boost metabolism and help people burn 3–4% more calories each day.",
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.black,
+                                                  fontSize: 13),))
+                                      ]
+
+                                    //Text
+
+                                  ),
+                                ),
+
+                              ],
                             ),
                           ),
                         ),
@@ -198,6 +363,7 @@ class _MainPageState extends State<MainPage> {
 
               ),
 
+              // Diet Tips List View
               Container(
                   margin: const EdgeInsets.only(left:20),
                   child: Text("Take Assessment",
@@ -213,7 +379,6 @@ class _MainPageState extends State<MainPage> {
                   height: 250,
                   child: ListView(
                     physics: const NeverScrollableScrollPhysics(),
-
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -240,7 +405,7 @@ class _MainPageState extends State<MainPage> {
                                 ),
                               ],
                               borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
+                              color: gradientColors_4,
                               border: Border.all(color: grayColors),
 
 
