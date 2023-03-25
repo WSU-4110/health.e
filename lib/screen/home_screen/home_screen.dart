@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
@@ -81,10 +82,22 @@ List<IconData> icon = [
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Health.E"),
+        title:  Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Health.",
+              style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: blackColors),
+            ),
+            Text(
+              "E",
+              style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold, color: whiteColors),
+            )
+          ],
+        ),
         backgroundColor: gradientColors_1,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(5.0))
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))
         ),
         shadowColor: Colors.black,
         actions: <Widget> [
