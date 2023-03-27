@@ -3,6 +3,11 @@ import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/auth.dart';
+import 'package:healthe/screen/widget/background_painter.dart';
+import 'package:healthe/screen/widget/sign_up_widget.dart';
+import 'package:provider/provider.dart';
+import '../../provider/google_sign_in.dart';
+import '../widget/logged_in_widget.dart';
 import 'MainPage.dart';
 import 'progress.dart';
 
@@ -96,4 +101,33 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+  @override
+  Widget builder(BuildContext context) => Scaffold(
+        body: ChangeNotifierProvider(
+          create: (context) => GoogleSignInProvider(),
+          child: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              final provider = Provider.of<GoogleSignInProvider>(context);
+
+              if (provider.isSigningIn) {
+                return buildLoading();
+              } else if (snapshot.hasData) {
+                return LoggedInWidget();
+              } else {
+                return SignUpWidget();
+              }
+            },
+          ),
+        ),
+      );
+
+  Widget buildLoading() => Stack(
+        fit: StackFit.expand,
+        children: [
+          CustomPaint(painter: BackgroundPainter()),
+          Center(child: CircularProgressIndicator()),
+        ],
+      );
 }
+
