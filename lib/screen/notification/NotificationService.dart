@@ -16,28 +16,29 @@ class NotificationService {
     AndroidInitializationSettings('@mipmap/ic_launcher');
 
     //Initialization Settings for iOS
-    const IOSInitializationSettings initializationSettingsIOS =
-    IOSInitializationSettings(
+    DarwinInitializationSettings initializationSettingsIOS =
+    const DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
     );
 
     //Initializing settings for both platforms (Android & iOS)
-    const InitializationSettings initializationSettings =
+    InitializationSettings initializationSettings =
     InitializationSettings(
         android: initializationSettingsAndroid,
-        iOS: initializationSettingsIOS);
+      iOS: initializationSettingsIOS
+    );
 
     tz.initializeTimeZones();
 
     await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
-        onSelectNotification: onSelectNotification
+        onDidReceiveNotificationResponse: onDidReceiveNotificationResponse
     );
   }
 
-   onSelectNotification(String? payload) async {
+   onDidReceiveNotificationResponse(NotificationResponse response) async {
     //Navigate to wherever you want
   }
 
@@ -74,7 +75,7 @@ class NotificationService {
       title,
       body,
       RepeatInterval.daily,
-      NotificationDetails(
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           'your channel id',
           'your channel name',
@@ -95,7 +96,7 @@ class NotificationService {
     body,
   Day.values[weekday - 1], // Use DayOfWeek from the package
     notificationTime,
-    NotificationDetails(
+    const NotificationDetails(
       android: AndroidNotificationDetails(
         'your channel id',
         'your channel name',
