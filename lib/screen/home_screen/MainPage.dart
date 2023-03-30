@@ -230,11 +230,8 @@ class _MainPageState extends State<MainPage> {
                               borderRadius: BorderRadius.circular(10.0),
                               child: Image.asset('assets/icon/sleep.jpg',
                                 fit: BoxFit.fill,
-
-
                               ),
                                   ),
-
                           ),
 
                                 // Text

@@ -5,6 +5,7 @@ import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
+import 'package:healthe/screen/notification/MyProgress.dart';
 import 'package:healthe/value/color.dart';
 
 import 'MainPage.dart';
@@ -106,7 +107,7 @@ List<IconData> icon = [
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Notification_e()), // PLACEHOLDER for MINGRAN
+                MaterialPageRoute(builder: (context) => const MyProgress()), // PLACEHOLDER for MINGRAN
               );
             },),
         ],
