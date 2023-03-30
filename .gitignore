@@ -64,3 +64,11 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/package_config_subset
+.dart_tool/package_config.json
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux
+windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows
+windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows
