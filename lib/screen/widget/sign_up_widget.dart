@@ -21,7 +21,7 @@ class SignUpWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: 175,
               child: Text(
-                'Welcome Back To MyApp',
+                'Welcome Back To HealthE',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
