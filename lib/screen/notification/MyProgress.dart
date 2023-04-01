@@ -121,6 +121,8 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
   DateTime fullDate = DateTime.now();
   ReminderFrequency _selectedFrequency = ReminderFrequency.None;
 // version#3 starts
+
+
 @override
   void initState() {
     super.initState();
