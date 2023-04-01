@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/provider/google_sign_in.dart';
 import 'package:healthe/screen/startup_screens/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/value/color.dart';
@@ -8,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
 import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/common_widget/button_widget.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -365,6 +368,28 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             fit: BoxFit.fill,
                           ),
+                        ),
+                        Container(
+                          height: 54,
+                          width: 54,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border:
+                                  Border.all(color: Colors.white, width: 2)),
+                                  
+                          child: OutlinedButton.icon(
+                          label: const Text(
+                          'Sign In With Google',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+
+            icon: const FaIcon(FontAwesomeIcons.google, color: Color.fromARGB(255, 29, 62, 173)),
+            onPressed: () {
+              final provider =
+                  Provider.of<GoogleSignInProvider>(context, listen: false);
+              provider.login();
+            },
+        ),
                         ),
                       ],
                     )
