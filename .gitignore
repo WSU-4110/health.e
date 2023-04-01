@@ -1,6 +1,6 @@
 .flutter-plugins-dependencies
 .dart_tool/
 .flutter-plugins
-build
-android
-.idea
+.idea/
+build/
+android/app/google-services.json

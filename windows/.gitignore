@@ -1,0 +1,11 @@
+flutter/ephemeral
+
+
+x64/
+x86/
+
+*.suo
+*.user
+
+Debug/
+Release/
