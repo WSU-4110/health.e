@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/user_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
-import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/screen/notification/MyProgress.dart';
 import 'package:healthe/value/color.dart';
+import 'package:healthe/screen/Workouts/WorkoutMain.dart';
+
 
 import 'MainPage.dart';
 import 'notification_page.dart';
@@ -52,7 +53,7 @@ List<IconData> icon = [
 
   late final List pages = [
     const MainPage(),
-    const Workouts(),
+    WorkoutPage(),
     const Progress(),
     const userSettings(),
     Container(
