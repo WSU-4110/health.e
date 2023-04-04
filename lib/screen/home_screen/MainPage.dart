@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/home_screen/workouts.dart';
+import 'package:healthe/screen/Workouts/WorkoutCardio.dart';
 import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/value/color.dart';
 
@@ -50,7 +50,7 @@ class _MainPageState extends State<MainPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (
-                                    context) => const Workouts()),);
+                                    context) => WorkoutCardio()),);
                             }
                           },
                           child: Container(
