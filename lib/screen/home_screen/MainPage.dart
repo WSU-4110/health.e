@@ -366,16 +366,6 @@ class _MainPageState extends State<MainPage> {
               ),
 
               // Diet Tips List View
-              Container(
-                  margin: const EdgeInsets.only(left:20),
-                  child: Text("Take Assessment",
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
-                      )
-                  )
-              ),
 
               Container(
                   height: 250,
@@ -393,32 +383,35 @@ class _MainPageState extends State<MainPage> {
                                     context) => QuizScreen()),);
                             }
                           },
-                          child: Container(
-                            width: 100,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              boxShadow:
-                              [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3), // changes position of shadow
+                          child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  height:200,
+                                  width: 400,
+                                  margin: const EdgeInsets.only(left:10, right: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                        color: grayColors,
+                                        width: 1.0),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: Image.asset('assets/icon/Assessment.jpg',
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
                                 ),
-                              ],
-                              borderRadius: BorderRadius.circular(20),
-                              color: gradientColors_4,
-                              border: Border.all(color: grayColors),
-
-
-                            ),
-                            child: Center(
-                                child: Text("Take Assessment" ,
-                                    style: GoogleFonts.poppins(
-                                      color: Colors.black,
-                                      fontSize: 30,
-                                    ))
-                            ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      'Reevaluate Assessment',
+                                      style: TextStyle(color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 28.0),
+                                    )
+                                ),
+                              ]
                           ),
                         ),
                       ), ],
