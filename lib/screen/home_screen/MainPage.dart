@@ -53,38 +53,39 @@ class _MainPageState extends State<MainPage> {
                                     context) => WorkoutCardio()),);
                             }
                           },
-                          child: Container(
-                            width: 100,
-                            height: 200,
-                            decoration: BoxDecoration(
-                              boxShadow:
-                              [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3), // changes position of shadow
-                                ),
-                              ],
-                                borderRadius: BorderRadius.circular(20),
-                                color: gradientColors_3,
-                                border: Border.all(color: grayColors),
 
-
-                            ),
-                            child: Center(
-                                child: Text("Go to your workout" ,
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.black,
-                                        fontSize: 30,
-                                    ))
+                          child: Stack(
+                              children: <Widget>[
+                          Container(
+                                      height:200,
+                                      width: 400,
+                  margin: const EdgeInsets.only(left:10, right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                        color: grayColors,
+                        width: 1.0),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.asset('assets/icon/Workouts.jpg',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                           ),
+                              Container(
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    'Personal Workout',
+                                    style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 28.0),
+                              )
+                ),
+                          ]
+                  ),
                         ),
-                      ),
-                      ), ],
-                  )
-              ),
-
+                  ),
               //Spacer
               const SizedBox(height: 0),
 
@@ -99,6 +100,10 @@ class _MainPageState extends State<MainPage> {
                     )
                   )
               ),
+          ]
+        ),
+              ),
+
 
               // Diet Tips List View
               SizedBox(
