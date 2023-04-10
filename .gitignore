@@ -5,3 +5,13 @@
 build/
 android/app/google-services.json
 node_modules/
+.dart_tool/package_config_subset
+.dart_tool/package_config.json
+.dart_tool/version
+android/local.properties
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/shared_preferences_linux
+linux/flutter/ephemeral/.plugin_symlinks/smart_auth
+windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows
+windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows
+windows/flutter/ephemeral/.plugin_symlinks/smart_auth
