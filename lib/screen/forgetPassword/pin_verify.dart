@@ -10,6 +10,7 @@ import 'package:healthe/screen/forgetPassword/password_change.dart';
 import 'package:pinput/pinput.dart';
 import '../../value/color.dart';
 import '../common_widget/button_widget.dart';
+import 'controller/newpass_controller.dart';
 
 class PinVerify extends StatefulWidget {
   const PinVerify({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class PinVerify extends StatefulWidget {
 
 class _PinVerifyState extends State<PinVerify> {
 
+  NewPassWordController controller=Get.put(NewPassWordController());
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
@@ -102,7 +104,7 @@ class _PinVerifyState extends State<PinVerify> {
                 mHeight: Get.height,
                 borderColor: gradientColors_1,
                 press: () async {
-                  Get.to(()=>const ChangePassScreen());
+                 controller.pinVerify(code);
                 }
             ),
           ],

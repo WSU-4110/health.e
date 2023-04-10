@@ -10,6 +10,7 @@ import '../../value/constant.dart';
 import '../assessment_screen/assessment_screen.dart';
 import '../common_widget/button_widget.dart';
 import '../sign_up/sign_up_screen.dart';
+import 'LoginController.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late String? email = "";
   late String? password = "";
   late bool passShow = true;
-
+  LoginController controller=Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,14 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mHeight: Get.height,
                     borderColor: gradientColors_1,
                     press: () async {
-                      if (!emailValidatorRegExp.hasMatch(email!) ||
-                          email!.isEmpty ||
-                          password!.isEmpty ||
-                          password!.length <= 6) {
-                        Fluttertoast.showToast(msg: "Please Enter Your valid Info");
-                      } else {
-                        Get.off(()=> HomeScreen());
-                      }
+                      controller.userLoginCheck(email, password);
                     },
                   ),
                   const SizedBox(

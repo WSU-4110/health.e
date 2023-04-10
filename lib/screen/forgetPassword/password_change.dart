@@ -259,19 +259,11 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                             borderColor: Colors.white,
                             press: () async {
                               if (_formKey.currentState!.validate()) {
-                                logic.setLoadingTrue();
-
-                                if (controller.passwordController.text.isNotEmpty &&
-                                    logic.passwords == logic.confirmPasswords) {
-
-                                  Get.off(()=>const LoginScreen ());
-                                  logic.setLoadingFalse();
-                                } else {
-                                  logic.setLoadingFalse();
-                                }
+                                logic. changePass(logic.passwords,logic.confirmPasswords);
                               } else {
-                                logic.setLoadingFalse();
+                                logic. setLoadingFalse();
                               }
+
                             },
                           ),
                         ],

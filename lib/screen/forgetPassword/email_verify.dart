@@ -10,6 +10,7 @@ import 'package:healthe/screen/forgetPassword/pin_verify.dart';
 
 import '../../value/color.dart';
 import '../common_widget/button_widget.dart';
+import 'controller/newpass_controller.dart';
 
 class EmailVerify extends StatefulWidget {
   const EmailVerify({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class EmailVerify extends StatefulWidget {
 class _EmailVerifyState extends State<EmailVerify> {
 
   late String? email = "";
-
+  NewPassWordController controller=Get.put(NewPassWordController());
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ class _EmailVerifyState extends State<EmailVerify> {
                 mHeight: Get.height,
                 borderColor: gradientColors_1,
                 press: () async {
-                  Get.to(()=>PinVerify());
+                controller.emailVerify(email);
                 }
             ),
           ],
