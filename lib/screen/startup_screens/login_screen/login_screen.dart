@@ -9,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
 import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/common_widget/button_widget.dart';
-import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -34,12 +33,44 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      //pop loading circle
+      Navigator.pop(context);
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+        //pop loading circle
+        Navigator.pop(context);
+        //wrong email
+        if (e.code == 'user-not-found') {
+          wrongEmailMessage();
+        } else if (e.code == 'wrong-password') {
+          wrongPasswordMessage();
+        }
+      ;
     }
+    //pop loading circle
+    Navigator.pop(context);
+  }
+
+  //wrong email message
+  void wrongEmailMessage() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Incorrect Email'),
+          );
+        });
+  }
+
+  //wrong password message
+  void wrongPasswordMessage() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text('Incorrect Password'),
+          );
+        });
   }
 
   Future<void> createUserWithEmailAndPassword() async {
@@ -49,10 +80,28 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _controllerPassword.text,
       );
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+      if (e.code == 'user-not-found') {
+        print('No user found for that email');
+      } else if (e.code == 'wrong password') {
+        print('Wrong password');
+      }
     }
+    ;
+  }
+
+  void signUserIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
   }
 
   Widget _title() {
