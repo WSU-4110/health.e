@@ -3,7 +3,7 @@ import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'NotificationService.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum ReminderFrequency { None, Daily, Weekly }
+enum ReminderFrequency { Once, Daily, Weekly }
 
 class MyProgress extends StatefulWidget {
   const MyProgress({Key? key}) : super(key: key);
@@ -37,61 +37,81 @@ Future<void> _initializeNotificationService() async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Notification Settings')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Row(
-              children:  [
-                Expanded(
-                    child: NoteThumbnail(
-                        id: 1,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        title: "Your progress",
-                        content: "Set a reminder for a healthy lifestyle",
-                        switchValue: _switchValue,    // version # 3 
-                        )
-                        )
-              ],
+      body: LayoutBuilder(
+  builder: (BuildContext context, BoxConstraints constraints) {
+    double containerWidth = constraints.maxWidth;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Container(
+            width: containerWidth,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.grey.shade200,
             ),
-        //###################### version#3 ########################
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Container(
                   height: 50,
                   child: Row(
                     children: [
-                      Text('Workout Reminder',style: TextStyle(fontSize: 16),),
+                      Text(
+                        'Allow Notification',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       Spacer(),
                       Switch(
-              value: _switchValue,
-              onChanged: (value) async {
-                setState(() {
-                  _switchValue = value;
-                });
-                  final SharedPreferences prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool('switchValue', value);
-              },
-            )
+                        value: _switchValue,
+                        onChanged: (value) async {
+                          setState(() {
+                            _switchValue = value;
+                          });
+                          final SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setBool('switchValue', value);
+                          
+                        },
+                      ),
                     ],
                   ),
-                  ),
-      //###################### Switch button ########################    
-              Container(alignment: Alignment.center,
-      
-            child: ElevatedButton(
-          // ignore: prefer_const_constructors
-          child: Text('Check notification'),
-          onPressed: () async {
-            final NotificationService _notificationService = NotificationService();
-            await _notificationService.showNotifications(
-            id: 3,
-            title: "Notification test",
-            body: "Notification is worrking for this app");
-          },
-        ),
-        ), 
-          ],
-        ),
-      ),  
+                ),
+                NoteThumbnail(
+                  id: 1,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  title: "Frequency", //  title
+                  content:
+                      "", // Empty content
+                  switchValue: _switchValue,
+                  showFrequencySelection: true,
+                  showAddReminderButton: false,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            width: containerWidth,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.grey.shade200,
+            ),
+            child: NoteThumbnail(
+              id: 2,
+              color: Color.fromARGB(255, 255, 255, 255),
+              title: "Your progress",
+              content: "Set a reminder for a healthy lifestyle",
+              switchValue: _switchValue,
+            ),
+          ),
+        ],
+      ),
+    );
+  },
+),
     );
   }
 }
@@ -102,6 +122,8 @@ class NoteThumbnail extends StatefulWidget {
   final String title;
   final String content;
   final bool switchValue; //switch (version#3)
+  final bool showFrequencySelection;
+  final bool showAddReminderButton;
 
   const NoteThumbnail(
       {Key? key,
@@ -109,7 +131,9 @@ class NoteThumbnail extends StatefulWidget {
       required this.color,
       required this.title,
       required this.content,
-      required this.switchValue}) // this a parameter that access _switchValue from _NoteThumbnailState (version#3) 
+      required this.switchValue, // this a parameter that access _switchValue from _NoteThumbnailState (version#3)
+      this.showFrequencySelection = false,
+      this.showAddReminderButton = true,})  
       : super(key: key);
 
   @override
@@ -119,7 +143,7 @@ class NoteThumbnail extends StatefulWidget {
 class _NoteThumbnailState extends State<NoteThumbnail> {
   DateTime selectedDate = DateTime.now();
   DateTime fullDate = DateTime.now();
-  ReminderFrequency _selectedFrequency = ReminderFrequency.None;
+  ReminderFrequency _selectedFrequency = ReminderFrequency.Once;
 // version#3 starts
 
 
@@ -140,12 +164,12 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
 // version#3 ends here
 
   Future<void> _selectDate(BuildContext context) async {
-  
-      final time = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.fromDateTime(selectedDate),
-      );
+  final time = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.fromDateTime(selectedDate),
+  );
   if (time != null) {
+    print('Time is not null'); // for debugging
     setState(() {
       selectedDate = DateTime(
         selectedDate.year,
@@ -155,36 +179,43 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
         time.minute,
       );
     });
-        // Schedule or cancel the notification based on the switch state and the selected frequency
-      final NotificationService _notificationService = NotificationService();
-      if (widget.switchValue) {
-        if (_selectedFrequency == ReminderFrequency.Daily) {
-          await _notificationService.scheduleDailyNotification(
-            id: widget.id,
-            title: "Fitness Time!",
-            body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
-            time: selectedDate,
-          );
-        } else if (_selectedFrequency == ReminderFrequency.Weekly) {
-          await _notificationService.scheduleWeeklyNotification(
-            id: widget.id,
-            title: "Fitness Time!",
-            body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
-            time: selectedDate,
-          );
-        }
+    // Schedule or cancel the notification based on the switch state and the selected frequency
+    final NotificationService _notificationService = NotificationService();
+    // Cancel the existing notification before scheduling a new one
+    await _notificationService.flutterLocalNotificationsPlugin.cancel(widget.id);
+    if (widget.switchValue) {
+      if (_selectedFrequency == ReminderFrequency.Daily) {
+        await _notificationService.scheduleDailyNotification(
+          id: widget.id,
+          title: "Fitness Time!",
+          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+          time: selectedDate,
+        );
+      } else if (_selectedFrequency == ReminderFrequency.Weekly) {
+        await _notificationService.scheduleWeeklyNotification(
+          id: widget.id,
+          title: "Fitness Time!",
+          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+          time: selectedDate,
+        );
       } else {
-        await _notificationService.flutterLocalNotificationsPlugin.cancel(widget.id);
+        await _notificationService.scheduleNotifications(
+          id: widget.id,
+          title: "Fitness Time!",
+          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+          time: selectedDate,
+        );
       }
-  } 
+    }
+  }
 }
   Widget _buildFrequencySelection() {
   return Column(
     children: [
       ListTile(
-        title: const Text('None'),
+        title: const Text('Once'),
         leading: Radio<ReminderFrequency>(
-          value: ReminderFrequency.None,
+          value: ReminderFrequency.Once,
           groupValue: _selectedFrequency,
           onChanged: (ReminderFrequency? value) async{
             if (value != null) {
@@ -233,15 +264,16 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 250,
       decoration: BoxDecoration(
         color: widget.color,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 10),
           Text(
             widget.title,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -255,16 +287,16 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
           ),
           //Text(fullDate.toString()),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
-          ElevatedButton(   // 
+          if (widget.showFrequencySelection) _buildFrequencySelection(),
+          if (widget.showAddReminderButton) 
+            ElevatedButton(
               onPressed: () => _selectDate(context),
-              child: const Text("Add reminder"),),
-              _buildFrequencySelection(), // Add this line to display the radio buttons
-          
+              child: const Text("Add reminder"),
+            ),
         ],
       ),
     );
-    
   }
 }

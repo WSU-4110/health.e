@@ -70,6 +70,7 @@ class NotificationService {
   }
  // version#3 additon starts here
   Future<void> scheduleDailyNotification({id, title, body, time}) async {
+    print('daily Notification called'); // For debugging
     await flutterLocalNotificationsPlugin.periodicallyShow(
       id,
       title,
@@ -88,13 +89,14 @@ class NotificationService {
   
   Future<void> scheduleWeeklyNotification({id, title, body, time}) async {
   Time notificationTime = Time(time.hour, time.minute, 0);
-  int weekday = time.weekday;
+  Day weekday = Day.values[time.weekday - 1];
 
+  print('Weekly selected'); // For debugging
   await flutterLocalNotificationsPlugin.showWeeklyAtDayAndTime(
     id,
     title,
     body,
-  Day.values[weekday - 1], // Use DayOfWeek from the package
+    weekday, // Use Day from the flutter_local_notifications package
     notificationTime,
     const NotificationDetails(
       android: AndroidNotificationDetails(
@@ -108,25 +110,33 @@ class NotificationService {
 
 
 
+
+
+
  // Version 3 additon end here
 
 
   Future<void> scheduleNotifications({id, title, body, time}) async {
-    try{
-      await flutterLocalNotificationsPlugin.zonedSchedule(
-          id,
-          title,
-          body,
-          tz.TZDateTime.from(time, tz.local),
-          const NotificationDetails(
-              android: AndroidNotificationDetails(
-                  'your channel id', 'your channel name',
-                  channelDescription: 'your channel description')),
-          androidAllowWhileIdle: true,
-          uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime);
-    }catch(e){
-      print(e);
-    }
+  try {
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      tz.TZDateTime.from(time, tz.local),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'your channel id',
+          'your channel name',
+          channelDescription: 'your channel description',
+        ),
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time, 
+    );
+  } catch (e) {
+    print(e);
   }
+}
 }
