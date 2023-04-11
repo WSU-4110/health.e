@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
-import 'package:healthe/screen/startup_screens/login_screen/login_screen.dart';
 import 'package:healthe/screen/startup_screens/splash_screen.dart';
 
 class AuthPage extends StatelessWidget {
