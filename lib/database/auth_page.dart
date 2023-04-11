@@ -17,7 +17,6 @@ class AuthPage extends StatelessWidget {
           if (snapshot.hasData) {
             return HomeScreen();
           }
-
           //user is not logged in
           else {
             return const SplashScreen();

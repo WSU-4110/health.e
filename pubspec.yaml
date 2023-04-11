@@ -59,6 +59,9 @@ dependencies:
   google_sign_in: ^6.0.2
   font_awesome_flutter: ^10.4.0
   provider: ^6.0.5
+  dynamic_theme: ^1.0.1
+  firebase_database: ^10.1.0
+  easy_localization: ^1.3.0
 
 dev_dependencies:
   flutter_test:

@@ -16,6 +16,12 @@ class Auth {
       password: password,
     );
   }
+  Future<void> updateUsername(String newUsername) async {
+    User? user = _firebaseAuth.currentUser;
+    if (user != null) {
+      await user.updateDisplayName(newUsername);
+    }
+  }
 
   Future<void> createUserWithEmailAndPassword({
     required String email,
