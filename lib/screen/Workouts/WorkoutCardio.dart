@@ -9,7 +9,7 @@ class WorkoutCardio extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Specific cardio Plan',
+          'Specific Cardio Plan',
           style:
           GoogleFonts.poppins(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700, fontSize: 23),
         ),
