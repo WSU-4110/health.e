@@ -18,7 +18,7 @@ class ButtonWidget extends StatelessWidget {
         this.text,
         required this.backGroundColor,
         required this.press,
-        this.mHeight,
+        this.mHeight = 1,
         this.mWidth,
         required this.textColor,
         required this.borderColor})

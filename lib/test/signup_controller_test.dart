@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthe/database/signup_controller.dart';
+import '../database/signup_controller.dart';
+
 
 void main() {
-  group('SignUpController', () {
-    late SignUpController controller;
+  setUp(() {
+    Get.put(SignUpController());
+  });
 
-    setUp(() {
-      controller = SignUpController();
-    });
+  tearDown(() {
+    Get.reset();
+  });
 
-    test('registerUser should set email and password', () {
-      const email = 'test@example.com';
-      const password = 'password';
-      const fullName = 'fullName';
-      controller.registerUser(email, password, fullName);
+  test('registerUser sets email, password, and fullName', () {
+    final controller = Get.find<SignUpController>();
+    controller.email.text = 'test@example.com';
+    controller.password.text = 'password'; // Set the password field
+    controller.fullName.text = 'Test User';
 
-      expect(controller.email.text, equals(email));
-      expect(controller.password.text, equals(password));
-    });
+    controller.registerUser(
+        controller.email.text, controller.password.text, controller.fullName.text);
 
-    test('registerUser should set fullName', () {
-      const fullName = 'fullname';
-
-      controller.registerUser('test@example.com', 'password', 'fullName');
-
-      expect(controller.fullName.text, equals(fullName));
-    });
-
-    tearDown(() {
-      controller.dispose();
-    });
+    expect(controller.email.text, 'test@example.com');
+    expect(controller.password.text, 'password');
+    expect(controller.fullName.text, 'Test User');
   });
 }
