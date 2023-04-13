@@ -40,7 +40,7 @@ class _QuizScreenState extends State<QuizScreen> {
               children: [
 
                 const Text(
-                  "Assessment Demo",
+                  "Assessment",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -113,6 +113,7 @@ class _QuizScreenState extends State<QuizScreen> {
     bool isLastQuestion = false;
     if (currentQuestion == questionList.length - 1) {
       isLastQuestion = true;
+      score++;
     }
 
     return InkWell(

@@ -15,6 +15,7 @@ class WorkoutPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
+
           padding: EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,3 +1,4 @@
+
 class Question {
   final String questionText;
   final List<Answer> answersList;
@@ -8,52 +9,77 @@ class Question {
 class Answer {
   final String answerText;
   final bool isCorrect;
-
-  Answer(this.answerText, this.isCorrect);
+  final int score;
+  final int access;
+  Answer(this.answerText, this.isCorrect, this.score, this.access);
 }
+
 
 List<Question> getQuestions() {
   List<Question> list = [];
 
   list.add(Question(
-      "Within a 5 minute timeframe what level of cardio could you consistently do?",
+      "Within a 5 minute timeframe what level of cardio could you consistently do on foot?",
       [
-        Answer("Walk with pauses", true),
-        Answer("Walk the entire time", true),
-        Answer("Jog with some walking", true),
-        Answer("Jog the entire time", true),
-        Answer("run with some walking or jogging", true),
-        Answer("Run the entire time", true),
+        Answer("Walk with pauses", true, 1, 0),
+        Answer("Jogging with some walking", true, 2, 0),
+        Answer("Jog and/or running the entire time", true, 3, 0),
+      ]));
+  list.add(Question(
+      "Within a 5 minute timeframe what level of cardio could you consistently do on while swimming?",
+      [
+        Answer("Walk in the water with pauses", true, 1, 0),
+        Answer("Swimming strokes with some pauses", true, 2, 0),
+        Answer("Swimming strokes the entire time", true, 3, 0),
       ]));
 
   list.add(Question(
-      "Within oen minute how many sit ups could you consistently do?", [
-    Answer("5 minus", true),
-    Answer("6 to 10", true),
-    Answer("11 to 15", true),
-    Answer("16 to 20", true),
-    Answer("20 to 30", true),
+      "Within a 5 minute timeframe what level of cardio could you consistently do while biking?",
+      [
+        Answer("Slow cycling with pauses", true, 1, 0),
+        Answer("Casual cycling the entire time", true, 2, 0),
+        Answer("Quick cycling the entire time", true, 3, 0),
+      ]));
+
+  list.add(Question(
+      "Within one minute how many sit ups could you consistently do?", [
+    Answer("10 minus", true, 1, 0),
+    Answer("11 to 20", true, 2, 0),
+    Answer("21 plus", true, 3, 0),
   ]));
 
   list.add(Question(
-      "Within oen minute how many knee push-ups could you consistently do?", [
-    Answer("Knee push-ups 5 minus", true),
-    Answer("Knee push-ups 5 to 10", true),
-    Answer("Knee push-ups 11 to 15", true),
-    Answer("Knee push-ups 16 to 20", true),
-    Answer("Knee push-ups 21 to 30", true),
-    Answer("Knee push-ups 30 plus", true),
+      "Within one minute how many push-ups could you consistently do?", [
+    Answer("5 minus", true, 1, 0),
+    Answer("6 to 15", true, 2, 0),
+    Answer("16 plus", true, 3, 0),
   ]));
 
   list.add(Question(
-      "Within oen minute how many push-ups could you consistently do?", [
-    Answer("5 minus", true),
-    Answer("6 to 10", true),
-    Answer("11 to 15", true),
-    Answer("16 to 20", true),
-    Answer("21 to 30", true),
-    Answer("30 plus", true),
-  ]));
+      "What is your access to a place to swim?",
+      [
+        Answer("I have no access", true, 0, 0),
+        Answer("I can get access", true, 0, 1),
+        Answer("I already have access", true, 0, 1),
+      ]));
+
+  list.add(Question(
+      "What is your access to a bike or cycle machine?",
+      [
+        Answer("I have no access", true, 0, 0),
+        Answer("I can get access", true, 0, 1),
+        Answer("I already have access", true, 0, 1),
+      ]));
+
+  list.add(Question(
+      "What is your access to weight machines like at a local fitness center?",
+      [
+        Answer("I have no access", true, 0, 0),
+        Answer("I can get access", true, 0, 1),
+        Answer("I already have access", true, 0, 1),
+      ]));
 
   return list;
 }
+
+
