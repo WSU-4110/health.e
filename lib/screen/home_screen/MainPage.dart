@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/Workouts/WorkoutCardio.dart';
-import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/value/color.dart';
+
+import '../startup_screens/reassessment_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -380,7 +381,7 @@ class _MainPageState extends State<MainPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (
-                                    context) => QuizScreen()),);
+                                    context) => QuizScreen2()),);
                             }
                           },
                           child: Stack(
