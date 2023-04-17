@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late final List pages = [
     const MainPage(),
-    WorkoutPage(),
+    WorkoutPage(level: '',),
     const Progress(),
     UserSettings(),
     Container(

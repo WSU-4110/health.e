@@ -9,10 +9,10 @@ class Auth {
 
   Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
 
-  Future<User?> signInwithEmailAndPassword(
-      {required String email,
-      required String password,
-      required BuildContext context}) async {
+  Future<User?> signInwithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       UserCredential userCredential =
           await firebaseAuth.signInWithEmailAndPassword(
@@ -21,10 +21,7 @@ class Auth {
       );
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message.toString()),
-        backgroundColor: Colors.red,
-      ));
+      print(e);
     }
   }
 
@@ -34,30 +31,27 @@ class Auth {
       required BuildContext context}) async {
     try {
       UserCredential userCredential =
-          await firebaseAuth.signInWithEmailAndPassword(
+          await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message.toString()),
-        backgroundColor: Colors.red,
-      ));
+      print(e);
     }
   }
+
   static SnackBar customSnackBar({required String content}) {
-  return SnackBar(
-    backgroundColor: Colors.black,
-    content: Text(
-      content,
-      style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
-    ),
-  );
-}
+    return SnackBar(
+      backgroundColor: Colors.black,
+      content: Text(
+        content,
+        style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+      ),
+    );
+  }
 
-
-static Future<User?> signInWithGoogle({required BuildContext context}) async {
+  static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
 
@@ -76,34 +70,32 @@ static Future<User?> signInWithGoogle({required BuildContext context}) async {
       );
 
       try {
-  final UserCredential userCredential =
-      await auth.signInWithCredential(credential);
+        final UserCredential userCredential =
+            await auth.signInWithCredential(credential);
 
-  user = userCredential.user;
-} on FirebaseAuthException catch (e) {
-  if (e.code == 'account-exists-with-different-credential') {
-    ScaffoldMessenger.of(context).showSnackBar(
-      Auth.customSnackBar(
-        content:
-            'The account already exists with a different credential.',
-      ),
-    );
-  } else if (e.code == 'invalid-credential') {
-    ScaffoldMessenger.of(context).showSnackBar(
-      Auth.customSnackBar(
-        content:
-            'Error occurred while accessing credentials. Try again.',
-      ),
-    );
-  }
-} catch (e) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    Auth.customSnackBar(
-      content: 'Error occurred using Google Sign-In. Try again.',
-    ),
-  );
-}
-
+        user = userCredential.user;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            Auth.customSnackBar(
+              content:
+                  'The account already exists with a different credential.',
+            ),
+          );
+        } else if (e.code == 'invalid-credential') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            Auth.customSnackBar(
+              content: 'Error occurred while accessing credentials. Try again.',
+            ),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          Auth.customSnackBar(
+            content: 'Error occurred using Google Sign-In. Try again.',
+          ),
+        );
+      }
     }
 
     return user;

@@ -180,7 +180,7 @@ class _AuthPageState extends State<AuthPage> {
     return TextFormField(
       key: ValueKey('password'),
       validator: (value) {
-        if (value!.isEmpty || value!.length < 7) {
+        if (value!.isEmpty || value.length < 7) {
           return 'Password must be at least 7 characters long.';
         } else {
           return null;

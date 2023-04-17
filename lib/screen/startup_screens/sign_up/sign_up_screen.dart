@@ -1,17 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:healthe/database/auth.dart';
 import 'package:healthe/value/color.dart';
 import '../../../common_widget/button_widget.dart';
+import '../../../database/crud.dart';
 import '../../home_screen/home_screen.dart';
 import '../login_screen/login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -24,6 +28,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late String? name = "";
   late bool passShow = true;
   String? errorMessage = '';
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -237,50 +243,67 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     loading
                         ? CircularProgressIndicator()
                         : ButtonWidget(
-                            text: "SIGN UP",
-                            textColor: Colors.black,
-                            backGroundColor: Colors.white,
-                            mWidth: Get.width,
-                            mHeight: Get.height,
-                            borderColor: gradientColors_1,
-                            press: () async {
-                              setState(() {
-                                loading = true;
-                              });
-                              if (_controllerEmail.text == "" ||
-                                  _controllerPassword.text == "") {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text("All fields are required!"),
-                                  backgroundColor: Colors.red,
-                                ));
-                              } else if (_controllerPassword.text !=
-                                  _controllerConfirmPassword.text) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content:
-                                            Text("Passwords do not match!"),
-                                        backgroundColor: Colors.red));
-                              } else {
-                                User? result = await Auth()
-                                    .createUserWithEmailAndPassword(
-                                        email: _controllerEmail.text,
-                                        password: _controllerPassword.text,
-                                        context: context);
-                                if (result != null) {
-                                  print("Success");
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomeScreen()),
-                                      (route) => false);
-                                }
-                              }
-                              setState(() {
-                                loading = false;
-                              });
-                            },
-                          ),
+  text: "SIGN UP",
+  textColor: Colors.black,
+  backGroundColor: Colors.white,
+  mWidth: Get.width,
+  mHeight: Get.height,
+  borderColor: gradientColors_1,
+  press: () async {
+    setState(() {
+      loading = true;
+    });
+    if (_controllerEmail.text == "" || _controllerPassword.text == "") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("All fields are required!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else if (_controllerPassword.text != _controllerConfirmPassword.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Passwords do not match!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      User? result = await Auth().createUserWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+        context: context,
+      );
+      if (result != null) {
+        await Crud().createUserProfile(
+          result.uid,
+          "", //
+          _controllerEmail.text,
+          _controllerPassword.text,
+          1, // level
+          0, // weight
+          0, // height
+          0, // age
+          "", // gender
+          "", // goal
+          0, // dailyCaloricIntake
+          "", // lastAssessmentDate
+          [], // workoutHistory
+          true, // notificationsEnabled
+        );
+        print("Success");
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false,
+        );
+      }
+    }
+    setState(() {
+      loading = false;
+    });
+  },
+),
+
                     const SizedBox(
                       height: 16,
                     ),

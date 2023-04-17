@@ -152,4 +152,3 @@ class _ProgressState extends State<Progress> {
     );
   }
 }
-

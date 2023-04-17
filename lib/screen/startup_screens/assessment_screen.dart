@@ -5,14 +5,12 @@ import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
 import '../../common_widget/question_model.dart';
 import '../../value/color.dart';
 
-
 class QuizScreen extends StatefulWidget {
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-
   Answer? selectedAnswer;
   int score = 0;
   int currentQuestion = 0;
@@ -21,11 +19,12 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset : false,
-
+        resizeToAvoidBottomInset: false,
         body: Container(
-
-          padding: const EdgeInsets.only(left: 15,right: 15,),
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+          ),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -38,7 +37,6 @@ class _QuizScreenState extends State<QuizScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 const Text(
                   "Assessment",
                   style: TextStyle(
@@ -46,7 +44,9 @@ class _QuizScreenState extends State<QuizScreen> {
                     fontSize: 24,
                   ),
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 _questionWidget(),
                 _answerList(),
                 _nextButton(),
@@ -71,7 +71,6 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ),
         ),
-
         Container(
           alignment: Alignment.center,
           width: double.infinity,
@@ -95,20 +94,18 @@ class _QuizScreenState extends State<QuizScreen> {
 
 // Widget for Displaying Answers
   Widget _answerList() {
-
     return Column(
       children: questionList[currentQuestion]
           .answersList
           .map(
             (e) => _answerButton(e),
-      )
+          )
           .toList(),
     );
   }
 
 // Widget for the "Next Button"
   Widget _nextButton() {
-
     // Boolean Validation for Last Question
     bool isLastQuestion = false;
     if (currentQuestion == questionList.length - 1) {
@@ -118,43 +115,39 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return InkWell(
       onTap: () {
-
-        if(isLastQuestion==true){
-          Get.off(()=>const SignUpScreen());
-        }else{
+        if (isLastQuestion == true) {
+          Get.off(() => const SignUpScreen());
+        } else {
           _questionWidget();
 
           setState(() {
             currentQuestion++;
           });
         }
-
-
       },
       child: Container(
         height: 60,
         alignment: Alignment.center,
-        margin: const EdgeInsets.only(left: 15, right: 15,top: 25),
-        decoration: BoxDecoration(color: whiteColors, borderRadius: BorderRadius.circular(99)),
+        margin: const EdgeInsets.only(left: 15, right: 15, top: 25),
+        decoration: BoxDecoration(
+            color: whiteColors, borderRadius: BorderRadius.circular(99)),
         child: Text(
           "Next",
-          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.normal, color: gradientColors_1),
+          style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+              color: gradientColors_1),
         ),
       ),
     );
-
-
-
-
   }
 
   // Widget for Each Answer button
   Widget _answerButton(Answer answer) {
-
     bool isSelected = answer == selectedAnswer;
 
     return InkWell(
-      onTap: (){
+      onTap: () {
         if (selectedAnswer == null && answer.isCorrect) {
           score++;
         }
@@ -169,14 +162,10 @@ class _QuizScreenState extends State<QuizScreen> {
         height: 48,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: isSelected ?Colors.white :  gradientColors_1,
+            color: isSelected ? Colors.white : gradientColors_1,
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-                color: Colors.white,
-                width: 2
-            )
-        ),
-        child:Text(answer.answerText),
+            border: Border.all(color: Colors.white, width: 2)),
+        child: Text(answer.answerText),
       ),
     );
   }

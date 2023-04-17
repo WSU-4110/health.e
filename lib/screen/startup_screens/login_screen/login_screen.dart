@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await Auth().signInwithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
-        context: context,
+        
       );
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
@@ -267,7 +267,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     .signInwithEmailAndPassword(
                                         email: _controllerEmail.text,
                                         password: _controllerPassword.text,
-                                        context: context);
+                                        );
                                 if (result != null) {
                                   print("Success");
                                   Navigator.pushAndRemoveUntil(

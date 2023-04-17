@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Question {
   final String questionText;
   final List<Answer> answersList;
@@ -12,6 +14,21 @@ class Answer {
   final int score;
   final int access;
   Answer(this.answerText, this.isCorrect, this.score, this.access);
+}
+
+int calculateScore(List<Answer> selectedAnswers) {
+  int score = 0;
+  for (Answer selectedAnswer in selectedAnswers) {
+    for (Question question in getQuestions()) {
+      if (question.answersList.contains(selectedAnswer)) {
+        Answer correspondingAnswer = question.answersList.firstWhere(
+            (answer) => answer.answerText == selectedAnswer.answerText);
+        score += correspondingAnswer.score;
+        break;
+      }
+    }
+  }
+  return score;
 }
 
 
@@ -80,6 +97,46 @@ List<Question> getQuestions() {
       ]));
 
   return list;
+  
+  
 }
+
+
+FitnessLevel categorizeUser(int score) {
+  if (score <= 6) {
+    return FitnessLevel.Beginner;
+  } else if (score <= 12) {
+    return FitnessLevel.Intermediate;
+  } else {
+    return FitnessLevel.Expert;
+  }
+  
+}
+
+enum FitnessLevel {
+  Beginner,
+  Intermediate,
+  Expert,
+}
+
+FitnessLevel determineFitnessLevel(int score) {
+  if (score >= 12) {
+    return FitnessLevel.Expert;
+  } else if (score >= 8) {
+    return FitnessLevel.Intermediate;
+  } else {
+    return FitnessLevel.Beginner;
+  }
+
+  
+}
+//update users level
+ Future<void> updateUserLevel(String userId, int level) async {
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+
+    await userRef.update({
+      'level': level,
+    });
+  }
 
 
