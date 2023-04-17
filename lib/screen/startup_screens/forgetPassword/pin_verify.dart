@@ -12,7 +12,7 @@ import 'package:healthe/value/color.dart';
 import 'package:healthe/common_widget/button_widget.dart';
 
 class PinVerify extends StatefulWidget {
-  const PinVerify({Key? key}) : super(key: key);
+  const PinVerify({Key? key, required void pin, required String email}) : super(key: key);
 
   @override
   State<PinVerify> createState() => _PinVerifyState();

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healthe/provider/google_sign_in.dart';
 import 'package:healthe/screen/startup_screens/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
@@ -12,10 +14,8 @@ import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/common_widget/button_widget.dart';
 import 'package:provider/provider.dart';
 
-
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+  LoginScreen();
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -26,15 +26,28 @@ class _LoginScreenState extends State<LoginScreen> {
   String? errorMessage = '';
   bool isLogin = true;
   late bool passShow = true;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  bool loading = false;
+
+  Future<GoogleSignInAccount?> _handleSignIn() async {
+    try {
+      final GoogleSignInAccount? account = await _googleSignIn.signIn();
+      return account;
+    } catch (error) {
+      print('Google Sign-In Error: $error');
+      throw error.toString();
+    }
+  }
 
   Future<void> signInWithEmailAndPassword() async {
     try {
       await Auth().signInwithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
+        context: context,
       );
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
@@ -49,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
+        context: context,
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -98,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     //MAZIN CODE
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -229,24 +242,53 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
                     //Login Button
-                    ButtonWidget(
-                      text: "LOGIN",
-                      textColor: Colors.black,
-                      backGroundColor: Colors.white,
-                      mWidth: Get.width,
-                      mHeight: Get.height,
-                      borderColor: gradientColors_1,
-                      press: signInWithEmailAndPassword,
-                    ),
+                    loading
+                        ? const CircularProgressIndicator()
+                        : ButtonWidget(
+                            text: "LOGIN",
+                            textColor: Colors.black,
+                            backGroundColor: Colors.white,
+                            mWidth: Get.width,
+                            mHeight: Get.height,
+                            borderColor: gradientColors_1,
+                            press: () async {
+                              setState(() {
+                                loading = true;
+                              });
+                              if (_controllerEmail.text == "" ||
+                                  _controllerPassword.text == "") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("All fields are required!"),
+                                  backgroundColor: Colors.red,
+                                ));
+                              } else {
+                                User? result = await Auth()
+                                    .signInwithEmailAndPassword(
+                                        email: _controllerEmail.text,
+                                        password: _controllerPassword.text,
+                                        context: context);
+                                if (result != null) {
+                                  print("Success");
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                      (route) => false);
+                                }
+                              }
+                              setState(() {
+                                loading = false;
+                              });
+                            }),
 
                     const SizedBox(
                       height: 10,
                     ),
 
-
                     InkWell(
                       onTap: () {
-                        Get.to(() => EmailVerify());
+                        Get.to(() => const EmailVerify());
                       },
                       child: Container(
                           alignment: Alignment.centerRight,
@@ -323,76 +365,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: Get.height / 27,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1662070479020-73f77887c87c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1454&q=80",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1612994370726-5d4d609fca1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1527&q=80",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.white, width: 2)),
-                                  
-                          child: OutlinedButton.icon(
-                          label: const Text(
-                          'Sign In With Google',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-
-            icon: const FaIcon(FontAwesomeIcons.google, color: Color.fromARGB(255, 29, 62, 173)),
-            onPressed: () {
-              final provider =
-                  Provider.of<GoogleSignInProvider>(context, listen: false);
-              provider.login();
-            },
-        ),
-                        ),
-                      ],
-                    )
+                    loading
+                        ? const CircularProgressIndicator()
+                        : SizedBox(
+                            width: double.infinity,
+                          height: 50,
+                            child: SignInButton(
+                          Buttons.Google,
+                        text: "Continue with Google",
+                          onPressed: () => Auth.signInWithGoogle(context: context),
+                                ),),
                   ],
                 ),
               ),

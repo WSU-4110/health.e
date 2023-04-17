@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,13 +20,16 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   late String? email = "";
   late String? password = "";
+  late String? confirmPassword = "";
   late String? name = "";
   late bool passShow = true;
   String? errorMessage = '';
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-
+  final TextEditingController _controllerConfirmPassword =
+      TextEditingController();
+  bool loading = false;
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
   }
@@ -35,6 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
+        context: context,
       );
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
@@ -70,14 +75,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     Text(
                       "Create Account",
-                      style:
-                      GoogleFonts.poppins(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700, fontSize: 23),
+                      style: GoogleFonts.poppins(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 23),
                     ),
                     SizedBox(
                       height: Get.height / 11,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 5, top: 5),
                       width: double.maxFinite,
                       // height: mHeight / 16,
                       alignment: Alignment.centerLeft,
@@ -111,7 +119,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: Get.height / 24,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 5, top: 5),
                       width: double.maxFinite,
                       // height: mHeight / 16,
                       alignment: Alignment.centerLeft,
@@ -145,7 +154,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: Get.height / 24,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 5, top: 5),
                       width: double.maxFinite,
                       // height: mHeight / 16,
                       alignment: Alignment.centerLeft,
@@ -183,21 +193,94 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     }
                                   });
                                 },
-                                icon: Icon(passShow == true ? Icons.lock : Icons.lock_open))),
+                                icon: Icon(passShow == true
+                                    ? Icons.lock
+                                    : Icons.lock_open))),
                       ),
                     ),
                     SizedBox(
                       height: Get.height / 24,
                     ),
-                    ButtonWidget(
-                      text: "SIGN UP",
-                      textColor: Colors.black,
-                      backGroundColor: Colors.white,
-                      mWidth: Get.width,
-                      mHeight: Get.height,
-                      borderColor: gradientColors_1,
-                      press: createUserWithEmailAndPassword,
+                    Container(
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 5, top: 5),
+                      width: double.maxFinite,
+                      // height: mHeight / 16,
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextFormField(
+                        //  controller: controller.nameController,
+                        keyboardType: TextInputType.text,
+                        obscureText: passShow,
+                        onChanged: (value) {
+                          _controllerConfirmPassword.text = value;
+                        },
+
+                        style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.normal,
+                        ),
+                        decoration: const InputDecoration(
+                          hintText: "confirm password",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
                     ),
+                    loading
+                        ? CircularProgressIndicator()
+                        : ButtonWidget(
+                            text: "SIGN UP",
+                            textColor: Colors.black,
+                            backGroundColor: Colors.white,
+                            mWidth: Get.width,
+                            mHeight: Get.height,
+                            borderColor: gradientColors_1,
+                            press: () async {
+                              setState(() {
+                                loading = true;
+                              });
+                              if (_controllerEmail.text == "" ||
+                                  _controllerPassword.text == "") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text("All fields are required!"),
+                                  backgroundColor: Colors.red,
+                                ));
+                              } else if (_controllerPassword.text !=
+                                  _controllerConfirmPassword.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text("Passwords do not match!"),
+                                        backgroundColor: Colors.red));
+                              } else {
+                                User? result = await Auth()
+                                    .createUserWithEmailAndPassword(
+                                        email: _controllerEmail.text,
+                                        password: _controllerPassword.text,
+                                        context: context);
+                                if (result != null) {
+                                  print("Success");
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                      (route) => false);
+                                }
+                              }
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                          ),
                     const SizedBox(
                       height: 16,
                     ),
@@ -205,7 +288,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       alignment: Alignment.center,
                       child: InkWell(
                         onTap: () {
-                          Get.off(() => const LoginScreen());
+                          Get.off(() => LoginScreen());
                         },
                         child: Text(
                           "I have an account",
@@ -226,79 +309,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Expanded(
                             child: Container(
-                              height: 1,
-                              margin: const EdgeInsets.only(right: 15),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [Colors.white.withOpacity(0.1), Colors.white],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(0.5, 0.0),
-                                ),
-                              ),
-                            )),
+                          height: 1,
+                          margin: const EdgeInsets.only(right: 15),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0.1),
+                                Colors.white
+                              ],
+                              begin: const FractionalOffset(0.0, 0.0),
+                              end: const FractionalOffset(0.5, 0.0),
+                            ),
+                          ),
+                        )),
                         const Text("Or"),
                         Expanded(
                             child: Container(
-                              height: 1,
-                              margin: const EdgeInsets.only(left: 15),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [Colors.white, Colors.white.withOpacity(0.2)],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(0.9, 0.0),
-                                ),
-                              ),
-                            )),
+                          height: 1,
+                          margin: const EdgeInsets.only(left: 15),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white,
+                                Colors.white.withOpacity(0.2)
+                              ],
+                              begin: const FractionalOffset(0.0, 0.0),
+                              end: const FractionalOffset(0.9, 0.0),
+                            ),
+                          ),
+                        )),
                       ],
                     ),
                     SizedBox(
                       height: Get.height / 27,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1662070479020-73f77887c87c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1454&q=80",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1612994370726-5d4d609fca1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                          height: 54,
-                          width: 54,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.white, width: 2)),
-                          child: const Image(
-                            image: NetworkImage(
-                              "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1527&q=80",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
-                    )
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: SignInButton(
+                        Buttons.Google,
+                        text: "Continue with Google",
+                        onPressed: () async {
+                          setState(() {
+                            loading = true;
+                          });
+                          print("Signing in with Google...");
+                          try {
+                            await Auth.signInWithGoogle(context: context);
+                          } catch (e) {
+                            print("Error signing in with Google: $e");
+                          }
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height / 27,
+                    ),
                   ],
                 ),
               ),
