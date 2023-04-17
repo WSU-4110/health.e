@@ -5,8 +5,6 @@ class Workouts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: Text("Workout Page")
-    );
+    return const Center(child: Text("Workout Page"));
   }
 }
