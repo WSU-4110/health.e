@@ -77,9 +77,37 @@ class _ProgressState extends State<Progress> {
     }
   }
 
+  int calculator()
+  {
+   int age = _userInfo['age'];
+   int height = _userInfo['height'];
+   int weight = _userInfo['weight'];
+   String gender = _userInfo['gender'];
+
+   late double BMR;
+
+   if (gender == 'Male')
+     {
+         BMR = (66.5 + (13.75 * weight) +
+           (5.003 * height) - (6.75 * age));
+     }
+   else
+     {
+         BMR = 66.5 + (13.75 * weight)
+           + (5.003 * height) - (6.75 * age);
+     }
+
+   int BMR_int = BMR.toInt();
+
+return BMR_int;
+  }
+
+
 bool states = true;
   @override
   Widget build(BuildContext context) {
+
+    int final_bmr = calculator();
 
     final TextEditingController controllerWeight = TextEditingController();
     late int weight = int.parse(controllerWeight.text);
@@ -265,7 +293,7 @@ bool states = true;
                                             errorBorder: InputBorder.none,
                                             disabledBorder: InputBorder.none,
                                           ),
-                                        ): const Text("1900 calories"),
+                                        ): const Text('1900'),// PRINT ACTUAL CALORIES HERE
                                       ),
 
                                       Container(
@@ -297,8 +325,7 @@ bool states = true;
 
 
                                           },
-
-                                          child: states? const Text("Calculate"): const Text("Reset") ,
+                                          child: states ? const Text("Calculate"): const Text("Reset") ,
                                         ),
                                       )
                                     ],
