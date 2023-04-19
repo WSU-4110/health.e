@@ -1,5 +1,5 @@
 # <p align="center">**Health.E Project**</p>
-<p align="center"> [Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki) </p>
+[Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki) 
 
 ## Motivation and Features
 
