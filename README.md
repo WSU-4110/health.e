@@ -1,5 +1,7 @@
 # **Health.E Project**
 
+[Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki)
+
 ## Motivation and Features
 
 This project is motivated on the premise of bettering the health crisis in America. Over the last few decades the United States has increased dramaticaly in weight on average and with this application we hope to provide a helpful tool to decrease obesity. We hope to differentiate our app from other fitness apps by providing a more overweight friendly option that has a larger range of exercises so people do not get overwhelmed. Some features we are implementing to improve our applications quality include: 
