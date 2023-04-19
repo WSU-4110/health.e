@@ -14,7 +14,10 @@ With these implementations we hope to slightly improve the health of overweight 
 
 ----------------------
 
-## Installation of our Project (Update in future sprints)
+## Technology Stacks Used:
+* [Flutter](https://flutter.dev/)
+* [Firebase](https://firebase.google.com/)
+* [Android Studio](https://developer.android.com/)
 
 
 ----------------------
