@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Question {
@@ -99,6 +98,7 @@ List<Question> getQuestions() {
   return list;
   
   
+  
 }
 
 
@@ -110,7 +110,6 @@ FitnessLevel categorizeUser(int score) {
   } else {
     return FitnessLevel.Expert;
   }
-  
 }
 
 enum FitnessLevel {
@@ -131,12 +130,15 @@ FitnessLevel determineFitnessLevel(int score) {
   
 }
 //update users level
- Future<void> updateUserLevel(String userId, int level) async {
-    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+ Future<void> updateUserLevel(int userId, int level) async {
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId.toString());
 
     await userRef.update({
       'level': level,
     });
   }
+
+  
+  
 
 

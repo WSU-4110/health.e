@@ -11,8 +11,15 @@ class Crud {
       FirebaseFirestore.instance.collection('assessments');
 
   // Create - Profile (users collection)
+
+  // Read - Weight, height, gender, name, email (users collection)
+  Future<DocumentSnapshot> getUserProfile(String id) async {
+    return await usersCollection.doc(id).get();
+  }
+
+  // Update - assessment level (users collection, assessments collection)
+  // Create - Profile (users collection)
   Future<void> createUserProfile(
-      String id,
       String username,
       String email,
       String password,
@@ -26,7 +33,15 @@ class Crud {
       String lastAssessmentDate,
       List<dynamic> workoutHistory,
       bool notificationsEnabled) async {
-    return await usersCollection.doc(id).set({
+    // Get the last user document
+    QuerySnapshot snapshot =
+        await usersCollection.orderBy("id", descending: true).limit(1).get();
+    int lastId = snapshot.docs.isNotEmpty ? snapshot.docs.first["id"] : 0;
+    int newId = lastId + 1;
+
+    // Create the user profile document with the new id
+    return await usersCollection.doc(newId.toString()).set({
+      'id': newId,
       'username': username,
       'email': email,
       'password': password,
@@ -43,14 +58,9 @@ class Crud {
     });
   }
 
-  // Read - Weight, height, gender, name, email (users collection)
-  Future<DocumentSnapshot> getUserProfile(String id) async {
-    return await usersCollection.doc(id).get();
-  }
-
-  // Update - assessment level (users collection, assessments collection)
-  Future<void> updateUserProfile(String id, int level) async {
-    await usersCollection.doc(id).update({'level': level});
+// Update - assessment level (users collection, assessments collection)
+  Future<void> updateUserProfile(int id, int level) async {
+    await usersCollection.doc(id.toString()).update({'level': level});
 
     // Create assessment
     DateTime now = DateTime.now();

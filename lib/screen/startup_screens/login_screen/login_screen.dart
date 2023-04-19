@@ -47,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
       await Auth().signInwithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
-        
       );
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
@@ -263,11 +262,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   backgroundColor: Colors.red,
                                 ));
                               } else {
-                                User? result = await Auth()
-                                    .signInwithEmailAndPassword(
-                                        email: _controllerEmail.text,
-                                        password: _controllerPassword.text,
-                                        );
+                                User? result =
+                                    await Auth().signInwithEmailAndPassword(
+                                  email: _controllerEmail.text,
+                                  password: _controllerPassword.text,
+                                );
                                 if (result != null) {
                                   print("Success");
                                   Navigator.pushAndRemoveUntil(
@@ -369,12 +368,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? const CircularProgressIndicator()
                         : SizedBox(
                             width: double.infinity,
-                          height: 50,
+                            height: 50,
                             child: SignInButton(
-                          Buttons.Google,
-                        text: "Continue with Google",
-                          onPressed: () => Auth.signInWithGoogle(context: context),
-                                ),),
+                              Buttons.Google,
+                              text: "Continue with Google",
+                              onPressed: () =>
+                                  Auth.signInWithGoogle(context: context),
+                            ),
+                          ),
                   ],
                 ),
               ),

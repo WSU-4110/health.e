@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/startup_screens/forgetPassword/pin_verify.dart';
+import 'package:healthe/screen/startup_screens/forgetPassword/password_reset.dart';
 
 import 'package:healthe/value/color.dart';
 import 'package:healthe/common_widget/button_widget.dart';
@@ -33,7 +33,7 @@ class _EmailVerifyState extends State<EmailVerify> {
       androidInstallApp: true,
       // minimumVersion
       androidMinimumVersion: '12');
-      Future<void> _sendPinToEmail(String email) async {
+  Future<void> _sendPinToEmail(String email) async {
     try {
       // Generate a random 5 digit pin
       final random = Random();
@@ -42,8 +42,8 @@ class _EmailVerifyState extends State<EmailVerify> {
       // Send the pin to the user's email
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
-      // Navigate to the PinVerify screen
-      Get.to(() => PinVerify(pin: pin.toString(), email: email));
+      // Navigate to the Reset screen
+      Get.to(() => Reset(pin: pin.toString(), email: email));
     } catch (e) {
       // Show an error message if there was an error sending the email
       Get.snackbar(
@@ -63,7 +63,7 @@ class _EmailVerifyState extends State<EmailVerify> {
           .catchError(
               (onError) => print('Error sending email verification $onError'))
           .then((value) => print('Successfully sent email verification'));
-           Get.to(() => PinVerify(pin: pin.toString(),email: email));
+      Get.to(() => Reset(pin: pin.toString(), email: email));
     } catch (e) {
       print(e);
       // Show error message to the user
@@ -117,7 +117,6 @@ class _EmailVerifyState extends State<EmailVerify> {
             Container(
               padding: const EdgeInsets.only(left: 15, bottom: 5, top: 5),
               width: double.maxFinite,
-         
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -151,28 +150,26 @@ class _EmailVerifyState extends State<EmailVerify> {
               height: 40,
             ),
             ButtonWidget(
-  text: "Verify Email",
-  textColor: Colors.black,
-  backGroundColor: Colors.white,
-  mWidth: Get.width,
-  mHeight: Get.height,
-  borderColor: gradientColors_1,
-  press: () async {
-    if (email != null && email.isNotEmpty) {
-      final results =  _sendPinToEmail(email);
-      if (pin != null) {
-        Get.to(() => PinVerify(pin: results, email: email));
-      } else {
-        // Handle error
-        print('Failed to send verification email');
-      }
-    } else {
-      // Show error message for invalid email
-      print('Invalid email address');
-    }
-  }
-),
-
+                text: "Verify Email",
+                textColor: Colors.black,
+                backGroundColor: Colors.white,
+                mWidth: Get.width,
+                mHeight: Get.height,
+                borderColor: gradientColors_1,
+                press: () async {
+                  if (email != null && email.isNotEmpty) {
+                    final results = _sendPinToEmail(email);
+                    if (pin != null) {
+                      Get.to(() => Reset(pin: results, email: email));
+                    } else {
+                      // Handle error
+                      print('Failed to send verification email');
+                    }
+                  } else {
+                    // Show error message for invalid email
+                    print('Invalid email address');
+                  }
+                }),
           ],
         ),
       ),
