@@ -1,6 +1,4 @@
-# <p align="center">
-  **Health.E Project**image"/>
-</p>
+# <p align="center">**Health.E Project**image"/></p>
 [Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki)
 
 ## Motivation and Features
