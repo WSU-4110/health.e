@@ -24,10 +24,10 @@ With these implementations we hope to slightly improve the health of overweight 
 
 ## Credits
 
-John Cavanaugh Sullivan | https://github.com/JohnSullivanIV
-| Jason Jose | https://github.com/josejasona
-| Mingran Tan | https://github.com/MingranTan
-| Mazin Shulaiba | https://github.com/mshul97
-| Saifullah Siraji | https://github.com/hjmamun
+* John Cavanaugh Sullivan | https://github.com/JohnSullivanIV
+* Jason Jose | https://github.com/josejasona
+* Mingran Tan | https://github.com/MingranTan
+* Mazin Shulaiba | https://github.com/mshul97
+* Saifullah Siraji | https://github.com/hjmamun
 
 ----------------------
