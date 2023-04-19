@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
+import '../../database/crud.dart';
 import '../../value/color.dart';
 import '../widgets/workout_log.dart';
 
@@ -14,7 +17,9 @@ class Progress extends StatefulWidget {
 }
 
 class _ProgressState extends State<Progress> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+
+
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   final Map<DateTime, List<dynamic>> _events = {
@@ -44,9 +49,42 @@ class _ProgressState extends State<Progress> {
     });
   }
 
-  Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
+  final Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
+
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+
+  String? id = FirebaseAuth.instance.currentUser?.uid;
+
+
+
+  late Map<String, dynamic> _userInfo;
+
+
+  void initState() {
+    super.initState();
+    initializeUserInfo();
+  }
+
+  Future<void> initializeUserInfo() async {
+    final User? currentUser = firebaseAuth.currentUser;
+    if (currentUser != null) {
+      Map<String, dynamic> userInfo = await Crud().getUserInfo(currentUser.uid);
+      setState(() {
+        _userInfo = userInfo;
+      });
+    }
+  }
+
+bool states = true;
   @override
   Widget build(BuildContext context) {
+
+    final TextEditingController controllerWeight = TextEditingController();
+    late int weight = int.parse(controllerWeight.text);
+
+
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -54,6 +92,7 @@ class _ProgressState extends State<Progress> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text(
@@ -66,6 +105,7 @@ class _ProgressState extends State<Progress> {
                         ),
                       ),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TableCalendar(
@@ -94,6 +134,7 @@ class _ProgressState extends State<Progress> {
                         },
                       ),
                     ),
+
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text(
@@ -106,6 +147,7 @@ class _ProgressState extends State<Progress> {
                         ),
                       ),
                     ),
+
                     Container(
                       height: 250,
                       child: ListView.builder(
@@ -136,6 +178,8 @@ class _ProgressState extends State<Progress> {
                         },
                       ),
                     ),
+
+                    // "Calorie Calculator"
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text("Calorie Calculator",
@@ -146,6 +190,7 @@ class _ProgressState extends State<Progress> {
                             fontWeight: FontWeight.w700,
                           )),
                     ),
+
                     Container(
                         height: 250,
                         child: ListView(
@@ -156,12 +201,7 @@ class _ProgressState extends State<Progress> {
                               child: InkWell(
                                 onTap: () {
                                   {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Workouts()),
-                                    );
+
                                   }
                                 },
                                 child: Container(
@@ -170,17 +210,112 @@ class _ProgressState extends State<Progress> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: grayColors),
-                                  child: Center(
-                                      child: Text("Go to your workout",
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 30,
-                                          ))),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+
+                                      // Enter your weight
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10.0),
+                                        child: states ? Text("Enter your weight",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.black,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w700,
+                                            )) : Text("Your TDEE is: ",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.black,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w700,
+                                            ))  ,
+                                      ),
+
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10.0),
+                                        padding:
+                                        const EdgeInsets.only(left: 10, bottom: 5, top: 5),
+                                        width: 85.0,
+                                        // height: mHeight / 16,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        child: states ? TextFormField(
+
+                                          //  controller: controller.nameController,
+                                          keyboardType: TextInputType.number,
+                                          onChanged: (value) {
+                                            weight = int.parse(value);
+                                          },
+
+                                          style: GoogleFonts.inter(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle: FontStyle.normal,
+                                          ),
+                                          decoration: const InputDecoration(
+                                            hintText: "Weight",
+                                            border: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            enabledBorder: InputBorder.none,
+                                            errorBorder: InputBorder.none,
+                                            disabledBorder: InputBorder.none,
+                                          ),
+                                        ): const Text("1900 calories"),
+                                      ),
+
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10.0),
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor: MaterialStatePropertyAll<Color>(gradientColors_1),
+
+                                          ),
+
+                                          onPressed:  () async
+                                          {
+                                            if (states) {
+                                              Crud().updateUserWeight(
+                                                  id!, weight);
+                                              setState(() {
+                                                states = false;
+
+                                              });
+                                            }
+                                            else
+                                              {
+                                                setState(() {
+                                                  states = true;
+                                                });
+
+
+                                              }
+
+
+                                          },
+
+                                          child: states? const Text("Calculate"): const Text("Reset") ,
+                                        ),
+                                      )
+                                    ],
+                                  )
                                 ),
                               ),
                             ),
                           ],
                         )),
+
+
+                    // "Enter your weight"
+
+                    // Calorie Calculator Form Field
+
+
+                    // "Macro Nutrient Profile
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text("MacroNutrient Profile",
@@ -191,7 +326,10 @@ class _ProgressState extends State<Progress> {
                             fontWeight: FontWeight.w700,
                           )),
                     ),
+
                     const SizedBox(height: 1.0),
+
+                    // Macro Nutrient Profile List View
                     Container(
                         height: 250,
                         child: ListView(
@@ -228,6 +366,9 @@ class _ProgressState extends State<Progress> {
                           ],
                         )),
                   ],
-                ))));
+                )
+            )
+        )
+    );
   }
 }

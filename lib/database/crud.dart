@@ -73,4 +73,27 @@ class Crud {
   Future<void> deleteUserProfile(String id) async {
     await usersCollection.doc(id).delete();
   }
+
+  Future<Map<String, dynamic>> getUserInfo(String id) async {
+    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
+    return {
+      'age': snapshot.get('age'),
+      'height': snapshot.get('height'),
+      'weight': snapshot.get('weight'),
+      'gender': snapshot.get('gender'),
+    };
+  }
+
+  Future<String> getUsername(String id) async {
+    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
+    return snapshot.get('username');
+  }
+
+  Future<void> updateUserWeight(String userId, int weight) async {
+    final userDocRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    await userDocRef.update({'weight': weight});
+  }
+
+
+
 }
