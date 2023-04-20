@@ -264,7 +264,7 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                                 if (controller.passwordController.text.isNotEmpty &&
                                     logic.passwords == logic.confirmPasswords) {
 
-                                  Get.off(()=>const LoginScreen ());
+                                  Get.off(()=> LoginScreen ());
                                   logic.setLoadingFalse();
                                 } else {
                                   logic.setLoadingFalse();

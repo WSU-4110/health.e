@@ -303,20 +303,20 @@ class WorkoutPage extends StatelessWidget {
               ),
 
               // New container for specialized workouts
-          Container(
+              Container(
 
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget>[
-              Text(
-                  'Specific Workout Programs:',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                ),
-                  ]
-              )
-          ),
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const <Widget>[
+                        Text(
+                          'Specific Workout Programs:',
+                          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                        ),
+                      ]
+                  )
+              ),
 
               SizedBox(
                   height: 300,

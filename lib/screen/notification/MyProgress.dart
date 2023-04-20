@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,27 +19,74 @@ class MyProgress extends StatefulWidget {
 }
 
 class _MyProgressState extends State<MyProgress> {
-
   bool _switchValue = false; // for the switch button
   late NotificationService _notificationService;
 
   @override
   void initState() {
-  super.initState();
-  _getSwitchValue();
-  _initializeNotificationService();
-  
-}
-Future<void> _getSwitchValue() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  setState(() {
-    _switchValue = prefs.getBool('switchValue') ?? false;
-  });
-}
-Future<void> _initializeNotificationService() async {
+    super.initState();
+    _getSwitchValue();
+    _initializeNotificationService();
+  }
+
+  Future<void> enableNotifications(bool enabled) async {
+    final firebaseAuth = FirebaseAuth.instance;
+    final firebaseUser = firebaseAuth.currentUser;
+    final userEmail = firebaseUser!.email;
+
+    final userQuery = FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: userEmail);
+
+    final userDocs = await userQuery.get();
+    final userDoc = userDocs.docs.first;
+    final userId = userDoc.id;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .update({'notificationsEnabled': enabled});
+  }
+
+  void toggleNotifications(bool isEnabled) {
+    final user = FirebaseAuth.instance.currentUser;
+    final userId = user!.uid;
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    userRef.update({'notificationsEnabled': isEnabled});
+  }
+
+  late StreamSubscription<DocumentSnapshot> subscription;
+
+  void listenToNotificationsEnabled() {
+    final user = FirebaseAuth.instance.currentUser;
+    final userId = user!.uid;
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    subscription = userRef.snapshots().listen((snapshot) {
+      if (snapshot.exists) {
+        final data = snapshot.data();
+        final isEnabled = data!['notificationsEnabled'] ?? false;
+        // Update the "enable notifications" toggle in your UI
+      }
+    });
+  }
+
+// Call this method to stop listening for changes to the notificationsEnabled field
+  void cancelNotificationsEnabledListener() {
+    subscription.cancel();
+  }
+
+  Future<void> _getSwitchValue() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _switchValue = prefs.getBool('switchValue') ?? false;
+    });
+  }
+
+  Future<void> _initializeNotificationService() async {
     _notificationService = NotificationService(); // Add this line
     await _notificationService.init(); // Add this line
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
@@ -56,86 +107,96 @@ Future<void> _initializeNotificationService() async {
         shadowColor: Colors.black,
       ),
       body: LayoutBuilder(
-  builder: (BuildContext context, BoxConstraints constraints) {
-    double containerWidth = constraints.maxWidth;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        children: [
-          Container(
-            width: containerWidth,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.grey.shade200,
-            ),
+        builder: (BuildContext context, BoxConstraints constraints) {
+          double containerWidth = constraints.maxWidth;
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(15),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 50,
-                  child: Row(
+                  width: containerWidth,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Allow Notification',
-                        style: TextStyle(fontSize: 16),
+                      Container(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Text(
+                              'Allow Notification',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            Spacer(),
+                            Switch(
+                              value: _switchValue,
+                              onChanged: (value) async {
+                                setState(() {
+                                  _switchValue = value;
+                                });
+                                final SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setBool('switchValue', value);
+                                final firebaseAuth = FirebaseAuth.instance;
+
+                                final User? user;
+                                firebaseAuth.currentUser;
+                                if (firebaseAuth.currentUser != null) {
+                                  final user = firebaseAuth.currentUser;
+                                  final userRef = FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(user!.uid);
+                                  await userRef
+                                      .update({'notifications_enabled': value});
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      Spacer(),
-                      Switch(
-                        value: _switchValue,
-                        onChanged: (value) async {
-                          setState(() {
-                            _switchValue = value;
-                          });
-                          final SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setBool('switchValue', value);
-                          
-                        },
+                      NoteThumbnail(
+                        id: 1.toString(),
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        title: "Frequency", //  title
+                        content: "", // Empty content
+                        switchValue: _switchValue,
+                        showFrequencySelection: true,
+                        showAddReminderButton: false,
                       ),
                     ],
                   ),
                 ),
-                NoteThumbnail(
-                  id: 1,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  title: "Frequency", //  title
-                  content:
-                      "", // Empty content
-                  switchValue: _switchValue,
-                  showFrequencySelection: true,
-                  showAddReminderButton: false,
+                SizedBox(height: 10),
+                Container(
+                  width: containerWidth,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: NoteThumbnail(
+                    id: 2.toString(),
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    title: "Your progress",
+                    content: "Set a reminder for a healthy lifestyle",
+                    switchValue: _switchValue,
+                  ),
                 ),
               ],
             ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            width: containerWidth,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.grey.shade200,
-            ),
-            child: NoteThumbnail(
-              id: 2,
-              color: Color.fromARGB(255, 255, 255, 255),
-              title: "Your progress",
-              content: "Set a reminder for a healthy lifestyle",
-              switchValue: _switchValue,
-            ),
-          ),
-        ],
+          );
+        },
       ),
-    );
-  },
-),
     );
   }
 }
 
 class NoteThumbnail extends StatefulWidget {
-  final int id;
+  final String id;
   final Color color;
   final String title;
   final String content;
@@ -143,16 +204,16 @@ class NoteThumbnail extends StatefulWidget {
   final bool showFrequencySelection;
   final bool showAddReminderButton;
 
-  const NoteThumbnail(
-      {Key? key,
-      required this.id,
-      required this.color,
-      required this.title,
-      required this.content,
-      required this.switchValue, // this a parameter that access _switchValue from _NoteThumbnailState (version#3)
-      this.showFrequencySelection = false,
-      this.showAddReminderButton = true,})  
-      : super(key: key);
+  const NoteThumbnail({
+    Key? key,
+    required this.id,
+    required this.color,
+    required this.title,
+    required this.content,
+    required this.switchValue, // this a parameter that access _switchValue from _NoteThumbnailState (version#3)
+    this.showFrequencySelection = false,
+    this.showAddReminderButton = true,
+  }) : super(key: key);
 
   @override
   _NoteThumbnailState createState() => _NoteThumbnailState();
@@ -164,8 +225,7 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
   ReminderFrequency _selectedFrequency = ReminderFrequency.Once;
 // version#3 starts
 
-
-@override
+  @override
   void initState() {
     super.initState();
     _getReminderFrequency(); // Call the method here
@@ -182,102 +242,113 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
 // version#3 ends here
 
   Future<void> _selectDate(BuildContext context) async {
-  final time = await showTimePicker(
-    context: context,
-    initialTime: TimeOfDay.fromDateTime(selectedDate),
-  );
-  if (time != null) {
-    print('Time is not null'); // for debugging
-    setState(() {
-      selectedDate = DateTime(
-        selectedDate.year,
-        selectedDate.month,
-        selectedDate.day,
-        time.hour,
-        time.minute,
-      );
-    });
-    // Schedule or cancel the notification based on the switch state and the selected frequency
-    final NotificationService _notificationService = NotificationService();
-    // Cancel the existing notification before scheduling a new one
-    await _notificationService.flutterLocalNotificationsPlugin.cancel(widget.id);
-    if (widget.switchValue) {
-      if (_selectedFrequency == ReminderFrequency.Daily) {
-        await _notificationService.scheduleDailyNotification(
-          id: widget.id,
-          title: "Fitness Time!",
-          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
-          time: selectedDate,
+    final time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(selectedDate),
+    );
+    if (time != null) {
+      print('Time is not null'); // for debugging
+      setState(() {
+        selectedDate = DateTime(
+          selectedDate.year,
+          selectedDate.month,
+          selectedDate.day,
+          time.hour,
+          time.minute,
         );
-      } else if (_selectedFrequency == ReminderFrequency.Weekly) {
-        await _notificationService.scheduleWeeklyNotification(
-          id: widget.id,
-          title: "Fitness Time!",
-          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
-          time: selectedDate,
-        );
-      } else {
-        await _notificationService.scheduleNotifications(
-          id: widget.id,
-          title: "Fitness Time!",
-          body: "It's time for fitness! Take a break from your busy schedule and prioritize your health",
-          time: selectedDate,
-        );
+      });
+      // Schedule or cancel the notification based on the switch state and the selected frequency
+      final NotificationService _notificationService = NotificationService();
+      // Cancel the existing notification before scheduling a new one
+      await _notificationService.flutterLocalNotificationsPlugin
+          .cancel(widget.id.toString() as int);
+      if (widget.switchValue) {
+        if (_selectedFrequency == ReminderFrequency.Daily) {
+          await _notificationService.scheduleDailyNotification(
+            id: widget.id,
+            title: "Fitness Time!",
+            body:
+                "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+            time: selectedDate,
+          );
+        } else if (_selectedFrequency == ReminderFrequency.Weekly) {
+          await _notificationService.scheduleWeeklyNotification(
+            id: widget.id,
+            title: "Fitness Time!",
+            body:
+                "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+            time: selectedDate,
+          );
+        } else {
+          await _notificationService.scheduleNotifications(
+            id: widget.id,
+            title: "Fitness Time!",
+            body:
+                "It's time for fitness! Take a break from your busy schedule and prioritize your health",
+            time: selectedDate,
+          );
+        }
       }
     }
   }
-}
+
   Widget _buildFrequencySelection() {
-  return Column(
-    children: [
-      ListTile(
-        title: const Text('Once'),
-        leading: Radio<ReminderFrequency>(
-          value: ReminderFrequency.Once,
-          groupValue: _selectedFrequency,
-          onChanged: (ReminderFrequency? value) async{
-            if (value != null) {
-              setState(() {
-                _selectedFrequency = value;
-              });
-              final SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setInt('reminderFrequency', value.index); }
-          },
+    return Column(
+      children: [
+        ListTile(
+          title: const Text('Once'),
+          leading: Radio<ReminderFrequency>(
+            value: ReminderFrequency.Once,
+            groupValue: _selectedFrequency,
+            onChanged: (ReminderFrequency? value) async {
+              if (value != null) {
+                setState(() {
+                  _selectedFrequency = value;
+                });
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setInt('reminderFrequency', value.index);
+              }
+            },
+          ),
         ),
-      ),
-      ListTile(
-        title: const Text('Daily'),
-        leading: Radio<ReminderFrequency>(
-          value: ReminderFrequency.Daily,
-          groupValue: _selectedFrequency,
-          onChanged: (ReminderFrequency? value) async{
-          if (value != null) {
-              setState(() {
-                _selectedFrequency = value;
-              });
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-            await prefs.setInt('reminderFrequency', value.index);}
-          },
+        ListTile(
+          title: const Text('Daily'),
+          leading: Radio<ReminderFrequency>(
+            value: ReminderFrequency.Daily,
+            groupValue: _selectedFrequency,
+            onChanged: (ReminderFrequency? value) async {
+              if (value != null) {
+                setState(() {
+                  _selectedFrequency = value;
+                });
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setInt('reminderFrequency', value.index);
+              }
+            },
+          ),
         ),
-      ),
-      ListTile(
-        title: const Text('Weekly'),
-        leading: Radio<ReminderFrequency>(
-          value: ReminderFrequency.Weekly,
-          groupValue: _selectedFrequency,
-          onChanged: (ReminderFrequency? value) async{
-            if (value != null) {
-              setState(() {
-                _selectedFrequency = value;
-              });
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-            await prefs.setInt('reminderFrequency', value.index);}
-          },
+        ListTile(
+          title: const Text('Weekly'),
+          leading: Radio<ReminderFrequency>(
+            value: ReminderFrequency.Weekly,
+            groupValue: _selectedFrequency,
+            onChanged: (ReminderFrequency? value) async {
+              if (value != null) {
+                setState(() {
+                  _selectedFrequency = value;
+                });
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setInt('reminderFrequency', value.index);
+              }
+            },
+          ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -308,7 +379,7 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
             height: 5,
           ),
           if (widget.showFrequencySelection) _buildFrequencySelection(),
-          if (widget.showAddReminderButton) 
+          if (widget.showAddReminderButton)
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: gradientColors_1, // background

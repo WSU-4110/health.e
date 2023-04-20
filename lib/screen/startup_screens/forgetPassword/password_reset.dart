@@ -6,19 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/startup_screens/forgetPassword/password_change.dart';
+import 'package:healthe/screen/startup_screens/login_screen/login_screen.dart';
 import 'package:pinput/pinput.dart';
 import 'package:healthe/value/color.dart';
 import 'package:healthe/common_widget/button_widget.dart';
 
-class PinVerify extends StatefulWidget {
-  const PinVerify({Key? key, required void pin, required String email}) : super(key: key);
+class Reset extends StatefulWidget {
+  const Reset({Key? key, required void pin, required String email}) : super(key: key);
 
   @override
-  State<PinVerify> createState() => _PinVerifyState();
+  State<Reset> createState() => _ResetState();
 }
 
-class _PinVerifyState extends State<PinVerify> {
+class _ResetState extends State<Reset> {
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -72,37 +72,17 @@ class _PinVerifyState extends State<PinVerify> {
             ),
 
             const SizedBox(height: 40,),
-            Pinput(
-              length: 5,
-              autofocus: true,
-              // controller: controller.otpController,
-              androidSmsAutofillMethod:
-              AndroidSmsAutofillMethod.smsRetrieverApi,
-              defaultPinTheme: defaultPinTheme,
-              focusedPinTheme: defaultPinTheme.copyDecorationWith(
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              submittedPinTheme: defaultPinTheme.copyWith(
-                decoration: defaultPinTheme.decoration!.copyWith(
-                  color: const Color.fromRGBO(234, 239, 243, 1),
-                ),
-              ),
-              showCursor: true,
-              onCompleted: (pin) {
-                code = pin;
-              },
-            ),
+            
             const SizedBox(height: 40,),
             ButtonWidget(
-                text: "Verify Pin Code",
+                text: "Password reset link sent. Return to login?",
                 textColor: Colors.black,
                 backGroundColor: Colors.white,
                 mWidth: Get.width,
                 mHeight: Get.height,
                 borderColor: gradientColors_1,
                 press: () async {
-                  Get.to(()=>const ChangePassScreen());
+                  Get.to(()=> LoginScreen());
                 }
             ),
           ],

@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/Workouts/WorkoutCardio.dart';
 import 'package:healthe/value/color.dart';
-
+import '../../database/crud.dart';
 import '../startup_screens/reassessment_screen.dart';
+
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,6 +16,29 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+  String _username = '';
+
+  @override
+  void initState() {
+    super.initState();
+    initializeUsername();
+  }
+
+  Future<void> initializeUsername() async {
+    final User? currentUser = firebaseAuth.currentUser;
+    if (currentUser != null) {
+      String username = await Crud().getUsername(currentUser.uid);
+      setState(() {
+        _username = username;
+      });
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +54,7 @@ class _MainPageState extends State<MainPage> {
               // "Welcome,
               Container(
                   margin: const EdgeInsets.only(left:20),
-                  child: Text( "Welcome, User!",
+                  child: Text( "Welcome, $_username",
                       style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 30.0,

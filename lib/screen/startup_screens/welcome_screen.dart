@@ -115,7 +115,7 @@ class _WelComeScreenState extends State<WelComeScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(()=>const LoginScreen());
+                          Get.to(()=>LoginScreen());
                         },
                         child: Container(
                           height: 60,
