@@ -8,6 +8,7 @@ class WorkoutLift extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: gradientColors_1,
         title: Text(
           'Specific Lifting Plan',
           style:
@@ -16,10 +17,8 @@ class WorkoutLift extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [gradientColors_1, gradientColors_1],
-          ),
+        decoration: const BoxDecoration(
+          color: Color(0xfff5f5dc), // Set the background color of the container
         ),
         child: SingleChildScrollView(
           child: Expanded(
@@ -60,6 +59,9 @@ class WorkoutLift extends StatelessWidget {
                   'Day 1: Warm-up: 10 minutes of cardio (such as jogging, cycling, or jumping jacks) + Squats: 3 sets of 8-10 reps + Deadlifts: 3 sets of 8-10 reps + Leg press: 3 sets of 12-15 reps + Leg curls: 3 sets of 12-15 reps + Cool-down: 5-10 minutes of stretching\n\nDay 2: Warm-up: 10 minutes of cardio + Bench press: 5 sets of 8-10 reps + Incline dumbbell press: 5 sets of 8-10 reps + Cable flies: 5 sets of 12-15 reps + Dips: 5 sets of 12-15 reps + Cool-down: 5-10 minutes of stretching\n\nDay 3: Warm-up 10 minutes of cardio + Romanian deadlifts: 5 sets of 8-10 reps + Leg extensions: 5 sets of 12-15 reps + Calf raises: 5 sets of 12-15 reps + Cool-down: 5-10 minutes of stretching\n\nDay 4: Warm-up: 10 minutes of cardio + Lat pull-downs: 5 sets of 8-10 reps + Seated rows: 5 sets of 8-10 reps + Bicep curls: 5 sets of 12-15 reps + Tricep extensions: 5 sets of 12-15 reps + Cool-down: 5-10 minutes of stretching\n\nDay 5: Warm-up: 10 minutes of cardio + Military press: 5 sets of 8-10 reps + Lateral raises: 5 sets of 12-15 reps + Upright rows: 5 sets of 12-15 reps + Cool-down: 5-10 minutes of stretchingDay \n\n6: Warm-up: 10 minutes of cardio + Romanian deadlifts: 5 sets of 8-10 reps + Leg extensions: 5 sets of 12-15 reps + Calf raises: 5 sets of 12-15 reps + Cool-down: 5-10 minutes of stretching \n\nDay 7:Rest day or light activity such as yoga or stretching',
                   textAlign: TextAlign.center,
                 ),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
+                )
               ],
             ),
           ),
