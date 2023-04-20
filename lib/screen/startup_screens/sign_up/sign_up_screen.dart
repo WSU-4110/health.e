@@ -436,30 +436,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if (result != null) {
                               try {
                                 await Crud().createUserProfile(
-                                  result.uid,
                                   _controllerUsername.text,
-                                  //
                                   _controllerEmail.text,
                                   _controllerPassword.text,
-                                  0,
-                                  // level
-                                  0,
-                                  // weight
+                                  0, // Level
+                                  0, // Weight
                                   height,
-                                  // height
                                   age,
-                                  // age
                                   _controllerGender.text,
-                                  // gender
-                                  "",
-                                  // goal
-                                  0,
-                                  // dailyCaloricIntake
-                                  "",
-                                  // lastAssessmentDate
-                                  [],
-                                  // workoutHistory
-                                  true, // notificationsEnabled
+                                  " ", // Goal
+                                  0, // daily caloric intake
+                                  "", // last assessment date
+                                  [], //
+                                  true
                                 );
                                 Navigator.pushAndRemoveUntil(
                                   context,

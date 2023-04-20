@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import '../../database/crud.dart';
 import '../../value/color.dart';
 import '../widgets/workout_log.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class Progress extends StatefulWidget {
   const Progress({Key? key}) : super(key: key);
@@ -17,6 +18,15 @@ class Progress extends StatefulWidget {
 }
 
 class _ProgressState extends State<Progress> {
+
+
+
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final CollectionReference usersCollection = FirebaseFirestore.instance
+      .collection('users');
+
+  String? id = FirebaseAuth.instance.currentUser?.uid;
 
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -43,6 +53,8 @@ class _ProgressState extends State<Progress> {
   };
 
   List<dynamic> _selectedWorkouts = [];
+
+
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       _selectedDay = selectedDay;
@@ -52,20 +64,65 @@ class _ProgressState extends State<Progress> {
   final Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
 
 
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+   Map<String, dynamic>? _userInfo;
 
-  String? id = FirebaseAuth.instance.currentUser?.uid;
+  bool states = true;
 
-
-
-  late Map<String, dynamic> _userInfo;
+  final TextEditingController controllerWeight = TextEditingController();
 
 
-  void initState() {
-    super.initState();
-    initializeUserInfo();
+   int? protein;
+   int? carbs;
+   int? fats;
+
+  final dataMap = <String, double>{
+    "Protein": 5,
+    "Carbs": 3,
+    "Fats": 2,
+  };
+
+
+
+  String calculator()
+  {
+    late int age;
+    late int height;
+    late int weight;
+    late String gender;
+
+    if (_userInfo != null)
+    {
+      age = _userInfo!['age'];
+      height = _userInfo!['height'];
+      weight = _userInfo!['weight'];
+      gender = _userInfo!['gender'];
+      // use _userInfo here
+    } else {
+      age = 0;
+      height = 0;
+      weight = 0;
+      gender = "";
+
+      // handle the case where _userInfo is null
+    }
+    late double BMR;
+
+    if (gender == 'Male')
+    {
+      BMR = (66.5 + (13.75 * weight) +
+          (5.003 * height) - (6.75 * age));
+    }
+    else
+    {
+      BMR = 66.5 + (13.75 * weight)
+          + (5.003 * height) - (6.75 * age);
+    }
+
+    int BMR_int = BMR.toInt();
+
+    return BMR_int.toString();
   }
+
 
   Future<void> initializeUserInfo() async {
     final User? currentUser = firebaseAuth.currentUser;
@@ -77,41 +134,20 @@ class _ProgressState extends State<Progress> {
     }
   }
 
-  int calculator()
-  {
-   int age = _userInfo['age'];
-   int height = _userInfo['height'];
-   int weight = _userInfo['weight'];
-   String gender = _userInfo['gender'];
+  void initState() {
+    super.initState();
+    initializeUserInfo();
 
-   late double BMR;
-
-   if (gender == 'Male')
-     {
-         BMR = (66.5 + (13.75 * weight) +
-           (5.003 * height) - (6.75 * age));
-     }
-   else
-     {
-         BMR = 66.5 + (13.75 * weight)
-           + (5.003 * height) - (6.75 * age);
-     }
-
-   int BMR_int = BMR.toInt();
-
-return BMR_int;
   }
 
+  int? weight;
 
-bool states = true;
   @override
   Widget build(BuildContext context) {
 
-    int final_bmr = calculator();
+    String? dropdownValue = 'Build Muscle';
 
-    final TextEditingController controllerWeight = TextEditingController();
-    late int weight = int.parse(controllerWeight.text);
-
+    String finalBmr = calculator();
 
     return Scaffold(
         body: SafeArea(
@@ -140,9 +176,11 @@ bool states = true;
                         calendarStyle: CalendarStyle(
                           todayDecoration: BoxDecoration(
                             color: Colors
-                                .transparent, // Set the today's day color to transparent
+                                .transparent,
+                            // Set the today's day color to transparent
                             shape: BoxShape.circle,
-                            border: Border.all(color: Color.fromARGB(255, 255, 255, 255)),
+                            border: Border.all(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                           ),
                           todayTextStyle: TextStyle(
                             color: Colors.black,
@@ -167,7 +205,8 @@ bool states = true;
                       margin: const EdgeInsets.all(20.0),
                       child: Text(
                         _selectedDay != null
-                            ? "Workout Logs for ${DateFormat.yMd().format(_selectedDay!)}"
+                            ? "Workout Logs for ${DateFormat.yMd().format(
+                            _selectedDay!)}"
                             : "No date selected",
                         style: GoogleFonts.poppins(
                           color: Colors.black,
@@ -193,14 +232,14 @@ bool states = true;
                               ),
                               child: Center(
                                   child: Text(
-                                _workoutLogs[_selectedDay]?[index]
+                                    _workoutLogs[_selectedDay]?[index]
                                         ?.toString() ??
-                                    '',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 30,
-                                ),
-                              )),
+                                        '',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 30,
+                                    ),
+                                  )),
                             ),
                           );
                         },
@@ -233,103 +272,118 @@ bool states = true;
                                   }
                                 },
                                 child: Container(
-                                  width: 100,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: grayColors),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
+                                    width: 100,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: grayColors),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .start,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      children: [
 
-                                      // Enter your weight
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10.0),
-                                        child: states ? Text("Enter your weight",
-                                            textAlign: TextAlign.left,
-                                            style: GoogleFonts.poppins(
-                                              color: Colors.black,
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w700,
-                                            )) : Text("Your TDEE is: ",
-                                            textAlign: TextAlign.left,
-                                            style: GoogleFonts.poppins(
-                                              color: Colors.black,
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w700,
-                                            ))  ,
-                                      ),
-
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10.0),
-                                        padding:
-                                        const EdgeInsets.only(left: 10, bottom: 5, top: 5),
-                                        width: 85.0,
-                                        // height: mHeight / 16,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8),
+                                        // Enter your weight
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 20, horizontal: 10.0),
+                                          child: states ? Text(
+                                              "Enter your weight",
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w700,
+                                              )) : Text("Your TDEE is: ",
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w700,
+                                              )),
                                         ),
-                                        child: states ? TextFormField(
 
-                                          //  controller: controller.nameController,
-                                          keyboardType: TextInputType.number,
-                                          onChanged: (value) {
-                                            weight = int.parse(value);
-                                          },
-
-                                          style: GoogleFonts.inter(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FontStyle.normal,
+                                        // TextField/Calorie Result
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 10.0),
+                                          padding:
+                                          const EdgeInsets.only(
+                                              left: 0, bottom: 5, top: 5),
+                                          width: 200.0,
+                                          // height: mHeight / 16,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: states
+                                                ? Colors.white
+                                                : grayColors,
+                                            borderRadius: BorderRadius.circular(
+                                                8),
                                           ),
-                                          decoration: const InputDecoration(
-                                            hintText: "Weight",
-                                            border: InputBorder.none,
-                                            focusedBorder: InputBorder.none,
-                                            enabledBorder: InputBorder.none,
-                                            errorBorder: InputBorder.none,
-                                            disabledBorder: InputBorder.none,
-                                          ),
-                                        ): const Text('1900'),// PRINT ACTUAL CALORIES HERE
-                                      ),
+                                          child: states ? TextFormField(
 
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10.0),
-                                        child: ElevatedButton(
-                                          style: ButtonStyle(
-                                            backgroundColor: MaterialStatePropertyAll<Color>(gradientColors_1),
+                                            //  controller: controller.nameController,
+                                            keyboardType: TextInputType.number,
+                                            onChanged: (value) {
+                                              weight = int.parse(value);
+                                            },
 
-                                          ),
+                                            style: GoogleFonts.inter(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                            decoration: const InputDecoration(
+                                              hintText: " Weight (kg)",
+                                              border: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              disabledBorder: InputBorder.none,
+                                            ),
+                                          ) : Text("$finalBmr Calories",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w700
 
-                                          onPressed:  () async
-                                          {
-                                            if (states) {
-                                              Crud().updateUserWeight(
-                                                  id!, weight);
-                                              setState(() {
-                                                states = false;
+                                            ),
+                                          ), // PRINT ACTUAL CALORIES HERE
+                                        ),
 
-                                              });
-                                            }
-                                            else
-                                              {
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 10.0),
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStatePropertyAll<
+                                                  Color>(gradientColors_1),
+
+                                            ),
+
+                                            onPressed: () async
+                                            {
+                                              if (states) {
+                                                Crud().updateUserWeight(
+                                                    id!, weight!);
+                                                setState(() {
+                                                  states = false;
+                                                });
+                                              }
+                                              else {
                                                 setState(() {
                                                   states = true;
                                                 });
-
-
                                               }
-
-
-                                          },
-                                          child: states ? const Text("Calculate"): const Text("Reset") ,
-                                        ),
-                                      )
-                                    ],
-                                  )
+                                            },
+                                            child: states ? const Text(
+                                                "Calculate") : const Text(
+                                                "Reset"),
+                                          ),
+                                        )
+                                      ],
+                                    )
                                 ),
                               ),
                             ),
@@ -358,7 +412,7 @@ bool states = true;
 
                     // Macro Nutrient Profile List View
                     Container(
-                        height: 250,
+                        height:250,
                         child: ListView(
                           physics: const NeverScrollableScrollPhysics(),
                           children: [
@@ -367,26 +421,143 @@ bool states = true;
                               child: InkWell(
                                 onTap: () {
                                   {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Workouts()),
-                                    );
+
                                   }
                                 },
                                 child: Container(
-                                  width: 100,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: grayColors),
-                                  child: Center(
-                                      child: Text("Go to your workout",
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 30,
-                                          ))),
+                                    width: 200,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: grayColors),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
+                                          children: [
+
+                                            // "Select a Goal"
+                                            Container(
+                                              margin: const EdgeInsets.symmetric(
+                                                  vertical: 20, horizontal: 10.0),
+                                              child: Text(
+                                                  "Select a Goal: ",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color: Colors.black,
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.w700,
+                                                  ))
+                                            ),
+
+                                            // Drop Down Menu
+                                            Container(
+                                              margin: const EdgeInsets.symmetric(
+                                                  vertical: 5, horizontal: 10.0),
+                                              padding:
+                                              const EdgeInsets.only(
+                                                  left: 0, bottom: 5, top: 5),
+                                              width: 150.0,
+                                              // height: mHeight / 16,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                     Colors.white,
+                                                borderRadius: BorderRadius.circular(
+                                                    8),
+                                              ),
+                                              child: DropdownButton<String>(
+                                                value: dropdownValue,
+                                                icon: const Icon(Icons.arrow_downward),
+                                                elevation: 16,
+                                                style: TextStyle(color: gradientColors_1),
+                                                underline: Container(
+                                                  height: 2,
+                                                  color: gradientColors_1,
+                                                ),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+
+                                                    dropdownValue = value;
+
+                                                  });
+
+                                                  if (dropdownValue == 'Build Muscle') {
+                                                    protein = (int.parse(finalBmr) * .45).toInt();
+                                                    carbs = (int.parse(finalBmr) * .40).toInt();
+                                                    fats = (int.parse(finalBmr) * .15).toInt();
+
+
+
+                                                  } else if (dropdownValue == 'Lose Weight') {
+                                                    protein = (int.parse(finalBmr) * .35).toInt();
+                                                    carbs = (int.parse(finalBmr) * .50).toInt();
+                                                    fats = (int.parse(finalBmr) * .15).toInt();
+                                                  } else if (dropdownValue == 'Maintain') {
+                                                    protein = (int.parse(finalBmr) * .35).toInt();
+                                                    carbs = (int.parse(finalBmr) * .40).toInt();
+                                                    fats =(int.parse(finalBmr) * .25).toInt();
+                                                  }
+                                                  dataMap["Protein"] = (protein!/4);
+                                                  dataMap["Carbs"] = (carbs!/4);
+                                                  dataMap["Fats"] = (fats!/9);
+
+
+
+
+
+                                                },
+                                                items: const [
+                                                  DropdownMenuItem<String>(
+                                                    value: 'Build Muscle',
+                                                    child: Text('Build Muscle'),
+                                                  ),
+                                                  DropdownMenuItem<String>(
+                                                    value: 'Lose Weight',
+                                                    child: Text('Lose Weight'),
+                                                  ),
+                                                  DropdownMenuItem<String>(
+                                                    value: 'Maintain',
+                                                    child: Text('Maintain'),
+                                                  ),
+                                                ],
+                                              )),
+
+                                          ],
+                                        ),
+
+                                       Column(
+                                         mainAxisAlignment: MainAxisAlignment.center,
+                                         children: [
+
+                                           SizedBox(
+                                             height: 175,
+                                             child: PieChart(
+                                                 dataMap: dataMap,
+                                                 chartRadius: 300.0,
+                                                 chartType: ChartType.ring,
+                                                 chartLegendSpacing: 15.0,
+                                                 legendOptions: const LegendOptions(
+                                                   legendPosition: LegendPosition.bottom,
+                                                   showLegendsInRow: true,
+
+
+
+                                                 ),
+
+                                             ),
+                                           )
+
+
+                                         ],
+
+
+                                       )// PUT PIE GRAPH HERE
+                                      ],
+                                    )
                                 ),
                               ),
                             ),
@@ -398,4 +569,6 @@ bool states = true;
         )
     );
   }
+
+
 }

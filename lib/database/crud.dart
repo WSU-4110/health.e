@@ -12,7 +12,6 @@ class Crud {
 
   // Create - Profile (users collection)
   Future<void> createUserProfile(
-      String id,
       String username,
       String email,
       String password,
@@ -26,7 +25,15 @@ class Crud {
       String lastAssessmentDate,
       List<dynamic> workoutHistory,
       bool notificationsEnabled) async {
-    return await usersCollection.doc(id).set({
+
+    QuerySnapshot snapshot =
+    await usersCollection.orderBy("id", descending: true).limit(1).get();
+    int lastId = snapshot.docs.isNotEmpty ? snapshot.docs.first["id"] : 0;
+    int newId = lastId + 1;
+
+
+    return await usersCollection.doc(newId.toString()).set({
+      'id' : newId,
       'username': username,
       'email': email,
       'password': password,
