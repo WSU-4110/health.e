@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healthe/provider/google_sign_in.dart';
 import 'package:healthe/screen/startup_screens/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
+import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
 import 'package:healthe/value/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
@@ -47,7 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
       await Auth().signInwithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
-        
       );
       Get.off(() => HomeScreen());
     } on FirebaseAuthException catch (e) {
@@ -263,11 +263,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   backgroundColor: Colors.red,
                                 ));
                               } else {
-                                User? result = await Auth()
-                                    .signInwithEmailAndPassword(
-                                        email: _controllerEmail.text,
-                                        password: _controllerPassword.text,
-                                        );
+                                User? result =
+                                    await Auth().signInwithEmailAndPassword(
+                                  email: _controllerEmail.text,
+                                  password: _controllerPassword.text,
+                                );
                                 if (result != null) {
                                   print("Success");
                                   Navigator.pushAndRemoveUntil(
@@ -310,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.center,
                       child: InkWell(
                         onTap: () {
-                          Get.to(() => QuizScreen());
+                          Get.to(() => const SignUpScreen());
                         },
                         child: Text(
                           "I don't have an account",
@@ -369,12 +369,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? const CircularProgressIndicator()
                         : SizedBox(
                             width: double.infinity,
-                          height: 50,
+                            height: 50,
                             child: SignInButton(
-                          Buttons.Google,
-                        text: "Continue with Google",
-                          onPressed: () => Auth.signInWithGoogle(context: context),
-                                ),),
+                              Buttons.Google,
+                              text: "Continue with Google",
+                              onPressed: () =>
+                                  Auth.signInWithGoogle(context: context),
+                            ),
+                          ),
                   ],
                 ),
               ),

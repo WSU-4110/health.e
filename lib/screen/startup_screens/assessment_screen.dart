@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
+import 'package:healthe/screen/home_screen/MainPage.dart';
+import 'package:healthe/screen/home_screen/home_screen.dart';
 import '../../common_widget/question_model.dart';
 import '../../value/color.dart';
 
@@ -15,6 +15,7 @@ class _QuizScreenState extends State<QuizScreen> {
   int score = 0;
   int currentQuestion = 0;
   List<Question> questionList = getQuestions();
+  bool isAssessmentCompleted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,17 @@ class _QuizScreenState extends State<QuizScreen> {
                 _questionWidget(),
                 _answerList(),
                 _nextButton(),
+                if (isAssessmentCompleted) ...[
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Assessment completed!",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]
               ]),
         ));
   }
@@ -116,7 +128,25 @@ class _QuizScreenState extends State<QuizScreen> {
     return InkWell(
       onTap: () {
         if (isLastQuestion == true) {
-          Get.off(() => const SignUpScreen());
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // show the message dialog
+              Future.delayed(Duration(seconds: 3), () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              });
+
+              return AlertDialog(
+                title: Text('Assessment Completed'),
+                content:
+                    Text('Congratulations! You have completed the assessment.'),
+              );
+            },
+          );
         } else {
           _questionWidget();
 

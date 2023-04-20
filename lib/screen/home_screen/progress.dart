@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/database/crud.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
+import 'package:healthe/screen/startup_screens/login_screen/login_screen.dart';
+import 'package:healthe/screen/widgets/add_workout.dart';
+import 'package:healthe/screen/widgets/calorieCalculator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../database/crud.dart';
@@ -19,17 +23,16 @@ class Progress extends StatefulWidget {
 
 class _ProgressState extends State<Progress> {
 
-
-
-
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final CollectionReference usersCollection = FirebaseFirestore.instance
       .collection('users');
 
   String? id = FirebaseAuth.instance.currentUser?.uid;
 
+   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
   final CalendarFormat _calendarFormat = CalendarFormat.month;
+
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   final Map<DateTime, List<dynamic>> _events = {
@@ -37,6 +40,19 @@ class _ProgressState extends State<Progress> {
     DateTime(2023, 4, 15): [], // example date with workout information
     DateTime(2023, 4, 16): [], // example date with workout information
   };
+  Future<List<String>> _getWorkoutLogsForSelectedDay() async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('workout_log')
+        .where('log_date',
+            isEqualTo: Timestamp.fromDate(_selectedDay ?? DateTime.now()))
+        .get();
+    if (querySnapshot.docs.isEmpty) {
+      return [];
+    }
+    return querySnapshot.docs
+        .map((doc) => doc['workout_log'].toString())
+        .toList();
+  }
 
   Map<DateTime, List<dynamic>> workoutMap = {
     DateTime.now(): [
@@ -61,7 +77,9 @@ class _ProgressState extends State<Progress> {
     });
   }
 
+
   final Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
+
 
 
    Map<String, dynamic>? _userInfo;
@@ -134,6 +152,9 @@ class _ProgressState extends State<Progress> {
     }
   }
 
+
+
+  final Map<DateTime, List<WorkoutLog>> _workoutLogs = {};'
   void initState() {
     super.initState();
     initializeUserInfo();
@@ -144,6 +165,16 @@ class _ProgressState extends State<Progress> {
 
   @override
   Widget build(BuildContext context) {
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      // The user is not signed in, so we show a sign-in screen.
+      return LoginScreen();
+    }
+     String? dropdownValue = 'Build Muscle';
+
+    String finalBmr = calculator();
+
 
     String? dropdownValue = 'Build Muscle';
 
@@ -175,6 +206,13 @@ class _ProgressState extends State<Progress> {
                       child: TableCalendar(
                         calendarStyle: CalendarStyle(
                           todayDecoration: BoxDecoration(
+
+                            color: Colors.transparent,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
+
                             color: Colors
                                 .transparent,
                             // Set the today's day color to transparent
@@ -197,10 +235,22 @@ class _ProgressState extends State<Progress> {
                             _selectedDay = selectedDay;
                             _focusedDay = focusedDay;
                           });
+                          _getWorkoutLogsForSelectedDay();
                         },
                       ),
                     ),
 
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddWorkoutScreen(),
+                          ),
+                        );
+                      },
+                      child: Text('Add a Workout'),
+                    ),
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text(
@@ -215,6 +265,83 @@ class _ProgressState extends State<Progress> {
                       ),
                     ),
 
+                    StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('workout_log')
+                          .where('log_date',
+                              isEqualTo: Timestamp.fromDate(
+                                  _selectedDay ?? DateTime.now()))
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return CircularProgressIndicator();
+                          default:
+                            if (snapshot.data?.docs.isEmpty ?? true) {
+                              return Center(
+                                child: Text(
+                                  'No workouts logged for this day.',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              List<WorkoutLog> workoutLogs = [];
+                              for (final doc in snapshot.data!.docs) {
+                                workoutLogs.add(WorkoutLog.fromJson(
+                                    doc.data() as Map<String, dynamic>));
+                              }
+
+                              return Container(
+                                height: 250,
+                                child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: workoutLogs.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (workoutLogs[index].logDate.day ==
+                                            _selectedDay?.day &&
+                                        workoutLogs[index].logDate.month ==
+                                            _selectedDay?.month &&
+                                        workoutLogs[index].logDate.year ==
+                                            _selectedDay?.year) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Container(
+                                          width: 100,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: grayColors,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              workoutLogs[index].workoutLog,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 30,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return SizedBox.shrink();
+                                    }
+                                  },
+                                ),
+                              );
+                            }
+                        }
+                      },
+                    ),
+                   Container(
                     Container(
                       height: 250,
                       child: ListView.builder(
@@ -384,6 +511,9 @@ class _ProgressState extends State<Progress> {
                                         )
                                       ],
                                     )
+
+                                ),),),
+
                                 ),
                               ),
                             ),
@@ -564,6 +694,8 @@ class _ProgressState extends State<Progress> {
                           ],
                         )),
                   ],
+
+                ))]))));
                 )
             )
         )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:healthe/screen/home_screen/MainPage.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
 import 'package:healthe/screen/startup_screens/login_screen/login_screen.dart';
 import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         stream: Auth().firebaseAuth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomeScreen();
+            return  HomeScreen();
           }
           return const SignUpScreen();
         },

@@ -4,6 +4,7 @@ class CalorieCalculator extends StatefulWidget {
   @override
   _CalorieCalculatorState createState() => _CalorieCalculatorState();
 }
+
 class _CalorieCalculatorState extends State<CalorieCalculator> {
   final _formKey = GlobalKey<FormState>();
   int _age = 0;
@@ -67,7 +68,8 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Calorie Intake'),
-          content: Text('Your recommended calorie intake is $calorieIntake calories per day.'),
+          content: Text(
+              'Your recommended calorie intake is $calorieIntake calories per day.'),
           actions: <Widget>[
             TextButton(
               child: Text('OK'),
