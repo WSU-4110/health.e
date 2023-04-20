@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'NotificationService.dart';
@@ -22,8 +26,58 @@ class _MyProgressState extends State<MyProgress> {
   super.initState();
   _getSwitchValue();
   _initializeNotificationService();
+
+  
   
 }
+
+Future<void> enableNotifications(bool enabled) async {
+  final firebaseAuth = FirebaseAuth.instance;
+  final firebaseUser = firebaseAuth.currentUser;
+  final userEmail = firebaseUser!.email;
+  
+  final userQuery = FirebaseFirestore.instance
+      .collection('users')
+      .where('email', isEqualTo: userEmail);
+  
+  final userDocs = await userQuery.get();
+  final userDoc = userDocs.docs.first;
+  final userId = userDoc.id;
+
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(userId)
+      .update({'notificationsEnabled': enabled});
+}
+
+
+void toggleNotifications(bool isEnabled) {
+    final user = FirebaseAuth.instance.currentUser;
+final userId = user!.uid;
+final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+  userRef.update({'notificationsEnabled': isEnabled});
+}
+late StreamSubscription<DocumentSnapshot> subscription;
+
+void listenToNotificationsEnabled() {
+   final user = FirebaseAuth.instance.currentUser;
+  final userId = user!.uid;
+final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+  subscription = userRef.snapshots().listen((snapshot) {
+    if (snapshot.exists) {
+      final data = snapshot.data();
+      final isEnabled = data!['notificationsEnabled'] ?? false;
+      // Update the "enable notifications" toggle in your UI
+    }
+  });
+}
+
+// Call this method to stop listening for changes to the notificationsEnabled field
+void cancelNotificationsEnabledListener() {
+  subscription.cancel();
+}
+
+
 Future<void> _getSwitchValue() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   setState(() {

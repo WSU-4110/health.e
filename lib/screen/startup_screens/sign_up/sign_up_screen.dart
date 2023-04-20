@@ -7,6 +7,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/database/auth.dart';
+import 'package:healthe/screen/startup_screens/assessment_screen.dart';
 import 'package:healthe/value/color.dart';
 import '../../../common_widget/button_widget.dart';
 import '../../../database/crud.dart';
@@ -436,6 +437,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if (result != null) {
                               try {
                                 await Crud().createUserProfile(
+              
                                   _controllerUsername.text,
                                   //
                                   _controllerEmail.text,
@@ -460,11 +462,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // workoutHistory
                                   true, // notificationsEnabled
                                 );
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomeScreen()),
-                                      (route) => false,
+                               Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => QuizScreen()),
+
                                 );
                               } catch (e) {
                                 print('Error creating user profile: $e');

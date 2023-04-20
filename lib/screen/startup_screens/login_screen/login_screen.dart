@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healthe/provider/google_sign_in.dart';
 import 'package:healthe/screen/startup_screens/forgetPassword/email_verify.dart';
 import 'package:healthe/screen/home_screen/home_screen.dart';
+import 'package:healthe/screen/startup_screens/sign_up/sign_up_screen.dart';
 import 'package:healthe/value/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:healthe/database/auth.dart';
@@ -309,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.center,
                       child: InkWell(
                         onTap: () {
-                          Get.to(() => QuizScreen());
+                          Get.to(() => const SignUpScreen());
                         },
                         child: Text(
                           "I don't have an account",

@@ -11,14 +11,6 @@ class Crud {
       FirebaseFirestore.instance.collection('assessments');
 
   // Create - Profile (users collection)
-
-  // Read - Weight, height, gender, name, email (users collection)
-  Future<DocumentSnapshot> getUserProfile(String id) async {
-    return await usersCollection.doc(id).get();
-  }
-
-  // Update - assessment level (users collection, assessments collection)
-  // Create - Profile (users collection)
   Future<void> createUserProfile(
       String username,
       String email,
@@ -58,9 +50,14 @@ class Crud {
     });
   }
 
-// Update - assessment level (users collection, assessments collection)
-  Future<void> updateUserProfile(int id, int level) async {
-    await usersCollection.doc(id.toString()).update({'level': level});
+  // Read - Weight, height, gender, name, email (users collection)
+  Future<DocumentSnapshot> getUserProfile(String id) async {
+    return await usersCollection.doc(id).get();
+  }
+
+  // Update - assessment level (users collection, assessments collection)
+  Future<void> updateUserProfile(String id, int level, email) async {
+    await usersCollection.doc(id).update({'level': level});
 
     // Create assessment
     DateTime now = DateTime.now();
@@ -80,7 +77,44 @@ class Crud {
   }
 
   // Delete - Profile
-  Future<void> deleteUserProfile(String id) async {
-    await usersCollection.doc(id).delete();
+  Future<void> deleteUserProfile(int id, String password) async {
+    try {
+      // Get user document
+      DocumentSnapshot snapshot =
+          await usersCollection.doc(id.toString()).get();
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+
+      // Verify password
+      if (data!['password'] != password) {
+        throw Exception('Invalid password');
+      }
+
+      // Delete user profile document
+      await usersCollection.doc(id.toString()).delete();
+    } catch (e) {
+      print(e);
+      throw Exception('Failed to delete user profile');
+    }
+  }
+
+  Future<Map<String, dynamic>> getUserInfo(String id) async {
+    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
+    return {
+      'age': snapshot.get('age'),
+      'height': snapshot.get('height'),
+      'weight': snapshot.get('weight'),
+      'gender': snapshot.get('gender'),
+    };
+  }
+
+  Future<String> getUsername(String id) async {
+    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
+    return snapshot.get('username');
+  }
+
+  Future<void> updateUserWeight(String userId, int weight) async {
+    final userDocRef =
+        FirebaseFirestore.instance.collection('users').doc(userId);
+    await userDocRef.update({'weight': weight});
   }
 }

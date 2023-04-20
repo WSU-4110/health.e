@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
+import 'package:healthe/screen/widgets/add_workout.dart';
+import 'package:healthe/screen/widgets/calorieCalculator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../value/color.dart';
@@ -67,75 +69,85 @@ class _ProgressState extends State<Progress> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TableCalendar(
-                        calendarStyle: CalendarStyle(
-                          todayDecoration: BoxDecoration(
-                            color: Colors
-                                .transparent, // Set the today's day color to transparent
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          todayTextStyle: TextStyle(
+              padding: const EdgeInsets.all(10.0),
+              child: TableCalendar(
+                calendarStyle: CalendarStyle(
+                  todayDecoration: BoxDecoration(
+                    color: Colors.transparent,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                  todayTextStyle: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                focusedDay: DateTime.now(),
+                firstDay: DateTime(2019, 1, 1),
+                lastDay: DateTime(2300, 1, 1),
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay;
+                  });
+                },
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddWorkoutScreen(),
+                  ),
+                );
+              },
+              child: Text('Add a Workout'),
+            ),
+            Container(
+              margin: const EdgeInsets.all(20.0),
+              child: Text(
+                _selectedDay != null
+                    ? "Workout Logs for ${DateFormat.yMd().format(_selectedDay!)}"
+                    : "No date selected",
+                style: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontSize: 30,
+                ),
+              ),
+            ),
+            Container(
+              height: 250,
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _workoutLogs[_selectedDay]?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      width: 100,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: grayColors,
+                      ),
+                      child: Center(
+                        child: Text(
+                          _workoutLogs[_selectedDay]?[index]?.toString() ?? '',
+                          style: GoogleFonts.poppins(
                             color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
                           ),
                         ),
-                        focusedDay: DateTime.now(),
-                        firstDay: DateTime(2019, 1, 1),
-                        lastDay: DateTime(2300, 1, 1),
-                        selectedDayPredicate: (day) =>
-                            isSameDay(_selectedDay, day),
-                        onDaySelected: (selectedDay, focusedDay) {
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        },
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(20.0),
-                      child: Text(
-                        _selectedDay != null
-                            ? "Workout Logs for ${DateFormat.yMd().format(_selectedDay!)}"
-                            : "No date selected",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 250,
-                      child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _workoutLogs[_selectedDay]?.length ?? 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Container(
-                              width: 100,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: grayColors,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                _workoutLogs[_selectedDay]?[index]
-                                        ?.toString() ??
-                                    '',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 30,
-                                ),
-                              )),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                  );
+                },
+              ),
+            ),
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text("Calorie Calculator",
@@ -160,7 +172,7 @@ class _ProgressState extends State<Progress> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Workouts()),
+                                               CalorieCalculator()),
                                     );
                                   }
                                 },
