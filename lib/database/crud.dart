@@ -3,11 +3,9 @@ class Crud {
   final CollectionReference usersCollection =	
       FirebaseFirestore.instance.collection('users');	
   final CollectionReference workoutsCollection =	
-      FirebaseFirestore.instance.collection('workouts');	
+      FirebaseFirestore.instance.collection('workout_log');	
   final CollectionReference nutritionCollection =	
       FirebaseFirestore.instance.collection('nutrition');	
-  final CollectionReference assessmentsCollection =	
-      FirebaseFirestore.instance.collection('assessments');	
   // Create - Profile (users collection)	
   Future<void> createUserProfile(	
       String username,	
@@ -57,17 +55,7 @@ class Crud {
     DateTime now = DateTime.now();	
     String date =	
         "${now.year.toString()}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";	
-    await assessmentsCollection.add({	
-      'user_id': id,	
-      'date': date,	
-      'level': level,	
-      'weight': null,	
-      'height': null,	
-      'age': null,	
-      'gender': null,	
-      'goal': null,	
-      'daily_caloric_intake': null,	
-    });	
+  
   }	
   // Delete - Profile	
   Future<void> deleteUserProfile(int id, String password) async {	
@@ -104,4 +92,12 @@ class Crud {
     final userDocRef = FirebaseFirestore.instance.collection('users').doc(userId);	
     await userDocRef.update({'weight': weight});	
   }	
+
+  Future<void> updateUserLevel(int userId, int level) async {
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId.toString());
+
+    await userRef.update({
+      'level': level,
+    });
+  }
 }
