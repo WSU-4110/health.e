@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthe/database/crud.dart';
 import 'package:healthe/screen/home_screen/workouts.dart';
 import 'package:healthe/screen/startup_screens/login_screen/login_screen.dart';
 import 'package:healthe/screen/widgets/add_workout.dart';
@@ -19,7 +20,12 @@ class Progress extends StatefulWidget {
 }
 
 class _ProgressState extends State<Progress> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final CollectionReference usersCollection = FirebaseFirestore.instance
+      .collection('users');
+
+  String? id = FirebaseAuth.instance.currentUser?.uid;
+   final CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   final Map<DateTime, List<dynamic>> _events = {
@@ -62,7 +68,88 @@ class _ProgressState extends State<Progress> {
     });
   }
 
-  Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
+
+
+   Map<String, dynamic>? _userInfo;
+
+  bool states = true;
+
+  final TextEditingController controllerWeight = TextEditingController();
+
+
+   int? protein;
+   int? carbs;
+   int? fats;
+
+  final dataMap = <String, double>{
+    "Protein": 5,
+    "Carbs": 3,
+    "Fats": 2,
+  };
+
+
+
+  String calculator()
+  {
+    late int age;
+    late int height;
+    late int weight;
+    late String gender;
+
+    if (_userInfo != null)
+    {
+      age = _userInfo!['age'];
+      height = _userInfo!['height'];
+      weight = _userInfo!['weight'];
+      gender = _userInfo!['gender'];
+      // use _userInfo here
+    } else {
+      age = 0;
+      height = 0;
+      weight = 0;
+      gender = "";
+
+      // handle the case where _userInfo is null
+    }
+    late double BMR;
+
+    if (gender == 'Male')
+    {
+      BMR = (66.5 + (13.75 * weight) +
+          (5.003 * height) - (6.75 * age));
+    }
+    else
+    {
+      BMR = 66.5 + (13.75 * weight)
+          + (5.003 * height) - (6.75 * age);
+    }
+
+    int BMR_int = BMR.toInt();
+
+    return BMR_int.toString();
+  }
+
+
+  Future<void> initializeUserInfo() async {
+    final User? currentUser = firebaseAuth.currentUser;
+    if (currentUser != null) {
+      Map<String, dynamic> userInfo = await Crud().getUserInfo(currentUser.uid);
+      setState(() {
+        _userInfo = userInfo;
+      });
+    }
+  }
+
+
+  final Map<DateTime, List<WorkoutLog>> _workoutLogs = {};
+  void initState() {
+    super.initState();
+    initializeUserInfo();
+
+  }
+
+  int? weight;
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
@@ -70,6 +157,9 @@ class _ProgressState extends State<Progress> {
       // The user is not signed in, so we show a sign-in screen.
       return LoginScreen();
     }
+     String? dropdownValue = 'Build Muscle';
+
+    String finalBmr = calculator();
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -218,7 +308,7 @@ class _ProgressState extends State<Progress> {
                         }
                       },
                     ),
-                    Container(
+                   Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text("Calorie Calculator",
                           textAlign: TextAlign.left,
@@ -228,6 +318,7 @@ class _ProgressState extends State<Progress> {
                             fontWeight: FontWeight.w700,
                           )),
                     ),
+
                     Container(
                         height: 250,
                         child: ListView(
@@ -238,31 +329,123 @@ class _ProgressState extends State<Progress> {
                               child: InkWell(
                                 onTap: () {
                                   {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CalorieCalculator()),
-                                    );
+
                                   }
                                 },
                                 child: Container(
-                                  width: 100,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: grayColors),
-                                  child: Center(
-                                      child: Text("Go to your workout",
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 30,
-                                          ))),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
+                                    width: 100,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: grayColors),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .start,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      children: [
+
+                                        // Enter your weight
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 20, horizontal: 10.0),
+                                          child: states ? Text(
+                                              "Enter your weight",
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w700,
+                                              )) : Text("Your TDEE is: ",
+                                              textAlign: TextAlign.left,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.w700,
+                                              )),
+                                        ),
+
+                                        // TextField/Calorie Result
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 10.0),
+                                          padding:
+                                          const EdgeInsets.only(
+                                              left: 0, bottom: 5, top: 5),
+                                          width: 200.0,
+                                          // height: mHeight / 16,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: states
+                                                ? Colors.white
+                                                : grayColors,
+                                            borderRadius: BorderRadius.circular(
+                                                8),
+                                          ),
+                                          child: states ? TextFormField(
+
+                                            //  controller: controller.nameController,
+                                            keyboardType: TextInputType.number,
+                                            onChanged: (value) {
+                                              weight = int.parse(value);
+                                            },
+
+                                            style: GoogleFonts.inter(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                            decoration: const InputDecoration(
+                                              hintText: " Weight (kg)",
+                                              border: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              disabledBorder: InputBorder.none,
+                                            ),
+                                          ) : Text("$finalBmr Calories",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w700
+
+                                            ),
+                                          ), // PRINT ACTUAL CALORIES HERE
+                                        ),
+
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 10.0),
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStatePropertyAll<
+                                                  Color>(gradientColors_1),
+
+                                            ),
+
+                                            onPressed: () async
+                                            {
+                                              if (states) {
+                                                Crud().updateUserWeight(
+                                                    id!, weight!);
+                                                setState(() {
+                                                  states = false;
+                                                });
+                                              }
+                                              else {
+                                                setState(() {
+                                                  states = true;
+                                                });
+                                              }
+                                            },
+                                            child: states ? const Text(
+                                                "Calculate") : const Text(
+                                                "Reset"),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                ),),),
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       child: Text("MacroNutrient Profile",
@@ -310,6 +493,6 @@ class _ProgressState extends State<Progress> {
                           ],
                         )),
                   ],
-                ))));
+                ))]))));
   }
 }
