@@ -141,7 +141,7 @@ class _MyProgressState extends State<MyProgress> {
                         ),
                       ),
                       NoteThumbnail(
-                        id: 1,
+                        id: 1.toString(),
                         color: Color.fromARGB(255, 255, 255, 255),
                         title: "Frequency", //  title
                         content: "", // Empty content
@@ -161,7 +161,7 @@ class _MyProgressState extends State<MyProgress> {
                     color: Colors.grey.shade200,
                   ),
                   child: NoteThumbnail(
-                    id: 2,
+                    id: 2.toString(),
                     color: Color.fromARGB(255, 255, 255, 255),
                     title: "Your progress",
                     content: "Set a reminder for a healthy lifestyle",
@@ -178,7 +178,7 @@ class _MyProgressState extends State<MyProgress> {
 }
 
 class NoteThumbnail extends StatefulWidget {
-  final int id;
+  final String id;
   final Color color;
   final String title;
   final String content;
@@ -243,7 +243,7 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
       final NotificationService _notificationService = NotificationService();
       // Cancel the existing notification before scheduling a new one
       await _notificationService.flutterLocalNotificationsPlugin
-          .cancel(widget.id);
+          .cancel(widget.id.toString() as int);
       if (widget.switchValue) {
         if (_selectedFrequency == ReminderFrequency.Daily) {
           await _notificationService.scheduleDailyNotification(

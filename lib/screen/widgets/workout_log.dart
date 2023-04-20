@@ -1,15 +1,15 @@
-class WorkoutLog {
-  final DateTime date;
-  final String workoutName;
-  final int sets;
-  final int reps;
-  final int weight;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-  WorkoutLog({
-    required this.date,
-    required this.workoutName,
-    required this.sets,
-    required this.reps,
-    required this.weight,
-  });
+class WorkoutLog {
+  final DateTime logDate;
+  final String workoutLog;
+
+  WorkoutLog({required this.logDate, required this.workoutLog});
+
+  factory WorkoutLog.fromJson(Map<String, dynamic> json) {
+    return WorkoutLog(
+      logDate: (json['log_date'] as Timestamp).toDate(),
+      workoutLog: json['workout_log'] as String,
+    );
+  }
 }

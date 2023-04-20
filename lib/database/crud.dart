@@ -58,7 +58,7 @@ class Crud {
   
   }	
   // Delete - Profile	
-  Future<void> deleteUserProfile(int id, String password) async {	
+  Future<void> deleteUserProfile(String id, String password) async {	
     try {	
       // Get user document	
       DocumentSnapshot snapshot =	
@@ -93,8 +93,8 @@ class Crud {
     await userDocRef.update({'weight': weight});	
   }	
 
-  Future<void> updateUserLevel(int userId, int level) async {
-    final userRef = FirebaseFirestore.instance.collection('users').doc(userId.toString());
+  Future<void> updateUserLevel(String userId, int level) async {
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
 
     await userRef.update({
       'level': level,

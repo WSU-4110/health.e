@@ -56,7 +56,7 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
 
     final workoutData = {
       'log_date': Timestamp.fromDate(_selectedDateTime),
-      'username': user.displayName ?? user.email,
+      'username': user.displayName ?? user.displayName,
       'workout_log': workout,
     };
 
@@ -129,7 +129,7 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
                 }
                 final workoutData = {
                   'log_date': Timestamp.fromDate(selectedDateTime),
-                  'username': user.displayName ?? user.email,
+                  'username': user.displayName ?? user.displayName,
                   'workout_log': workout,
                 };
                 await FirebaseFirestore.instance
