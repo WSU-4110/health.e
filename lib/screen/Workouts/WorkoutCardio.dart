@@ -8,6 +8,7 @@ class WorkoutCardio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: gradientColors_1,
         title: Text(
           'Specific Cardio Plan',
           style:
@@ -16,10 +17,8 @@ class WorkoutCardio extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [gradientColors_1, gradientColors_1],
-          ),
+        decoration: const BoxDecoration(
+          color: Color(0xfff5f5dc), // Set the background color of the container
         ),
         child: SingleChildScrollView(
         child: Expanded(
@@ -57,6 +56,9 @@ class WorkoutCardio extends StatelessWidget {
                 'Day 1: 10-minute warm-up (jumping jacks or high knees) + 45-minute run or high-intensity interval training (HIIT) + 5-minute cool-down (walking or stretching)\n\nDay 2: 10-minute warm-up (jumping jacks or high knees) + 30-minute cycling (indoor or outdoor) + 15 minutes of strength training (such as weight lifting or bodyweight exercises) + 5-minute cool-down (walking or stretching)\n\nDay 3:10-minute warm-up (elliptical or cycling) + 45-minute moderate-intensity cardio (elliptical, cycling, or rowing machine) + 5-minute cool-down (walking or stretching)\n\nDay 4:10-minute warm-up (jumping jacks or high knees) + 30 minutes of HIIT or circuit training + 15 minutes of strength training + 5-minute cool-down (walking or stretching)\n\nDay 5:10-minute warm-up (elliptical or cycling) + 45-minute run or high-intensity cardio (such as stair climbing) + 5-minute cool-down (walking or stretching)\n\nDay 6:10-minute warm-up (jumping jacks or high knees) + 30-minute cycling (indoor or outdoor) + 15 minutes of strength training + 5-minute cool-down (walking or stretching)\n\nDay 7:Rest day or light activity such as yoga or stretching',
                 textAlign: TextAlign.center,
               ),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
+            )
             ],
           ),
         ),

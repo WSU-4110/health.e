@@ -104,7 +104,7 @@ class WorkoutPage extends StatelessWidget {
 
                                         Container(
                                             margin: const EdgeInsets.only(left:10, right: 10,),
-                                            child: Text("Drinking water increases your metabolism by up to 25% for nearly an hour after drinking it.",
+                                            child: Text("Welcome to the beginner level! Here you can find a three week long workout routine at the beginner level and don't be afraid to mix in any of the specific workout programs.",
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 13),))
@@ -164,7 +164,7 @@ class WorkoutPage extends StatelessWidget {
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    child: Image.asset('assets/icon/InterImage.webp',
+                                    child: Image.asset('assets/icon/InterImage.gif',
                                       fit: BoxFit.fill,
                                     ),
                                   ),
@@ -190,7 +190,7 @@ class WorkoutPage extends StatelessWidget {
 
                                         Container(
                                             margin: const EdgeInsets.only(left:10, right: 10,),
-                                            child: Text("A study published in the American Journal of Nutrition, found that 8hrs of sleep for 6 nights can boost your metabolism by 20%",
+                                            child: Text("Welcome to the Intermediate level! Here you can find a three week long workout routine at the intermediate level and don't be afraid to mix in any of the specific workout programs as well.",
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 13),))
@@ -249,7 +249,7 @@ class WorkoutPage extends StatelessWidget {
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    child: Image.asset('assets/icon/ExpertImage.gifgit add .',
+                                    child: Image.asset('assets/icon/ExpertImage.gif',
                                       fit: BoxFit.fill,
 
 
@@ -278,7 +278,7 @@ class WorkoutPage extends StatelessWidget {
 
                                         Container(
                                             margin: const EdgeInsets.only(left:10, right: 10,),
-                                            child: Text("Several studies suggest that green tea can boost metabolism and help people burn 3–4% more calories each day.",
+                                            child: Text("Welcome to the Expert level! Here you can find a three week long workout routine at the expert level and don't be afraid to mix in any of the specific workout programs as well.",
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 13),))
