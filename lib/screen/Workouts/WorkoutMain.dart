@@ -33,7 +33,7 @@ class WorkoutPage extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     children:  [
 
-                      //Diet Tip 1
+                      //Beginner workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -122,7 +122,7 @@ class WorkoutPage extends StatelessWidget {
                       ),
 
 
-                      //Diet Tip 2
+                      //Intermediate workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -207,7 +207,7 @@ class WorkoutPage extends StatelessWidget {
                         ),
                       ),
 
-                      //Diet Tip 3
+                      //Expert workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -302,25 +302,29 @@ class WorkoutPage extends StatelessWidget {
 
               ),
 
-              // Diet Tips List View
-    Container(
+              // New container for specialized workouts
+          Container(
 
-    padding: EdgeInsets.all(20.0),
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-    const Text(
-    'Specific Workout Programs:',
-    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-    ),])),
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const <Widget>[
+              Text(
+                  'Specific Workout Programs:',
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                ),
+                  ]
+              )
+          ),
+
               SizedBox(
                   height: 300,
                   child: ListView(
                     scrollDirection: Axis.vertical,
                     children:  [
 
-                      //Diet Tip 1
+                      //Biking workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -409,7 +413,7 @@ class WorkoutPage extends StatelessWidget {
                       ),
 
 
-                      //Diet Tip 2
+                      //Cardio workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -494,7 +498,7 @@ class WorkoutPage extends StatelessWidget {
                         ),
                       ),
 
-                      //Diet Tip 3
+                      //Lifting workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -581,6 +585,8 @@ class WorkoutPage extends StatelessWidget {
                           ),
                         ),
                       ),
+
+                      //Swimming workout info navigator
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -599,7 +605,7 @@ class WorkoutPage extends StatelessWidget {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 5,
                                   blurRadius: 7,
-                                  offset: Offset(0, 3), // changes position of shadow
+                                  offset: const Offset(0, 3), // changes position of shadow
                                 ),
                               ],
                               borderRadius: BorderRadius.circular(20),
