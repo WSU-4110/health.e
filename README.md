@@ -1,5 +1,5 @@
 # <p align="center">**Health.E Project**</p>
-[Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki) 
+[Review Reqiurements](https://github.com/WSU-4110/health.e/issues) - [Our Wiki](https://github.com/WSU-4110/health.e/wiki) [![Dart](https://github.com/WSU-4110/health.e/actions/workflows/dart.yml/badge.svg)](https://github.com/WSU-4110/health.e/actions/workflows/dart.yml)
 
 ## Motivation and Features
 
