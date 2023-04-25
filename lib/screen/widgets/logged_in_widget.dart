@@ -15,33 +15,33 @@ class LoggedInWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Logged In',
             style: TextStyle(color: Colors.white),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           CircleAvatar(
             maxRadius: 25,
             backgroundImage: NetworkImage(user!.photoURL!),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'Name: ' + user.displayName!,
-            style: TextStyle(color: Colors.white),
+            'Name: ${user.displayName!}',
+            style: const TextStyle(color: Colors.white),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'Email: ' + user!.email!,
-            style: TextStyle(color: Colors.white),
+            'Email: ${user.email!}',
+            style: const TextStyle(color: Colors.white),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
               final provider =
                   Provider.of<GoogleSignInProvider>(context, listen: false);
               provider.logout();
             },
-            child: Text('Logout'),
+            child: const Text('Logout'),
           )
         ],
       ),

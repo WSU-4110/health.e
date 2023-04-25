@@ -24,18 +24,9 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    initializeUsername();
+
   }
 
-  Future<void> initializeUsername() async {
-    final User? currentUser = firebaseAuth.currentUser;
-    if (currentUser != null) {
-      String username = await Crud().getUsername(currentUser.uid);
-      setState(() {
-        _username = username;
-      });
-    }
-  }
 
 
 
