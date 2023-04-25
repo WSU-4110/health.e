@@ -36,7 +36,11 @@ jobs:
         run: flutter pub get
 
       - name: Run tests
-        run: flutter test test/WorkoutMain_test.dart
+        run: |
+          flutter test test/my_progress_test.dart
+          flutter test test/WorkoutCardio_test.dart
+          flutter test test/WorkoutSwim_test.dart
+
 
       - name: Build APK
         run: flutter build apk

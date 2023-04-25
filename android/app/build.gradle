@@ -1,4 +1,6 @@
+
 import org.gradle.internal.os.OperatingSystem
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -9,7 +11,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -31,7 +33,7 @@ task runTestsBeforeBuild {
         } else {
             command = "flutter test test/my_progress_test.dart"
             command = "flutter test test/WorkoutCardio_test.dart"
-            command = "flutter test test/WorkoutCardio_test.dart"
+            command = "flutter test test/WorkoutMain_test.dart"
         }
 
         if (os.isWindows()) {
