@@ -353,7 +353,7 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 280,
       decoration: BoxDecoration(
         color: widget.color,
         borderRadius: BorderRadius.circular(10.0),
@@ -362,7 +362,7 @@ class _NoteThumbnailState extends State<NoteThumbnail> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Text(
             widget.title,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
