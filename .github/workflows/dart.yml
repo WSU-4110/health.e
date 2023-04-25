@@ -39,7 +39,7 @@ jobs:
         run: |
           flutter test test/my_progress_test.dart
           flutter test test/WorkoutCardio_test.dart
-          flutter test test/WorkoutSwim_test.dart
+          flutter test test/WorkoutMain_test.dart
 
 
       - name: Build APK
