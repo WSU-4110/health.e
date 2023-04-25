@@ -23,11 +23,10 @@ class BackgroundPainter extends CustomPainter {
           ..color = Colors.blueGrey[900]!
           ..style = PaintingStyle.fill,
         orangePaint = Paint()
-          ..color = Color.fromARGB(255, 204, 202, 199)
+          ..color = const Color.fromARGB(255, 204, 202, 199)
           ..style = PaintingStyle.fill,
         linePaint = Paint()
-          ..color = Color.fromARGB(255, 8, 54, 85)!
-          ..style = PaintingStyle.stroke
+          ..color = const Color.fromARGB(255, 8, 54, 85)..style = PaintingStyle.stroke
           ..strokeWidth = 4;
 
   void _addPointsToPath(Path path, List<Point> points) {

@@ -124,19 +124,10 @@ class _ProgressState extends State<Progress> {
     return BMR_int.toString();
   }
 
-  Future<void> initializeUserInfo() async {
-    final User? currentUser = firebaseAuth.currentUser;
-    if (currentUser != null) {
-      Map<String, dynamic> userInfo = await Crud().getUserInfo(currentUser.uid);
-      setState(() {
-        _userInfo = userInfo;
-      });
-    }
-  }
+
 
   void initState() {
-    super.initState();
-    initializeUserInfo();
+   
   }
 
   int? weight;
@@ -324,7 +315,7 @@ class _ProgressState extends State<Progress> {
                                 child: Center(
                                     child: Text(
                                       _workoutLogs[_selectedDay]?[index]
-                                          ?.toString() ??
+                                          .toString() ??
                                           '',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,
