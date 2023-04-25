@@ -51,9 +51,7 @@ class Crud {
   }
 
   // Read - Weight, height, gender, name, email (users collection)
-  Future<DocumentSnapshot> getUserProfile(String id) async {
-    return await usersCollection.doc(id).get();
-  }
+
 
   // Update - assessment level (users collection, assessments collection)
   Future<void> updateUserProfile(String id, int level) async {
@@ -81,20 +79,7 @@ class Crud {
     await usersCollection.doc(id).delete();
   }
 
-  Future<Map<String, dynamic>> getUserInfo(String id) async {
-    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
-    return {
-      'age': snapshot.get('age'),
-      'height': snapshot.get('height'),
-      'weight': snapshot.get('weight'),
-      'gender': snapshot.get('gender'),
-    };
-  }
 
-  Future<String> getUsername(String id) async {
-    DocumentSnapshot snapshot = await usersCollection.doc(id).get();
-    return snapshot.get('username');
-  }
 
   Future<void> updateUserWeight(String userId, int weight) async {
     final userDocRef = FirebaseFirestore.instance.collection('users').doc(userId);

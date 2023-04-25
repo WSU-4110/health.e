@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:healthe/common_widget/signup_controller.dart';
+import 'package:healthe/database/signup_controller.dart';
 
 
 
