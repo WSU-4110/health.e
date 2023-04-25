@@ -30,6 +30,9 @@ task runTestsBeforeBuild {
             command = "$flutterRoot/bin/flutter test test/my_progress_test.dart"
         } else {
             command = "flutter test test/my_progress_test.dart"
+            command = "flutter test test/error_message_widget_test.dart"
+            command = "flutter test test/signup_widget_test.dart"
+            command = "flutter test test/signup_contoller_test.dart"
         }
 
         if (os.isWindows()) {
