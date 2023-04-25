@@ -35,13 +35,8 @@ task runTestsBeforeBuild {
             command = "flutter test test/WorkoutCardio_test.dart"
             command = "flutter test test/WorkoutMain_test.dart"
             command = "flutter test test/error_message_widget_test.dart"
-
             command = "flutter test test/signup_controller_test.dart"
             command = "flutter test test/signup_widget_test.dart"
-
-            command = "flutter test test/signup_widget_test.dart"
-            command = "flutter test test/signup_contoller_test.dart"
-
         }
 
         if (os.isWindows()) {
