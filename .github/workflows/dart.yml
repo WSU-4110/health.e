@@ -40,6 +40,9 @@ jobs:
           flutter test test/my_progress_test.dart
           flutter test test/WorkoutCardio_test.dart
           flutter test test/WorkoutMain_test.dart
+          flutter test test/error_message_widget_test.dart
+          flutter test test/signup_controller_test.dart
+          flutter test test/signup_widget_test.dart
 
 
       - name: Build APK
